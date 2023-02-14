@@ -1,8 +1,12 @@
+import Button from "./components/Button";
+import Navbar from "./components/Navbar";
+import GlobalStyle from "./styles/globalStyles";
+
 function App() {
   return (
-    <div className="App">
-      <p>Motors E-commerce</p>
-    </div>
+    <>
+      <GlobalStyle />
+    </>
   );
 }
 
