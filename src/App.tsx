@@ -7,7 +7,7 @@ function App() {
     <>
       <GlobalStyle />
       {/* <ProductCard /> */}
-      <ModalImg />
+      {/* <ModalImg /> */}
     </>
   );
 }
