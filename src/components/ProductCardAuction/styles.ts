@@ -3,13 +3,10 @@ import Car from "../../assets/Photo1.svg";
 
 export const ContainerCardAuctionButton = styled.div`
   min-width: 20rem;
-  height: 25.625rem;
-
   border-radius: 3.125rem;
 
   @media screen and (min-width: 800px) {
     width: 45.9375rem;
-    height: 21.25rem;
   }
 
   .container--button {
