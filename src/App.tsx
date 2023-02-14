@@ -1,4 +1,5 @@
 import ProductCard from "./components/ProductCard";
+import ModalImg from "./components/ModalImg";
 import GlobalStyle from "./styles/globalStyles";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <GlobalStyle />
       {/* <ProductCard /> */}
+      <ModalImg />
     </>
   );
 }
