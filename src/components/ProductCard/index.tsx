@@ -2,36 +2,39 @@ import Car from "../../assets/car.svg";
 import { ContainerCard, ContainerIsActive } from "./styles";
 
 const ProductCard = () => {
-  const name = "Anunciante";
-  const avatar = name[0];
+  const obj = {
+    title:
+      "Product title stays here - max 1 line Product title stays here - maximum 1 line",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+    announcer: "Anunciante",
+    year: "2013",
+    milage: "0 KM",
+    price: "78.500,00",
+    isActive: true,
+  };
 
   return (
     <ContainerCard>
       <ContainerIsActive backgroundColor="var(--brand1)" color="var(--white)">
-        Ativo
+        {obj.isActive ? "Ativo" : "Inativo"}
       </ContainerIsActive>
       <div className="container--img">
         <img src={Car} alt="car" />
       </div>
       <div className="container--content">
-        <h2>
-          Product title stays here - max 1 line Product title stays here -
-          maximum 1 line
-        </h2>
-        <p className="container--description">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem...
-        </p>
+        <h2>{obj.title}</h2>
+        <p className="container--description">{obj.description}</p>
         <div className="container--announcer">
-          <div className="avatar">{avatar}</div>
-          <p>{name}</p>
+          <div className="avatar">{obj.announcer[0]}</div>
+          <p>{obj.announcer}</p>
         </div>
         <div className="container--tag--price">
           <div className="container--tags">
-            <div className="tag">0 KM</div>
-            <div className="tag">2019</div>
+            <div className="tag">{obj.milage}</div>
+            <div className="tag">{obj.year}</div>
           </div>
-          <strong>R$00.000,00</strong>
+          <strong>R${obj.price}</strong>
         </div>
       </div>
     </ContainerCard>
