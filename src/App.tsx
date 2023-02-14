@@ -1,4 +1,5 @@
 import ProductCard from "./components/ProductCard";
+import ModalImg from "./components/ModalImg";
 import ProductCardAuction from "./components/ProductCardAuction";
 import GlobalStyle from "./styles/globalStyles";
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <GlobalStyle />
       {/* <ProductCard /> */}
+      {/* <ModalImg /> */}
       {/* <ProductCardAuction /> */}
     </>
   );
