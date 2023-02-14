@@ -6,9 +6,10 @@ interface IContainerIsActiveProps {
 }
 
 export const ContainerCard = styled.div`
-  width: 312px;
-  height: 350px;
+  width: 19.5rem;
+  height: 22.875rem;
 
+  padding: 0.3125rem;
   background-color: var(--gray9);
 
   .container--img {
@@ -17,19 +18,19 @@ export const ContainerCard = styled.div`
     justify-content: center;
 
     &:hover {
-      border: 2px solid var(--brand1);
-      border-radius: 3px;
+      border: 0.125rem solid var(--brand1);
+      border-radius: 0.1875rem;
     }
   }
 
   .container--content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
   }
 
   h2 {
-    font-family: "Lexend", sans-serif;
+    font-family: var(--lexend);
     font-weight: 600;
 
     display: -webkit-box;
@@ -42,26 +43,26 @@ export const ContainerCard = styled.div`
   }
 
   .container--description {
-    font-size: 14px;
-    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    font-family: var(--inter);
     font-weight: 400;
   }
 
   .container--announcer {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
 
     .avatar {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 32px;
-      height: 32px;
+      width: 2rem;
+      height: 2rem;
       border-radius: 100%;
 
-      font-family: "Inter", sans-serif;
+      font-family: var(--inter);
 
       background-color: var(--brand2);
       color: var(--white);
@@ -76,29 +77,29 @@ export const ContainerCard = styled.div`
 
     .container--tags {
       display: flex;
-      gap: 10px;
+      gap: 0.625rem;
 
       .tag {
         background-color: var(--brand4);
         color: var(--brand1);
-        padding: 8px;
+        padding: 0.5rem;
       }
     }
 
     strong {
-      font-family: "Lexend", sans-serif;
+      font-family: var(--lexend);
     }
   }
 `;
 
 export const ContainerIsActive = styled.div<IContainerIsActiveProps>`
   width: fit-content;
-  padding: 7px;
+  padding: 0.4375rem;
   position: relative;
-  top: 37px;
-  left: 8px;
+  top: 2.3125rem;
+  left: 0.5rem;
 
-  font-family: "Inter", sans-serif;
+  font-family: var(--inter);
 
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.color};
