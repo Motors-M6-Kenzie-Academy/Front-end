@@ -52,11 +52,7 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
-  "devDependencies": {}
-=======
+
   "devDependencies": {
     "@types/react-responsive": "^8.0.5"
   }
->>>>>>> eb8650c210d14d70e1c0678bf48aaa2e1896f3dd
-}
