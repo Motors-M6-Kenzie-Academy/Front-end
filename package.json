@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
     "react-icons": "^4.7.1",
+    "react-responsive": "^9.0.2",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
@@ -51,5 +52,11 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "devDependencies": {}
+=======
+  "devDependencies": {
+    "@types/react-responsive": "^8.0.5"
+  }
+>>>>>>> eb8650c210d14d70e1c0678bf48aaa2e1896f3dd
 }
