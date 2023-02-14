@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\Bruno\Desktop\Front-end\package.json: Unexpected token < in JSON at position 662
+  SyntaxError: C:\Users\Bruno\Desktop\Front-end\package.json: Unexpected token < in JSON at position 1356
       at JSON.parse (<anonymous>)
       at C:\Users\Bruno\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
       at Generator.next (<anonymous>)
@@ -44,10 +44,7 @@ npm manifest:
       "react-dom": "^18.2.0",
       "react-hook-form": "^7.43.1",
       "react-icons": "^4.7.1",
-  <<<<<<< HEAD
-  =======
       "react-responsive": "^9.0.2",
-  >>>>>>> 9bd61689a4362e113cefcb10f8b7307f93111656
       "react-router-dom": "^6.8.1",
       "react-scripts": "5.0.1",
       "styled-components": "^5.3.6",
@@ -85,7 +82,7 @@ npm manifest:
     "devDependencies": {
       "@types/react-responsive": "^8.0.5"
     }
-  >>>>>>> 9bd61689a4362e113cefcb10f8b7307f93111656
+  >>>>>>> eb8650c210d14d70e1c0678bf48aaa2e1896f3dd
   }
 
 yarn manifest: 
