@@ -1,7 +1,7 @@
 import { HeaderContainer } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
 
-export default function NavBar2() {
+export default function Navbar() {
   const handleHamburger = () => {
     const list = document.querySelector(".nav-bar");
     list?.classList.toggle("active");
