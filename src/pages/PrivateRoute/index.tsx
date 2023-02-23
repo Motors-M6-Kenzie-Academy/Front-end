@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Footer";
-import Navbar from "../Navbar";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 export const PrivateRout = () => {
   const token = localStorage.getItem("@userAuth");
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
