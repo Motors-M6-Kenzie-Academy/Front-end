@@ -1,7 +1,12 @@
+import Footer from "../Footer";
+import Navbar from "../Navbar";
+
 export const ErrorPage = () => {
   return (
-    <div>
-      <p>Error 404!</p>
-    </div>
+    <>
+      <Navbar />
+      <p>Error Page 404!</p>
+      <Footer />
+    </>
   );
 };
