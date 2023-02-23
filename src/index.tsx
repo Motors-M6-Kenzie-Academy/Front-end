@@ -1,34 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import GlobalStyle from "./styles/globalStyles";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 // Imports dos components das rotas
-import { SignIn } from "./components/SignIn";
-import { Register } from "./components/Register";
-import { ErrorPage } from "./components/ErrorPage";
-import { Home } from "./components/Home";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "signin",
-        element: <SignIn />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-    ],
-  },
-]);
+import { SignIn } from "./pages/SignIn";
+import { Register } from "./pages/Register";
+import { Home } from "./pages/Home";
+import { PrivateRout } from "./pages/PrivateRoute";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -37,6 +16,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/private" element={<PrivateRout />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
