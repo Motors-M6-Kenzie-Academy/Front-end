@@ -7,22 +7,20 @@ export default function Navbar() {
     list?.classList.toggle("active");
   };
 
-  const handleUser = () => {
-    const list = document.querySelector(".user-settings");
-    list?.classList.toggle("active");
-  };
+  // const handleUser = () => {
+  //   const list = document.querySelector(".user-settings");
+  //   list?.classList.toggle("active");
+  // };
 
-  const sigla = [];
-  const userName = [];
-  const user = {
-    name: "Samuel Leão",
-  };
+  // const sigla: any = [];
+  // const userName: any = [];
+  // const user = {};
 
-  userName.push(user.name.split(" ")[0]);
-  userName.push(user.name.split(" ")[1]);
+  // userName.push(user.name.split(" ")[0]);
+  // userName.push(user.name.split(" ")[1]);
 
-  sigla.push(userName[0].substring(0, 1));
-  sigla.push(userName[1].substring(0, 1));
+  // sigla.push(userName[0].substring(0, 1));
+  // sigla.push(userName[1].substring(0, 1));
 
   return (
     <>
@@ -47,10 +45,10 @@ export default function Navbar() {
             <li>
               <a href="/">Leilão</a>
             </li>
-            {user ? (
+            {/* {user ? (
               <div className="container-user" onClick={() => handleUser()}>
                 <div className="circle">{sigla}</div>
-                <span className="user-name">{user.name}</span>
+                <span className="user-name">{user?.name}</span>
                 <ul className="user-settings">
                   <li>
                     <a href="/">Editar Perfil</a>
@@ -75,7 +73,13 @@ export default function Navbar() {
                   <a href="/">Cadastrar</a>
                 </li>
               </>
-            )}
+            )} */}
+            <li>
+              <a href="/">Fazer Login</a>
+            </li>
+            <li>
+              <a href="/">Cadastrar</a>
+            </li>
           </ul>
         </nav>
       </HeaderContainer>
