@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  height: 8vh;
+  height: 6vh;
 
   display: flex;
   align-items: center;
@@ -53,10 +53,10 @@ export const HeaderContainer = styled.header`
     .container-user {
       display: flex;
       align-items: center;
+      height: 6vh;
 
       gap: 1.2rem;
 
-      height: 4.7rem;
       padding-left: 2rem;
       border-left: 0.2rem solid #dee2e6;
       cursor: pointer;
