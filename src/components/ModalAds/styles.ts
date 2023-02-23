@@ -8,13 +8,12 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  z-index: 2;
   position: absolute;
   
-
   .modalBox{
     width: 520px;
-    height: 1036px;
+    height: 1000px;
     background-color: #fff;
     border-radius: .5rem;
     gap: 2rem;
@@ -33,6 +32,13 @@ export const Container = styled.div`
     gap: 18.875rem;
   }
 
+  .initModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem
+  }
+  
   .btnType{
     display: flex;
     flex-direction: row;
@@ -45,6 +51,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 20px;
     gap: 1rem
   }
   
@@ -67,6 +74,17 @@ export const Container = styled.div`
     color: #0B0D0D;
     font-size: 14px;
     border: 2px solid #DEE2E6;
+  }
+
+  .titleAds{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem
+  }
+
+  #title{
+    width: 100%;
   }
 
   .btnCancel{
@@ -114,15 +132,40 @@ export const Container = styled.div`
     color: #fff;
   }
 
-  .infoVehicle{
+  .listInfoVehicle{
+    width: 90%;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem
+  }
+
+  .infoVehicle{
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     gap: 1rem
   }
 
+  .vehicleType{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem
+  }
+
+  .imgAds{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 50px;
+    gap: 1rem
+  }
+
   #description{
-    width: 90%;
+    width: 100%;
     height: 80px
   }
 
@@ -138,7 +181,7 @@ export const Container = styled.div`
     font-size: 14px;
     font-weight: 500;
     color: #000;
-    margin-top: 2rem
+    margin-top: 1.5rem
   }
 
   label{
