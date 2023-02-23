@@ -72,6 +72,15 @@ export const FormContainer = styled.form`
     display: flex;
     justify-content: flex-end;
   }
+
+  @media only screen and (max-width: 414px) {
+    width: 18rem;
+
+    .formSubmit {
+      display: flex;
+      align-items: center;
+    }
+  }
 `;
 
 type ButtonProps = {
@@ -100,4 +109,8 @@ export const Button = styled.button<ButtonProps>`
 
   border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
   border-radius: 0.4rem;
+
+  @media only screen and (max-width: 414px) {
+    width: 14rem;
+  }
 `;

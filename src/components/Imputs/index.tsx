@@ -41,6 +41,12 @@ const Container = styled.div`
       border: 0.1rem solid #5126ea;
     }
   }
+
+  @media only screen and (max-width: 414px) {
+    input {
+      width: 14rem;
+    }
+  }
 `;
 
 export default function InputContainer({
