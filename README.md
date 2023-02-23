@@ -31,3 +31,5 @@ Para rodar a aplicação em sua máquina, basta dar os seguintes comandos:
 Abra http://localhost:3000 para visualizar no navegador.
 A página irá recarregar caso haja alguma modificação.
 
+Quer conhecer mais das nossas rotas? Aqui está o repositório do back-end com todas as requisições e respostas.
+https://github.com/Motors-M6-Kenzie-Academy/Back-end
