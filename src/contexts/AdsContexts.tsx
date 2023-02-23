@@ -18,10 +18,9 @@ export interface IAuthProvier {
   }
 
 
-const AdsProvider = () => {
+const AdsProvider = ({ children }: IAuthProvier) => {
     const [listAds, setListAds] = useState<IAds[]>([])
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-
 
     const newAdsList = (ads: IAdsRequest) => {
         api.post("/ads", ads)
@@ -38,7 +37,9 @@ const AdsProvider = () => {
                 newAdsList,
                 isOpenModal,
                 setIsOpenModal,
-            }}>
+            }}
+            >
+                {children}
         </AdsContext.Provider>
     );
 };
