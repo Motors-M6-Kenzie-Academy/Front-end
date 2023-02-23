@@ -1,5 +1,6 @@
 import { HeaderContainer } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const handleHamburger = () => {
@@ -26,7 +27,9 @@ export default function Navbar() {
     <>
       <HeaderContainer>
         <div className="logo">
-          <img src={LogoImg} alt="Logo Motors" />
+          <Link to={"/"}>
+            <img src={LogoImg} alt="Logo Motors" />
+          </Link>
         </div>
         <div className="hamburger" onClick={() => handleHamburger()}>
           <div className="line"></div>
@@ -37,13 +40,13 @@ export default function Navbar() {
         <nav className="nav-bar">
           <ul>
             <li>
-              <a href="/">Carros</a>
+              <Link to={"/"}>Carros</Link>
             </li>
             <li>
-              <a href="/">Motos</a>
+              <Link to={"/"}>Motos</Link>
             </li>
             <li>
-              <a href="/">Leilão</a>
+              <Link to={"/"}>Leilão</Link>
             </li>
             {/* {user ? (
               <div className="container-user" onClick={() => handleUser()}>
@@ -75,10 +78,10 @@ export default function Navbar() {
               </>
             )} */}
             <li>
-              <a href="/">Fazer Login</a>
+              <Link to={"/signin"}>Fazer Login</Link>
             </li>
             <li>
-              <a href="/">Cadastrar</a>
+              <Link to={"/register"}>Cadastrar</Link>
             </li>
           </ul>
         </nav>
