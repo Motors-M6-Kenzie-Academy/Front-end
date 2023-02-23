@@ -1,12 +1,11 @@
 import Footer from "../Footer";
 import Navbar from "../Navbar";
-
-export const Register = () => {
+export const Home = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <p>Rota Registro</p>
+      <p>Rota Home</p>
       <Footer />
-    </div>
+    </>
   );
 };
