@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  height: 6vh;
 
   display: flex;
   align-items: center;
@@ -53,7 +52,6 @@ export const HeaderContainer = styled.header`
     .container-user {
       display: flex;
       align-items: center;
-      height: 6vh;
 
       gap: 1.2rem;
 
@@ -97,7 +95,6 @@ export const HeaderContainer = styled.header`
       ul li {
         border: none;
         padding: 0;
-        height: 2rem;
       }
     }
   }
