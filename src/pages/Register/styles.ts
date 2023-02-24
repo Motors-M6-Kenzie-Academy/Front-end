@@ -4,6 +4,7 @@ export const Container = styled.div``;
 
 export const MainContainer = styled.main`
   width: 100vw;
+  height: fit-content;
 
   display: flex;
   justify-content: center;
@@ -13,7 +14,7 @@ export const MainContainer = styled.main`
 `;
 
 export const FormContainer = styled.form`
-  margin: 2rem 0;
+  margin: 2rem 0 10rem 0;
   width: 25rem;
 
   display: flex;

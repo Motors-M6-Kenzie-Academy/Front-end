@@ -110,7 +110,7 @@ export const Register = () => {
           </div>
         </FormContainer>
       </MainContainer>
-      {/* <Footer /> */}
+      <Footer />
     </Container>
   );
 };
