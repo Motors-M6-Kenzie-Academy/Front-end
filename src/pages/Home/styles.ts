@@ -9,19 +9,17 @@ export const Container = styled.div`
 
 export const MainContainer = styled.main`
   width: 100vw;
-  height: 90vh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  overflow-y: scroll;
+
+  margin-bottom: 10rem;
 
   background-color: var(--gray10);
 
   .top {
     background-color: var(--brand2);
-    height: 50%;
+    height: 50vh;
     width: 100%;
 
     display: flex;
@@ -61,10 +59,10 @@ export const MainContainer = styled.main`
   }
 
   .leilao {
-    height: 40%;
-    /* width: 100%; */
+    height: 65vh;
 
     padding: 4rem 2rem;
+    margin-bottom: 8rem;
 
     .title-section {
       font-family: var(--lexend);
@@ -73,6 +71,7 @@ export const MainContainer = styled.main`
       font-size: 2rem;
       line-height: 2rem;
 
+      margin-bottom: 2rem;
       color: var(--gray0);
     }
 
@@ -83,15 +82,46 @@ export const MainContainer = styled.main`
   }
 
   .cars {
-    height: 10%;
     width: 100%;
-    /* background-color: var(--random9); */
+    padding: 4rem 2rem;
+    margin-bottom: 8rem;
+
+    .title-section {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 2rem;
+
+      margin-bottom: 2rem;
+      color: var(--gray0);
+    }
+
+    .scroll-card-cars {
+      display: flex;
+      gap: 2rem;
+    }
   }
 
   .motorsbike {
-    height: 10%;
     width: 100%;
-    /* background-color: var(--brand1); */
+    padding: 4rem 2rem;
+
+    .title-section {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 2rem;
+
+      margin-bottom: 2rem;
+      color: var(--gray0);
+    }
+
+    .scroll-card-motorsbike {
+      display: flex;
+      gap: 2rem;
+    }
   }
 `;
 
