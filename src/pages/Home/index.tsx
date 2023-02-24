@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
+import Modal from "../../components/ModalAds";
 import Navbar from "../../components/Navbar";
 import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
@@ -68,6 +69,7 @@ export const Home = () => {
         </div>
       </MainContainer>
       <Footer />
+      <Modal />
     </Container>
   );
 };
