@@ -13,8 +13,6 @@ export const MainContainer = styled.main`
   flex-direction: column;
   justify-content: center;
 
-  margin-bottom: 5rem;
-
   background-color: var(--gray10);
 
   .top {
@@ -77,10 +75,7 @@ export const MainContainer = styled.main`
   }
 
   .leilao {
-    height: 65vh;
-
     padding: 4rem 2rem;
-    margin-bottom: 10rem;
 
     .title-section {
       font-family: var(--lexend);
@@ -93,15 +88,14 @@ export const MainContainer = styled.main`
       color: var(--gray0);
     }
 
-    .scroll-card {
+    .scroll-card-leilao {
       display: flex;
-      gap: 2rem;
-    }
+      gap: 0.5rem;
 
-    @media only screen and (max-width: 414px) {
-      .scroll-card {
-        display: flex;
-        gap: 0.3rem;
+      overflow-x: auto;
+
+      ::-webkit-scrollbar {
+        width: 0;
       }
     }
   }
@@ -109,7 +103,6 @@ export const MainContainer = styled.main`
   .cars {
     width: 100%;
     padding: 4rem 2rem;
-    margin-bottom: 8rem;
 
     .title-section {
       font-family: var(--lexend);
@@ -125,21 +118,19 @@ export const MainContainer = styled.main`
     .scroll-card-cars {
       display: flex;
       gap: 2rem;
-    }
 
-    @media only screen and (max-width: 414px) {
-      .scroll-card {
-        display: flex;
-        gap: 0.3rem;
+      overflow-x: auto;
+
+      ::-webkit-scrollbar {
+        width: 0;
       }
-
-      margin-bottom: -3rem;
     }
   }
 
   .motorsbike {
     width: 100%;
     padding: 4rem 2rem;
+    margin-bottom: 7rem;
 
     .title-section {
       font-family: var(--lexend);
@@ -155,12 +146,11 @@ export const MainContainer = styled.main`
     .scroll-card-motorsbike {
       display: flex;
       gap: 2rem;
-    }
 
-    @media only screen and (max-width: 414px) {
-      .scroll-card {
-        display: flex;
-        gap: 0.3rem;
+      overflow-x: auto;
+
+      ::-webkit-scrollbar {
+        width: 0;
       }
     }
   }

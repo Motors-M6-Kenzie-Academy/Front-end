@@ -31,7 +31,12 @@ export const Home = () => {
 
         <div className="leilao" id="leilao">
           <h2 className="title-section">Leilão</h2>
-          <div className="scroll-card">
+          <div className="scroll-card-leilao">
+            <ProductCardAuction />
+            <ProductCardAuction />
+            <ProductCardAuction />
+            <ProductCardAuction />
+            <ProductCardAuction />
             <ProductCardAuction />
           </div>
         </div>
@@ -39,11 +44,25 @@ export const Home = () => {
           <h2 className="title-section">Carros</h2>
           <div className="scroll-card-cars">
             <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
           </div>
         </div>
         <div className="motorsbike" id="motorsbike">
           <h2 className="title-section">Motos</h2>
           <div className="scroll-card-motorsbike">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
             <ProductCard />
           </div>
         </div>
