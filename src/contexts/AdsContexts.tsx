@@ -9,6 +9,7 @@ interface AdsContextData{
     setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
     setTypeVehicle: React.Dispatch<React.SetStateAction<string>>;
     type_vehicle: string;
+    delAds: (id: string) => void;
 }
 
 export const AdsContext = createContext<AdsContextData>(
@@ -23,9 +24,9 @@ const AdsProvider = ({ children }: IAuthProvier) => {
     const [adsApi, setAdsApi] = useState<IAds>({} as IAds)
     const [listAds, setListAds] = useState<IAds[]>([])
     const [type_vehicle, setTypeVehicle] = useState<string>("car")
-    const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
+    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-    // const tokenUser = localStorage.getItem("@login:token")
+    const tokenUser = localStorage.getItem("@login:token")
 
     
     const onSubmitAds = (data: IAdsRequest) => {
@@ -54,6 +55,15 @@ const AdsProvider = ({ children }: IAuthProvier) => {
     //     }
     //   }, []);
 
+    const delAds = (id: string) => {
+        api
+        .delete(`/ads/${id}`)
+        .then((res) => {
+            setListAds(res.data.ads)
+        })
+        .catch((err) => console.log(err))
+    }
+
     return (
         <AdsContext.Provider
             value = {{
@@ -63,6 +73,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
                 setIsOpenModal,
                 setTypeVehicle,
                 type_vehicle,
+                delAds
             }}
             >
                 {children}
