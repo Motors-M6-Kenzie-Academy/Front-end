@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerBannerCreateAds = styled.div`
   .background--blue {
     background-color: var(--brand1);
-    height: 380px;
+    height: 200px;
     width: 100vw;
   }
   .container--create--ads {
