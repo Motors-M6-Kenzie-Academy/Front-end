@@ -11,6 +11,7 @@ export const Container = styled.div`
   z-index: 2;
   position: absolute;
   top: 0;
+  left: 0;
 
   .modalBox {
     width: 520px;

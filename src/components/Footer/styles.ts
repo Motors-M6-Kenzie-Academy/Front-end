@@ -14,9 +14,10 @@ export const ContainerFooter = styled.footer`
 
   font-family: var(--inter);
   font-weight: 600;
-
+  /* 
   position: fixed;
-  bottom: 0;
+  bottom: -50px;
+  left: 0; */
 
   @media screen and (min-width: 500px) {
     flex-direction: row;

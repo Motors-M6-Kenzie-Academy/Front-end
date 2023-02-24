@@ -75,6 +75,7 @@ export const MainContainer = styled.main`
   }
 
   .leilao {
+
     padding: 4rem 2rem;
 
     .title-section {
@@ -101,6 +102,7 @@ export const MainContainer = styled.main`
   }
 
   .cars {
+
     width: 100%;
     padding: 4rem 2rem;
 
@@ -182,6 +184,7 @@ export const Button = styled.button<ButtonProps>`
 
   border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
   border-radius: 0.4rem;
+
 
   @media only screen and (max-width: 716px) {
     width: 8rem;
