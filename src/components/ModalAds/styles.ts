@@ -193,13 +193,13 @@ export const Container = styled.div`
     font-weight: 500;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 500px) {
     margin: 0;
     display: flex;
     flex-direction: row;
     max-width: 100%;
     min-height: 380px;
-    img {
+    modalBox {
       max-width: 50%;
     }
   }

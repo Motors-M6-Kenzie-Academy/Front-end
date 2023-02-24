@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState, useEffect } from "react"
+import { createContext, ReactNode, useState} from "react"
 import { IAds, IAdsRequest } from "../interfaces/Ads"
 import api from "../services/api"
 
@@ -23,7 +23,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
     const [adsApi, setAdsApi] = useState<IAds>({} as IAds)
     const [listAds, setListAds] = useState<IAds[]>([])
     const [type_vehicle, setTypeVehicle] = useState<string>("car")
-    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
 
     // const tokenUser = localStorage.getItem("@login:token")
 

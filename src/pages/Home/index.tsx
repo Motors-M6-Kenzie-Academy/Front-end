@@ -7,8 +7,8 @@ export const Home = () => {
     <>
       <Navbar />
       <p>Rota Home</p>
-      <Footer />
       <Modal />
+      <Footer />
     </>
   );
 };
