@@ -4,7 +4,7 @@ import { AdsContext } from "../../contexts/AdsContexts";
 
 const ModalDelete = () => {
     const {isOpenModal, setIsOpenModal, delAds} = useContext(AdsContext)
-    
+
 
     return(
         <>
@@ -24,7 +24,7 @@ const ModalDelete = () => {
 
                         <div>
                             <button type="button" onClick={() => setIsOpenModal(false)}>Cancelar</button>
-                            <button className="btnExclude" onClick={() => delAds(id)}>Sim, excluir anúncio</button>
+                            <button className="btnExclude" /*onClick={() => delAds(id)}*/>Sim, excluir anúncio</button>
                         </div>
                     </div>
                 </ContainerDel>
