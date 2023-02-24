@@ -7,7 +7,8 @@ Esta é a aplicação Motors shop - um e-commerce pensado em conectar usuários 
 </p>
 
 <ul align="start">
-Tecnologias utilizadas:
+  
+<h3>Tecnologias utilizadas:</h3>
 <li>React</li> 
 <li>TS</li>
 <li>styled components</li>
@@ -16,10 +17,13 @@ Tecnologias utilizadas:
 </ul>
 
 
-<p>
+<h3 align="start">
 Link do deploy:
-</p>
+</h3>
 
+<h3>
+Instruções
+</h3>
 <p>
 Para rodar a aplicação em sua máquina, basta dar os seguintes comandos:
 </p>
@@ -31,5 +35,8 @@ Para rodar a aplicação em sua máquina, basta dar os seguintes comandos:
 Abra http://localhost:3000 para visualizar no navegador.
 A página irá recarregar caso haja alguma modificação.
 
-Quer conhecer mais das nossas rotas? Aqui está o repositório do back-end cujo README.md possui todas as requisições.
+<h3>
+Quer conhecer mais das nossas rotas?
+</h3>
+Aqui está o repositório do back-end cujo README.md possui todas as requisições.
 https://github.com/Motors-M6-Kenzie-Academy/Back-end
