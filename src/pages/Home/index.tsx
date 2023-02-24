@@ -17,26 +17,12 @@ export const Home = () => {
           <p>Um ambiente feito para você explorar o seu melhor</p>
           <div>
             <Link to={"/"}>
-              <Button
-                bgColor="transparent"
-                txColor="white"
-                border={true}
-                onClick={() =>
-                  window.scrollTo({ left: 0, top: 1200, behavior: "smooth" })
-                }
-              >
+              <Button bgColor="transparent" txColor="white" border={true}>
                 Carros
               </Button>
             </Link>
             <Link to={"/"}>
-              <Button
-                bgColor="transparent"
-                txColor="white"
-                border={true}
-                onClick={() =>
-                  window.scrollTo({ left: 0, top: 2000, behavior: "smooth" })
-                }
-              >
+              <Button bgColor="transparent" txColor="white" border={true}>
                 Motos
               </Button>
             </Link>
@@ -47,29 +33,17 @@ export const Home = () => {
           <h2 className="title-section">Leilão</h2>
           <div className="scroll-card">
             <ProductCardAuction />
-            <ProductCardAuction />
-            <ProductCardAuction />
           </div>
         </div>
         <div className="cars" id="cars">
           <h2 className="title-section">Carros</h2>
           <div className="scroll-card-cars">
             <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
           </div>
         </div>
         <div className="motorsbike" id="motorsbike">
           <h2 className="title-section">Motos</h2>
           <div className="scroll-card-motorsbike">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
             <ProductCard />
           </div>
         </div>

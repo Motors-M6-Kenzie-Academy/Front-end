@@ -13,7 +13,7 @@ export const MainContainer = styled.main`
   flex-direction: column;
   justify-content: center;
 
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 
   background-color: var(--gray10);
 
@@ -56,13 +56,31 @@ export const MainContainer = styled.main`
       display: flex;
       gap: 5rem;
     }
+
+    @media only screen and (max-width: 716px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media only screen and (max-width: 414px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 0.7rem;
+      }
+    }
   }
 
   .leilao {
     height: 65vh;
 
     padding: 4rem 2rem;
-    margin-bottom: 8rem;
+    margin-bottom: 10rem;
 
     .title-section {
       font-family: var(--lexend);
@@ -78,6 +96,13 @@ export const MainContainer = styled.main`
     .scroll-card {
       display: flex;
       gap: 2rem;
+    }
+
+    @media only screen and (max-width: 414px) {
+      .scroll-card {
+        display: flex;
+        gap: 0.3rem;
+      }
     }
   }
 
@@ -101,6 +126,15 @@ export const MainContainer = styled.main`
       display: flex;
       gap: 2rem;
     }
+
+    @media only screen and (max-width: 414px) {
+      .scroll-card {
+        display: flex;
+        gap: 0.3rem;
+      }
+
+      margin-bottom: -3rem;
+    }
   }
 
   .motorsbike {
@@ -121,6 +155,13 @@ export const MainContainer = styled.main`
     .scroll-card-motorsbike {
       display: flex;
       gap: 2rem;
+    }
+
+    @media only screen and (max-width: 414px) {
+      .scroll-card {
+        display: flex;
+        gap: 0.3rem;
+      }
     }
   }
 `;
@@ -152,7 +193,11 @@ export const Button = styled.button<ButtonProps>`
   border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
   border-radius: 0.4rem;
 
+  @media only screen and (max-width: 716px) {
+    width: 8rem;
+  }
+
   @media only screen and (max-width: 414px) {
-    width: 14rem;
+    width: 6rem;
   }
 `;
