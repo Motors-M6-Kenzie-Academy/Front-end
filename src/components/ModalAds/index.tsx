@@ -7,18 +7,18 @@ import { AdsContext } from "../../contexts/AdsContexts";
 
 const Modal = () => {
     const { register, handleSubmit } = useForm<IAdsRequest>();
-    const {newAdsList, setIsOpenModal} = useContext(AdsContext)
+    const {onSubmitAds, closeModal, setTypeVehicle} = useContext(AdsContext)
 
     return(
         <Container>
             <div className="modalBox">
                 <div className="headerModal">
                     <h2>Criar anúncio</h2>
-                    <button type="button" className="btnClose" onClick={() => setIsOpenModal(false)}>X</button>
+                    <button type="button" className="btnClose" onClick={() => closeModal()}>X</button>
                 </div>
 
                 <div className="formNewAd">
-                    <Form onSubmit={handleSubmit(newAdsList)}>
+                    <Form onSubmit={handleSubmit(onSubmitAds)}>
                         <div className="initModal">
                             <p>Tipo de Anúncio</p>
                             <div className="btnType">
@@ -57,8 +57,8 @@ const Modal = () => {
 
                             <p>Tipo de veículo</p>
                             <div className="listVehicleType">
-                                <button className="btnVType">Venda</button>
-                                <button className="btnVType">Leilão</button>
+                                <button className="btnVType" onClick= {() => setTypeVehicle("Carro")}>Carro</button>
+                                <button className="btnVType" onClick= {() => setTypeVehicle("Moto")}>Moto</button>
                             </div>
                         </div>
 

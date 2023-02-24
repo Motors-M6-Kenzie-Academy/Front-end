@@ -8,6 +8,7 @@ import { SignIn } from "./pages/SignIn";
 import { Register } from "./pages/Register";
 import { Home } from "./pages/Home";
 import { PrivateRout } from "./pages/PrivateRoute";
+import AdsProvider from "./contexts/AdsContexts";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,6 +16,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <AdsProvider>
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
@@ -24,5 +26,6 @@ root.render(
         <Route path="/private" element={<PrivateRout />} />
       </Routes>
     </BrowserRouter>
+    </AdsProvider>
   </React.StrictMode>
 );

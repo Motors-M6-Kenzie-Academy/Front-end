@@ -1,4 +1,5 @@
 import Footer from "../../components/Footer";
+import Modal from "../../components/ModalAds";
 import Navbar from "../../components/Navbar";
 
 export const Home = () => {
@@ -7,6 +8,7 @@ export const Home = () => {
       <Navbar />
       <p>Rota Home</p>
       <Footer />
+      <Modal />
     </>
   );
 };

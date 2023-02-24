@@ -13,7 +13,6 @@ function App() {
     <>
       <GlobalStyle />
       <Navbar />
-      <Modal />
       {/* <InputContainer
         label="Email"
         placeHolder="email@email.com"

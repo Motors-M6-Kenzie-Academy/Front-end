@@ -10,6 +10,7 @@ export const HeaderContainer = styled.header`
   padding: 0 5rem;
   background: #fdfdfd;
   border-bottom: 0.2rem solid #dee2e6;
+  z-index: 1;
 
   .logo {
     img {

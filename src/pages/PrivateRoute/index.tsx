@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 
 export const PrivateRout = () => {
   const token = localStorage.getItem("@userAuth");
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
