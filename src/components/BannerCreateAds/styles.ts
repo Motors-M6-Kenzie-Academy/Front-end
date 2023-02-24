@@ -11,7 +11,7 @@ export const ContainerBannerCreateAds = styled.div`
     flex-direction: column;
     gap: 15px;
     padding: 20px;
-    margin: 30px;
+    margin: 0 30px;
 
     /* width: 343px;  */
     height: fit-content;
@@ -21,6 +21,10 @@ export const ContainerBannerCreateAds = styled.div`
     position: relative;
     bottom: 101px;
     border-radius: 4px;
+
+    @media screen and (min-width: 700px) {
+      margin: 0 90px;
+    }
   }
 
   .container--announcer {
