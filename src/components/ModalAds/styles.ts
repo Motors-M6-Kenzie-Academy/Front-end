@@ -222,4 +222,5 @@ export const Container = styled.div`
     max-width: 57%;
     min-height: 260px;
     max-height: 400px;
+  }
 `

@@ -7,6 +7,7 @@ import { Button } from "./components/Button";
 import Navbar from "./components/Navbar";
 import GlobalStyle from "./styles/globalStyles";
 import Modal from "./components/ModalAds";
+import ModalAdUpdate from "./components/modalAdUpdate";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <GlobalStyle />
       <Navbar />
       <Modal />
+      <ModalAdUpdate />
       {/* <InputContainer
         label="Email"
         placeHolder="email@email.com"
