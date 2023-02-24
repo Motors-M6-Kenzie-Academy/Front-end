@@ -1,10 +1,20 @@
-import { Link } from "react-router-dom";
+// import { useContext } from "react";
+// import { UserContext } from "../../contexts/UserContexts";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import InputContainer from "../../components/Imputs";
 import Navbar from "../../components/Navbar";
 import { Button, Container, FormContainer, MainContainer } from "./styles";
 
 export const SignIn = () => {
+  const navigate = useNavigate();
+  // const { isTokenAdd, setIsTokenAdd } = useContext(UserContext);
+
+  const handleLogin = () => {
+    localStorage.setItem("@user", JSON.stringify({ name: "Samuel Leão" }));
+    navigate("/");
+  };
+
   return (
     <>
       <Container>
@@ -30,9 +40,15 @@ export const SignIn = () => {
               <Link to={"/"}>
                 <span className="tx-end">Esqueci minha senha</span>
               </Link>
-              <Button type={"submit"} bgColor={"blue"} txColor={"white"}>
+              <Button
+                type={"submit"}
+                bgColor={"blue"}
+                txColor={"white"}
+                onClick={handleLogin}
+              >
                 Entrar
               </Button>
+
               <Link to={"/register"}>
                 <span className="tx-center">Ainda não possui conta?</span>
               </Link>

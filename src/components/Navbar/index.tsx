@@ -1,15 +1,17 @@
 import { HeaderContainer } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContexts";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-  const { isTokenAdd } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const handleHamburger = () => {
     const list = document.querySelector(".nav-bar");
     list?.classList.toggle("active");
+  };
+
+  const handleExit = () => {
+    localStorage.removeItem("@user");
+    navigate("/");
   };
 
   const handleUser = () => {
@@ -17,17 +19,27 @@ export default function Navbar() {
     list?.classList.toggle("active");
   };
 
+  // Apenas para Teste
+  type UserProps = {
+    name?: string;
+    active?: boolean;
+  };
+  const user: UserProps = {};
   const sigla: any = [];
   const userName: any = [];
-  const user = {
-    name: "Samuel Leão",
-  };
+  const token = localStorage.getItem("@user");
 
-  userName.push(user.name.split(" ")[0]);
-  userName.push(user.name.split(" ")[1]);
+  if (token) {
+    user["name"] = JSON.parse(token);
+    user["active"] = true;
 
-  sigla.push(userName[0].substring(0, 1));
-  sigla.push(userName[1].substring(0, 1));
+    // userName.push(user.name?.split(" ")[0]);
+    // userName.push(user.name?.split(" ")[1]);
+
+    // sigla.push(userName[0].substring(0, 1));
+    // sigla.push(userName[1].substring(0, 1));
+  }
+  // user["name"] = "rrrr";
 
   return (
     <>
@@ -54,10 +66,10 @@ export default function Navbar() {
             <li>
               <Link to={"/"}>Leilão</Link>
             </li>
-            {isTokenAdd ? (
+            {user.active ? (
               <div className="container-user" onClick={() => handleUser()}>
-                <div className="circle">{sigla}</div>
-                <span className="user-name">{user?.name}</span>
+                <div className="circle">{"SL"}</div>
+                <span className="user-name">{"Samuel Leão"}</span>
                 <ul className="user-settings">
                   <li>
                     <a href="/">Editar Perfil</a>
@@ -69,26 +81,22 @@ export default function Navbar() {
                     <a href="/">Minhas Compras</a>
                   </li>
                   <li>
-                    <a href="/">Sair</a>
+                    <a href="/" onClick={handleExit}>
+                      Sair
+                    </a>
                   </li>
                 </ul>
               </div>
             ) : (
               <>
                 <li>
-                  <a href="/">Fazer Login</a>
+                  <a href="/signin">Fazer Login</a>
                 </li>
                 <li>
-                  <a href="/">Cadastrar</a>
+                  <a href="/register">Cadastrar</a>
                 </li>
               </>
             )}
-            {/* <li>
-              <Link to={"/signin"}>Fazer Login</Link>
-            </li>
-            <li>
-              <Link to={"/register"}>Cadastrar</Link>
-            </li> */}
           </ul>
         </nav>
       </HeaderContainer>

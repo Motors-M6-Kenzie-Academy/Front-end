@@ -1,8 +1,15 @@
-import { createContext, ReactNode, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 interface IUserProviderData {
   isTokenAdd: boolean;
+  setIsTokenAdd: Dispatch<SetStateAction<boolean>>;
 }
 
 interface IUserProviderProps {
@@ -13,11 +20,11 @@ export const UserContext = createContext<IUserProviderData>(
 );
 
 const UserProvider = ({ children }: IUserProviderProps) => {
-  const [isTokenAdd, setIsTokenAdd] = useState(true);
+  const [isTokenAdd, setIsTokenAdd] = useState(false);
   const navigate = useNavigate();
 
   return (
-    <UserContext.Provider value={{ isTokenAdd }}>
+    <UserContext.Provider value={{ isTokenAdd, setIsTokenAdd }}>
       {children}
     </UserContext.Provider>
   );

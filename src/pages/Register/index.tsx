@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import Footer from "../../components/Footer";
 import InputContainer from "../../components/Imputs";
 import Navbar from "../../components/Navbar";
@@ -17,6 +18,10 @@ import {
 } from "./styles";
 
 export const Register = () => {
+  const navigate = useNavigate();
+  const handleRegister = () => {
+    navigate("/signin");
+  };
   return (
     <Container>
       <Navbar />
@@ -104,7 +109,7 @@ export const Register = () => {
             />
           </div>
           <div>
-            <Button bgColor="blue" txColor="white">
+            <Button bgColor="blue" txColor="white" onClick={handleRegister}>
               Finalizar Cadastro
             </Button>
           </div>
