@@ -3,10 +3,11 @@ import Car from "../../assets/Photo1.svg";
 
 export const ContainerCardAuctionButton = styled.div`
   min-width: 20rem;
+  height: fit-content;
   border-radius: 3.125rem;
 
   @media screen and (min-width: 800px) {
-    width: 45.9375rem;
+    min-width: 45.9375rem;
   }
 
   .container--button {
@@ -41,6 +42,11 @@ export const ContainerCardAuctionButton = styled.div`
         transition: 0.2s;
       }
     }
+  }
+
+  .container--buttons--edit {
+    display: flex;
+    gap: 0.9375rem;
   }
 `;
 
@@ -101,6 +107,7 @@ export const ContainerCardAuction = styled.div`
   .container--description {
     line-height: 1.75rem;
     font-family: var(--inter);
+    font-size: 16px;
   }
 
   .container--time {
@@ -167,9 +174,13 @@ export const ContainerCardAuction = styled.div`
       color: var(--brand1);
       padding: 0.5rem;
       border-radius: 0.25rem;
+
+      font-size: 14px;
+      font-family: var(--inter);
     }
   }
   strong {
     font-family: var(--lexend);
+    font-size: 1rem;
   }
 `;

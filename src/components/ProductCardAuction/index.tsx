@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
+import { UserContext } from "../../contexts/UserContexts";
+import { Button } from "../Button";
 
 import { ContainerCardAuction, ContainerCardAuctionButton } from "./styles";
 
 const ProductCardAuction = () => {
+  const { isTokenAdd } = useContext(UserContext);
+
   const obj = {
     title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
     description:
@@ -25,10 +30,13 @@ const ProductCardAuction = () => {
         <div className="container--description">
           <p>{obj.description}</p>
         </div>
-        <div className="container--announcer">
-          <div className="avatar">{obj.announcer[0]}</div>
-          <p>{obj.announcer}</p>
-        </div>
+        {isTokenAdd ? null : (
+          <div className="container--announcer">
+            <div className="avatar">{obj.announcer[0]}</div>
+            <p>{obj.announcer}</p>
+          </div>
+        )}
+
         <div className="container--tag--price">
           <div className="container--tags">
             <div className="tag">0 KM</div>
@@ -37,11 +45,39 @@ const ProductCardAuction = () => {
           <strong>R${obj.price}</strong>
         </div>
       </ContainerCardAuction>
+
       <div className="container--button">
-        Acessar página do leilão
-        <button>
-          <BsArrowRight />
-        </button>
+        {isTokenAdd ? (
+          <div className="container--buttons--edit">
+            <Button
+              backgroud="var(--white)"
+              color="var(--black)"
+              border={true}
+              borderColor="var(--white)"
+              isHeight={true}
+              height="38px"
+            >
+              Editar
+            </Button>
+            <Button
+              backgroud="var(--white)"
+              color="var(--black)"
+              border={true}
+              borderColor="var(--white)"
+              isHeight={true}
+              height="38px"
+            >
+              Ver como
+            </Button>
+          </div>
+        ) : (
+          <>
+            <p>Acessar página do leilão</p>
+            <button>
+              <BsArrowRight />
+            </button>
+          </>
+        )}
       </div>
     </ContainerCardAuctionButton>
   );

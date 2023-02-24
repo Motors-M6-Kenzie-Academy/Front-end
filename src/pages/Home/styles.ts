@@ -75,7 +75,6 @@ export const MainContainer = styled.main`
   }
 
   .leilao {
-
     padding: 4rem 2rem;
 
     .title-section {
@@ -93,16 +92,19 @@ export const MainContainer = styled.main`
       display: flex;
       gap: 0.5rem;
 
-      overflow-x: auto;
+      overflow-x: scroll;
 
       ::-webkit-scrollbar {
         width: 0;
+      }
+
+      @media screen and (min-width: 800px) {
+        gap: 1.5rem;
       }
     }
   }
 
   .cars {
-
     width: 100%;
     padding: 4rem 2rem;
 
@@ -121,7 +123,7 @@ export const MainContainer = styled.main`
       display: flex;
       gap: 2rem;
 
-      overflow-x: auto;
+      overflow-x: scroll;
 
       ::-webkit-scrollbar {
         width: 0;
@@ -149,7 +151,7 @@ export const MainContainer = styled.main`
       display: flex;
       gap: 2rem;
 
-      overflow-x: auto;
+      overflow-x: scroll;
 
       ::-webkit-scrollbar {
         width: 0;
@@ -184,7 +186,6 @@ export const Button = styled.button<ButtonProps>`
 
   border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
   border-radius: 0.4rem;
-
 
   @media only screen and (max-width: 716px) {
     width: 8rem;
