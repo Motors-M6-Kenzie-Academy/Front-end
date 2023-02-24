@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer";
 import InputContainer from "../../components/Imputs";
 import Navbar from "../../components/Navbar";
 import {
@@ -109,7 +110,7 @@ export const Register = () => {
           </div>
         </FormContainer>
       </MainContainer>
-      {/* <Footer /> */}
+      <Footer />
     </Container>
   );
 };
