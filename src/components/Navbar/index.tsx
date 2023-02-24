@@ -1,27 +1,33 @@
 import { HeaderContainer } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContexts";
 
 export default function Navbar() {
+  const { isTokenAdd } = useContext(UserContext);
+
   const handleHamburger = () => {
     const list = document.querySelector(".nav-bar");
     list?.classList.toggle("active");
   };
 
-  // const handleUser = () => {
-  //   const list = document.querySelector(".user-settings");
-  //   list?.classList.toggle("active");
-  // };
+  const handleUser = () => {
+    const list = document.querySelector(".user-settings");
+    list?.classList.toggle("active");
+  };
 
-  // const sigla: any = [];
-  // const userName: any = [];
-  // const user = {};
+  const sigla: any = [];
+  const userName: any = [];
+  const user = {
+    name: "Samuel Leão",
+  };
 
-  // userName.push(user.name.split(" ")[0]);
-  // userName.push(user.name.split(" ")[1]);
+  userName.push(user.name.split(" ")[0]);
+  userName.push(user.name.split(" ")[1]);
 
-  // sigla.push(userName[0].substring(0, 1));
-  // sigla.push(userName[1].substring(0, 1));
+  sigla.push(userName[0].substring(0, 1));
+  sigla.push(userName[1].substring(0, 1));
 
   return (
     <>
@@ -48,7 +54,7 @@ export default function Navbar() {
             <li>
               <Link to={"/"}>Leilão</Link>
             </li>
-            {/* {user ? (
+            {isTokenAdd ? (
               <div className="container-user" onClick={() => handleUser()}>
                 <div className="circle">{sigla}</div>
                 <span className="user-name">{user?.name}</span>
@@ -76,13 +82,13 @@ export default function Navbar() {
                   <a href="/">Cadastrar</a>
                 </li>
               </>
-            )} */}
-            <li>
+            )}
+            {/* <li>
               <Link to={"/signin"}>Fazer Login</Link>
             </li>
             <li>
               <Link to={"/register"}>Cadastrar</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </HeaderContainer>

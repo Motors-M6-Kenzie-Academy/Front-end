@@ -56,7 +56,7 @@ export const HeaderContainer = styled.header`
 
       gap: 1.2rem;
 
-      padding-left: 2rem;
+      padding: 1rem;
       border-left: 0.2rem solid #dee2e6;
       cursor: pointer;
 
@@ -81,16 +81,34 @@ export const HeaderContainer = styled.header`
         color: #495057;
       }
 
-      ul.active {
+      .user-settings {
         display: none;
+
+        li a {
+          color: #495057;
+        }
+      }
+
+      ul.active {
+        display: inline;
       }
 
       ul {
-        position: absolute;
-        top: 6rem;
+        width: 200px;
+        height: 202px;
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        position: absolute;
+        top: 3.7rem;
+
+        padding: 1.5rem 1rem;
+
+        background: #f8f9fa;
+        box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
       }
 
       ul li {
@@ -183,6 +201,7 @@ export const HeaderContainer = styled.header`
 
     .nav-bar ul .container-user {
       border: none;
+
       /* background-color: red; */
       padding: 0;
       height: 15rem;
