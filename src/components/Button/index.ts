@@ -7,6 +7,8 @@ interface ButtonProps {
   borderColor?: string;
   isWidth?: boolean;
   width?: string;
+  isHeight?: boolean;
+  height?: string;
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -21,6 +23,7 @@ export const Button = styled.button<ButtonProps>`
   background: ${(props) => props.backgroud};
   border: ${(props) => props.border && `0.1rem solid ${props.borderColor}`};
   width: ${(props) => props.isWidth && `${props.width}`};
+  height: ${(props) => props.isHeight && `${props.height}`};
 
   font-family: "Inter";
   font-style: normal;

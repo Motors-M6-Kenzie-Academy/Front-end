@@ -7,7 +7,7 @@ interface IContainerIsActiveProps {
 
 export const ContainerCard = styled.div`
   width: 19.5rem;
-  height: 22.875rem;
+  /* height: 22.875rem; */
 
   padding: 0.3125rem;
   background-color: var(--gray9);
@@ -32,6 +32,7 @@ export const ContainerCard = styled.div`
   h2 {
     font-family: var(--lexend);
     font-weight: 600;
+    font-size: 1rem;
 
     display: -webkit-box;
     overflow: hidden;
@@ -53,6 +54,9 @@ export const ContainerCard = styled.div`
     align-items: center;
     gap: 0.625rem;
 
+    font-size: 14px;
+    font-family: var(--inter);
+
     .avatar {
       display: flex;
       align-items: center;
@@ -61,8 +65,6 @@ export const ContainerCard = styled.div`
       width: 2rem;
       height: 2rem;
       border-radius: 100%;
-
-      font-family: var(--inter);
 
       background-color: var(--brand2);
       color: var(--white);
@@ -83,12 +85,21 @@ export const ContainerCard = styled.div`
         background-color: var(--brand4);
         color: var(--brand1);
         padding: 0.5rem;
+
+        font-size: 0.875rem;
+        font-family: var(--inter);
       }
     }
 
     strong {
       font-family: var(--lexend);
+      font-size: 1rem;
     }
+  }
+
+  .container--buttons--edit {
+    display: flex;
+    gap: 0.9375rem;
   }
 `;
 
@@ -100,6 +111,7 @@ export const ContainerIsActive = styled.div<IContainerIsActiveProps>`
   left: 0.5rem;
 
   font-family: var(--inter);
+  font-size: 0.875rem;
 
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.color};
