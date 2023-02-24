@@ -14,7 +14,7 @@ export const MainContainer = styled.main`
 `;
 
 export const FormContainer = styled.form`
-  margin: 2rem 0 10rem 0;
+  margin: 2rem 0;
   width: 25rem;
 
   display: flex;
