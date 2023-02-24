@@ -1,40 +1,48 @@
 import Car from "../../assets/car.svg";
+import Bike from "../../assets/moto.svg";
+
 import { ContainerCard, ContainerIsActive } from "./styles";
 
-const ProductCard = () => {
-  const obj = {
-    title:
-      "Product title stays here - max 1 line Product title stays here - maximum 1 line",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    announcer: "Anunciante",
-    year: "2013",
-    milage: "0 KM",
-    price: "78.500,00",
-    isActive: true,
-  };
+const ProductCard = (info: any) => {
+  const {
+    title,
+    description,
+    typeVehicle,
+    typeAds,
+    releaseYear,
+    mileage,
+    price,
+    cover,
+    gallery_image,
+  } = info.info;
+  const announcer = "Natália";
 
   return (
     <ContainerCard>
       <ContainerIsActive backgroundColor="var(--brand1)" color="var(--white)">
-        {obj.isActive ? "Ativo" : "Inativo"}
+        {/* {obj.isActive ? "Ativo" : "Inativo"} */}
+        Ativo
       </ContainerIsActive>
       <div className="container--img">
-        <img src={Car} alt="car" />
+        {info.type === "cars" ? (
+          <img src={Car} alt="car" />
+        ) : (
+          <img src={Bike} alt="motorbike" />
+        )}
       </div>
       <div className="container--content">
-        <h2>{obj.title}</h2>
-        <p className="container--description">{obj.description}</p>
+        <h2>{title}</h2>
+        <p className="container--description">{description}</p>
         <div className="container--announcer">
-          <div className="avatar">{obj.announcer[0]}</div>
-          <p>{obj.announcer}</p>
+          <div className="avatar">{announcer[0]}</div>
+          <p>{announcer}</p>
         </div>
         <div className="container--tag--price">
           <div className="container--tags">
-            <div className="tag">{obj.milage}</div>
-            <div className="tag">{obj.year}</div>
+            <div className="tag">{mileage}</div>
+            <div className="tag">{releaseYear}</div>
           </div>
-          <strong>R${obj.price}</strong>
+          <strong>R${price}</strong>
         </div>
       </div>
     </ContainerCard>
