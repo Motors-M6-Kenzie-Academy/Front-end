@@ -10,9 +10,20 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+<<<<<<< HEAD
     <AdsProvider>
     <BrowserRouter>
       <App/>
+=======
+    <BrowserRouter>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/private" element={<PrivateRout />} />
+      </Routes>
+>>>>>>> bbe8cb68ff97ed56dc8242f3fb05141a757748a0
     </BrowserRouter>
     </AdsProvider>
   </React.StrictMode>

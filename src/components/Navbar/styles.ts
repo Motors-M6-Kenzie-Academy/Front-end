@@ -123,6 +123,7 @@ export const HeaderContainer = styled.header`
     padding: 0 3rem;
   }
   @media only screen and (max-width: 900px) {
+    padding: 1rem;
     .hamburger {
       display: block;
       cursor: pointer;
@@ -137,12 +138,13 @@ export const HeaderContainer = styled.header`
 
     .nav-bar {
       position: absolute;
-      top: 7rem;
+      top: 4rem;
       left: 0;
       right: 0;
       width: 100vw;
       transition: 0.2s;
       overflow: hidden;
+      background-color: var(--gray10);
     }
 
     .nav-bar ul {
