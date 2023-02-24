@@ -8,8 +8,7 @@ interface AdsContextData{
     isOpenModal: boolean;
     setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
     setTypeVehicle: React.Dispatch<React.SetStateAction<string>>;
-    openModal:() => void;
-    closeModal: () => void;
+    type_vehicle: string;
 }
 
 export const AdsContext = createContext<AdsContextData>(
@@ -20,48 +19,40 @@ export interface IAuthProvier {
     children: ReactNode;
   }
 
-
 const AdsProvider = ({ children }: IAuthProvier) => {
     const [adsApi, setAdsApi] = useState<IAds>({} as IAds)
     const [listAds, setListAds] = useState<IAds[]>([])
-    const [typeVehicle, setTypeVehicle] = useState<string>("car")
-    const [modal, setModal] = useState<string| null>(null);
+    const [type_vehicle, setTypeVehicle] = useState<string>("car")
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-    const tokenUser = localStorage.getItem("@login:token")
+    // const tokenUser = localStorage.getItem("@login:token")
 
-    const openModal = () => {
-        setIsOpenModal(true)
-      }
     
-      const closeModal = () => {
-        setIsOpenModal(false)
-      }
-
     const onSubmitAds = (data: IAdsRequest) => {
         api
         .post("/ads", data)
         .then((res) => {
             setListAds((oldAds) => [...oldAds, res.data])
             setAdsApi(res.data)
-            setModal(null)
+            console.log(res.data)
+            setIsOpenModal(false)
         })
         .catch((err) => console.log(err))
     }
 
-    useEffect(() => {
-        if (tokenUser) {
-          api
-            .get("/ads", {
-              headers: { Authorization: `Bearer ${tokenUser}` },
-            })
-            .then((res) => {
-              setListAds(res.data)
-              setModal(null)
-            })
-            .catch((err) => console.error(err));
-        }
-      }, []);
+    // useEffect(() => {
+    //     if (tokenUser) {
+    //       api
+    //         .get("/ads", {
+    //           headers: { Authorization: `Bearer ${tokenUser}` },
+    //         })
+    //         .then((res) => {
+    //           setListAds(res.data)
+    //           setIsOpenModal(false)
+    //         })
+    //         .catch((err) => console.error(err));
+    //     }
+    //   }, []);
 
     return (
         <AdsContext.Provider
@@ -70,9 +61,8 @@ const AdsProvider = ({ children }: IAuthProvier) => {
                 onSubmitAds,
                 isOpenModal,
                 setIsOpenModal,
-                openModal,
-                closeModal,
                 setTypeVehicle,
+                type_vehicle,
             }}
             >
                 {children}

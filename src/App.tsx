@@ -1,28 +1,23 @@
-import Footer from "./components/Footer";
-import ProductCard from "./components/ProductCard";
-import ModalImg from "./components/ModalImg";
-import ProductCardAuction from "./components/ProductCardAuction";
-import InputContainer from "./components/Inputs";
-import { Button } from "./components/Button";
-import Navbar from "./components/Navbar";
+
 import GlobalStyle from "./styles/globalStyles";
-import Modal from "./components/ModalAds";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { SignIn } from "./pages/SignIn";
+import { Register } from "./pages/Register";
+import { PrivateRout } from "./pages/PrivateRoute";
+import AdsProvider from "./contexts/AdsContexts";
 
 function App() {
   return (
-    <>
+    <AdsProvider>
       <GlobalStyle />
-      <Navbar />
-      {/* <InputContainer
-        label="Email"
-        placeHolder="email@email.com"
-        typeInput="email"
-      /> */}
-      {/* <ProductCard /> */}
-      <ProductCardAuction /> 
-      <Footer />
-      {/* <ModalImg /> */}
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/private" element={<PrivateRout />} />
+      </Routes>
+    </AdsProvider>
   );
 }
 
