@@ -9,20 +9,15 @@ export const Container = styled.div`
 
 export const MainContainer = styled.main`
   width: 100vw;
-  height: 90vh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  overflow-y: scroll;
-  margin-bottom: 2rem;
 
   background-color: var(--gray10);
 
   .top {
     background-color: var(--brand2);
-    height: 50%;
+    height: 50vh;
     width: 100%;
 
     display: flex;
@@ -59,11 +54,27 @@ export const MainContainer = styled.main`
       display: flex;
       gap: 5rem;
     }
+
+    @media only screen and (max-width: 716px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media only screen and (max-width: 414px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 0.7rem;
+      }
+    }
   }
 
   .leilao {
-    height: 40%;
-    /* width: 100%; */
 
     padding: 4rem 2rem;
 
@@ -74,25 +85,76 @@ export const MainContainer = styled.main`
       font-size: 2rem;
       line-height: 2rem;
 
+      margin-bottom: 2rem;
       color: var(--gray0);
     }
 
-    .scroll-card {
+    .scroll-card-leilao {
       display: flex;
-      gap: 2rem;
+      gap: 0.5rem;
+
+      overflow-x: auto;
+
+      ::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
 
   .cars {
-    height: 10%;
+
     width: 100%;
-    /* background-color: var(--random9); */
+    padding: 4rem 2rem;
+
+    .title-section {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 2rem;
+
+      margin-bottom: 2rem;
+      color: var(--gray0);
+    }
+
+    .scroll-card-cars {
+      display: flex;
+      gap: 2rem;
+
+      overflow-x: auto;
+
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+    }
   }
 
   .motorsbike {
-    height: 10%;
     width: 100%;
-    /* background-color: var(--brand1); */
+    padding: 4rem 2rem;
+    margin-bottom: 7rem;
+
+    .title-section {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 2rem;
+
+      margin-bottom: 2rem;
+      color: var(--gray0);
+    }
+
+    .scroll-card-motorsbike {
+      display: flex;
+      gap: 2rem;
+
+      overflow-x: auto;
+
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+    }
   }
 `;
 
@@ -123,7 +185,12 @@ export const Button = styled.button<ButtonProps>`
   border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
   border-radius: 0.4rem;
 
+
+  @media only screen and (max-width: 716px) {
+    width: 8rem;
+  }
+
   @media only screen and (max-width: 414px) {
-    width: 14rem;
+    width: 6rem;
   }
 `;
