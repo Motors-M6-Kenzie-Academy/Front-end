@@ -8,20 +8,20 @@ export default function Navbar() {
     list?.classList.toggle("active");
   };
 
-  // const handleUser = () => {
-  //   const list = document.querySelector(".user-settings");
-  //   list?.classList.toggle("active");
-  // };
+  const handleUser = () => {
+    const list = document.querySelector(".user-settings");
+    list?.classList.toggle("active");
+  };
 
-  // const sigla: any = [];
-  // const userName: any = [];
-  // const user = {};
+  const sigla: any = [];
+  const userName: any = [];
+  const user = { name: "Samuel Leão" };
 
-  // userName.push(user.name.split(" ")[0]);
-  // userName.push(user.name.split(" ")[1]);
+  userName.push(user.name.split(" ")[0]);
+  userName.push(user.name.split(" ")[1]);
 
-  // sigla.push(userName[0].substring(0, 1));
-  // sigla.push(userName[1].substring(0, 1));
+  sigla.push(userName[0].substring(0, 1));
+  sigla.push(userName[1].substring(0, 1));
 
   return (
     <>
