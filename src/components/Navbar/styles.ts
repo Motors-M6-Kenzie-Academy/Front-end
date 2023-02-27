@@ -151,3 +151,133 @@ export const ContainerMobile = styled.div`
     }
   }
 `;
+
+// Estilização para Modal Edit User
+
+export const ContainerModal = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+
+    width: 30rem;
+    max-width: 90%;
+
+    padding: 2rem;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    background-color: var(--gray10);
+    border-radius: 1rem;
+
+    h3 {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+    p {
+      font-family: var(--inter);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.8rem;
+      line-height: 2rem;
+    }
+
+    div {
+      width: auto;
+      input {
+        width: auto;
+      }
+    }
+
+    div:last-child {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+
+      button {
+        width: 30%;
+      }
+
+      button:last-child {
+        width: 60%;
+      }
+    }
+
+    @media (width < 414px) {
+      width: 20rem;
+      padding: 0.8rem;
+
+      position: fixed;
+      left: 12%;
+      top: 8%;
+      z-index: 10;
+
+      transform: translate(-5%, -5%);
+
+      div {
+        /* width: 12rem; */
+
+        label {
+          font-size: 0.8rem;
+        }
+        input {
+          height: 1rem;
+        }
+
+        button {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+`;
+
+type ButtonProps = {
+  bgColor: string;
+  txColor: string;
+  border?: boolean;
+};
+
+export const Button = styled.button<ButtonProps>`
+  height: 2.8rem;
+  width: 21rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--inter);
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: ${(props) => props.txColor};
+  background-color: ${(props) => props.bgColor};
+
+  padding: 0.5rem 0.8rem;
+
+  border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
+  border-radius: 0.4rem;
+
+  @media only screen and (max-width: 414px) {
+    width: 14rem;
+  }
+`;
