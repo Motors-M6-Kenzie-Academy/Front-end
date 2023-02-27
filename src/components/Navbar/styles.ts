@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  height: 6vh;
 
   display: flex;
   align-items: center;
@@ -11,6 +10,7 @@ export const HeaderContainer = styled.header`
   padding: 0 5rem;
   background: #fdfdfd;
   border-bottom: 0.2rem solid #dee2e6;
+  z-index: 1;
 
   .logo {
     img {
@@ -53,7 +53,6 @@ export const HeaderContainer = styled.header`
     .container-user {
       display: flex;
       align-items: center;
-      height: 6vh;
 
       gap: 1.2rem;
 
@@ -97,7 +96,6 @@ export const HeaderContainer = styled.header`
       ul li {
         border: none;
         padding: 0;
-        height: 2rem;
       }
     }
   }
@@ -125,6 +123,7 @@ export const HeaderContainer = styled.header`
     padding: 0 3rem;
   }
   @media only screen and (max-width: 900px) {
+    padding: 1rem;
     .hamburger {
       display: block;
       cursor: pointer;
@@ -139,12 +138,13 @@ export const HeaderContainer = styled.header`
 
     .nav-bar {
       position: absolute;
-      top: 7rem;
+      top: 4rem;
       left: 0;
       right: 0;
       width: 100vw;
       transition: 0.2s;
       overflow: hidden;
+      background-color: var(--gray10);
     }
 
     .nav-bar ul {

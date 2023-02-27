@@ -51,7 +51,6 @@ const GlobalStyle = createGlobalStyle`
 * {
     box-sizing: border-box;
     font-size: 62.5%;
-
 }
 
 

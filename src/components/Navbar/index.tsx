@@ -1,5 +1,6 @@
 import { HeaderContainer } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const handleHamburger = () => {
@@ -7,28 +8,28 @@ export default function Navbar() {
     list?.classList.toggle("active");
   };
 
-  const handleUser = () => {
-    const list = document.querySelector(".user-settings");
-    list?.classList.toggle("active");
-  };
+  // const handleUser = () => {
+  //   const list = document.querySelector(".user-settings");
+  //   list?.classList.toggle("active");
+  // };
 
-  const sigla = [];
-  const userName = [];
-  const user = {
-    name: "Samuel Leão",
-  };
+  // const sigla: any = [];
+  // const userName: any = [];
+  // const user = {};
 
-  userName.push(user.name.split(" ")[0]);
-  userName.push(user.name.split(" ")[1]);
+  // userName.push(user.name.split(" ")[0]);
+  // userName.push(user.name.split(" ")[1]);
 
-  sigla.push(userName[0].substring(0, 1));
-  sigla.push(userName[1].substring(0, 1));
+  // sigla.push(userName[0].substring(0, 1));
+  // sigla.push(userName[1].substring(0, 1));
 
   return (
     <>
       <HeaderContainer>
         <div className="logo">
-          <img src={LogoImg} alt="Logo Motors" />
+          <Link to={"/"}>
+            <img src={LogoImg} alt="Logo Motors" />
+          </Link>
         </div>
         <div className="hamburger" onClick={() => handleHamburger()}>
           <div className="line"></div>
@@ -39,18 +40,18 @@ export default function Navbar() {
         <nav className="nav-bar">
           <ul>
             <li>
-              <a href="/">Carros</a>
+              <Link to={"/"}>Carros</Link>
             </li>
             <li>
-              <a href="/">Motos</a>
+              <Link to={"/"}>Motos</Link>
             </li>
             <li>
-              <a href="/">Leilão</a>
+              <Link to={"/"}>Leilão</Link>
             </li>
-            {user ? (
+            {/* {user ? (
               <div className="container-user" onClick={() => handleUser()}>
                 <div className="circle">{sigla}</div>
-                <span className="user-name">{user.name}</span>
+                <span className="user-name">{user?.name}</span>
                 <ul className="user-settings">
                   <li>
                     <a href="/">Editar Perfil</a>
@@ -75,7 +76,13 @@ export default function Navbar() {
                   <a href="/">Cadastrar</a>
                 </li>
               </>
-            )}
+            )} */}
+            <li>
+              <Link to={"/signin"}>Fazer Login</Link>
+            </li>
+            <li>
+              <Link to={"/register"}>Cadastrar</Link>
+            </li>
           </ul>
         </nav>
       </HeaderContainer>
