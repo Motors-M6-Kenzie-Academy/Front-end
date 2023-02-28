@@ -11,7 +11,13 @@ interface AdsContextData {
   type_vehicle: string;
   listCars: IAds[];
   listMotorbikes: IAds[];
-  delAds: (id: string) => void
+  delAds: (id: string) => void;
+  onSubmitUpdate: (id: string, dataUpdate: IAdsRequest) => void;
+  isOpenModalUpdate: boolean;
+  setIsOpenModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpenModalDelete: boolean
+  setIsOpenModalDelete: React.Dispatch<React.SetStateAction<boolean>>;
+  adsApi: IAds
 }
 
 export const AdsContext = createContext<AdsContextData>({} as AdsContextData);
@@ -27,8 +33,10 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const [listMotorbikes, setlistMotorbikes] = useState<IAds[]>([]);
   const [type_vehicle, setTypeVehicle] = useState<string>("car");
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(true)
+  const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false)
 
-  const tokenUser = localStorage.getItem("@login:token")
+  //const tokenUser = localStorage.getItem("@login:token")
 
   const getAds = async () => {
     await api
@@ -46,8 +54,9 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const onSubmitAds = (data: IAdsRequest) => {
     api
       .post("/ads", data)
-      .then(() => {
-        getAds();
+      .then((res) => {
+        setListAds((oldAds) => [...oldAds, res.data])
+        setAdsApi(res.data)
         setIsOpenModal(false);
       })
       .catch((err) => console.log(err));
@@ -66,11 +75,19 @@ const AdsProvider = ({ children }: IAuthProvier) => {
     splitAds();
   }, [listAds]);
 
+  const onSubmitUpdate = (id: string, dataUpdate: IAdsRequest) => {
+    api.patch(`/ads/${id}`, dataUpdate)
+    .then((res) => {
+        console.log(res.data)
+        setListAds((ads) => [...ads, res.data])
+        setIsOpenModal(false)
+    }) 
+    .catch((err) => console.log(err))
+}
+
   const delAds = (id: string) => {
     api
-    .delete(`/ads/${id}`, {
-        headers: { Authorization: `Bearer ${tokenUser}` },
-    })
+    .delete(`/ads/${id}`)
     .then(() => {
         const deletedFiltered = listAds.filter((elem) => elem.id !== id);
         setListAds(deletedFiltered)
@@ -89,7 +106,13 @@ const AdsProvider = ({ children }: IAuthProvier) => {
         type_vehicle,
         listCars,
         listMotorbikes,
-        delAds
+        delAds,
+        onSubmitUpdate,
+        isOpenModalDelete, 
+        setIsOpenModalDelete,
+        isOpenModalUpdate,
+        setIsOpenModalUpdate,
+        adsApi
       }}
     >
       {children}

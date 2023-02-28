@@ -10,6 +10,7 @@ import ProductCard from "../../components/ProductCard";
 import { Button, Container, MainContainer } from "./styles";
 import { AdsContext } from "../../contexts/AdsContexts";
 import ModalDelete from "../../components/ModalDelAds";
+import ModalAdUpdate from "../../components/modalAdUpdate";
 
 export const Home = () => {
   const { isTokenAdd } = useContext(UserContext);
@@ -75,6 +76,7 @@ export const Home = () => {
       </MainContainer>
       <Footer />
       <Modal />
+      <ModalAdUpdate />
       <ModalDelete />
     </Container>
   );
