@@ -17,6 +17,7 @@ export const Home = () => {
   const { listCars, listMotorbikes } = useContext(AdsContext);
 
   return (
+    <>
     <Container>
       <Navbar />
       <MainContainer>
@@ -75,9 +76,11 @@ export const Home = () => {
 
       </MainContainer>
       <Footer />
+         
+      </Container>
       <Modal />
       <ModalAdUpdate />
       <ModalDelete />
-    </Container>
+    </>
   );
 };

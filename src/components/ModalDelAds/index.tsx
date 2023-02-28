@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { AdsContext } from "../../contexts/AdsContexts";
 
 const ModalDelete = (ads: any) => {
-    const {isOpenModalDelete, setIsOpenModalDelete, delAds} = useContext(AdsContext)
+    const {isOpenModalDelete, setIsOpenModalDelete, delAds, adsApi} = useContext(AdsContext)
+    const id = adsApi.id
 
     return(
         <>
@@ -23,7 +24,7 @@ const ModalDelete = (ads: any) => {
 
                         <div className="divButton">
                             <button type="button" onClick={() => setIsOpenModalDelete(false)}>Cancelar</button>
-                            <button className="btnExclude" onClick={() => delAds(ads.id)}>Sim, excluir anúncio</button>
+                            <button className="btnExclude" onClick={() => delAds(id)}>Sim, excluir anúncio</button>
                         </div>
                     </div>
                 </ContainerDel>
