@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
-import InputContainer from "../../components/Imputs";
+import InputContainer from "../../components/Input";
 import Navbar from "../../components/Navbar";
 import { Button, Container, FormContainer, MainContainer } from "./styles";
 
