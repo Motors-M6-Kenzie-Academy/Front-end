@@ -21,7 +21,11 @@ export default function Navbar() {
   const [isOpenModalHamburger, setisOpenModalHamburger] = useState(false);
   const [isOpenSettingsUser, setIsOpenSettingsUser] = useState(false);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+  const [isOpenAddressModal, setIsOpenAddressModal] = useState(true);
 
+  const handleAddressModal = () => {
+    setIsOpenAddressModal(!isOpenAddressModal);
+  };
   const handleEditUserModal = () => {
     setIsOpenEditModal(!isOpenEditModal);
   };
@@ -56,7 +60,9 @@ export default function Navbar() {
                 <Link to={"/"} onClick={handleEditUserModal}>
                   Editar Perfil
                 </Link>
-                <Link to={"/"}>Editar Endereço</Link>
+                <Link to={"/"} onClick={handleAddressModal}>
+                  Editar Endereço
+                </Link>
                 <Link to={"/"}>Meus Anúncios</Link>
                 <Link to={"/"}>Excluir Perfil</Link>
                 <Link to={"/"}>Sair</Link>
@@ -82,14 +88,18 @@ export default function Navbar() {
               <Link to={"/"}>Leilão</Link>
               <div className="user-info">
                 <span className="user-sigla">{sigla}</span>
-                <span onClick={handleSettingsModal}>{user?.name}</span>
+                <span onClick={handleSettingsModal} className="user-name">
+                  {user?.name}
+                </span>
               </div>
               {isOpenSettingsUser && (
                 <div id="user-settings-desktop">
                   <Link to={"/"} onClick={handleEditUserModal}>
                     Editar Perfil
                   </Link>
-                  <Link to={"/"}>Editar Endereço</Link>
+                  <Link to={"/"} onClick={handleAddressModal}>
+                    Editar Endereço
+                  </Link>
                   <Link to={"/"}>Meus Anúncios</Link>
                   <Link to={"/"}>Excluir Perfil</Link>
                   <Link to={"/"}>Sair</Link>
@@ -115,6 +125,66 @@ export default function Navbar() {
           <div className="line"></div>
         </MenuHamburger>
       </Container>
+      {isOpenAddressModal && (
+        <ContainerModal>
+          <div className="modal">
+            <h3>Editar endereço</h3>
+            <p>informações de endereço</p>
+            <InputContainer
+              label="CEP"
+              placeHolder="89888.888"
+              typeInput="number"
+              key={"cep"}
+            />
+            <div className="container-flex">
+              <InputContainer
+                label="Estado"
+                placeHolder="Paraná"
+                typeInput="text"
+                key={"state"}
+              />
+              <InputContainer
+                label="Cidade"
+                placeHolder="Curitiba"
+                typeInput="text"
+                key={"city"}
+              />
+            </div>
+            <InputContainer
+              label="Rua"
+              placeHolder="Rua do paraná"
+              typeInput="text"
+              key={"road"}
+            />
+            <div className="container-flex">
+              <InputContainer
+                label="Número"
+                placeHolder="1090"
+                typeInput="number"
+                key={"houseNumber"}
+              />
+              <InputContainer
+                label="Complemento"
+                placeHolder="Apart 12"
+                typeInput="text"
+                key={"description"}
+              />
+            </div>
+            <div>
+              <Button
+                bgColor="#DEE2E6"
+                txColor="black"
+                onClick={handleAddressModal}
+              >
+                Cancelar
+              </Button>
+              <Button bgColor="blue" txColor="white">
+                Salvar Alterações
+              </Button>
+            </div>
+          </div>
+        </ContainerModal>
+      )}
       {isOpenEditModal && (
         <ContainerModal id="modal-edit-user">
           <div className="modal">
