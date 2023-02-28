@@ -20,6 +20,6 @@ export const FormGroup = styled.div<FormGroupProps>`
     props.propJustify ? props.propJustify : "flex-start"};
 
   @media only screen and (width < 414px) {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 `;

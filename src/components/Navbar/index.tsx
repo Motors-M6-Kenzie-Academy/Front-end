@@ -1,16 +1,14 @@
 import {
-  Button,
   Container,
   ContainerDesktop,
   ContainerMobile,
-  ContainerModal,
   Logo,
   MenuHamburger,
 } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import InputContainer from "../Input";
+
 import { ModalUpdateUser } from "../UI Modal/ModalUpdateUser";
 import { ModalContainer } from "../UI Components/ModalContainer";
 import { ModalUpdateAddress } from "../UI Modal/ModalUpdateAddress";

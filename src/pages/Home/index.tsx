@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import BannerCreateAds from "../../components/BannerCreateAds";
 import Footer from "../../components/Footer";
@@ -11,10 +11,17 @@ import { Button, Container, ContainerModal, MainContainer } from "./styles";
 import { AdsContext } from "../../contexts/AdsContexts";
 import ModalDelete from "../../components/ModalDelAds";
 import ModalAdUpdate from "../../components/modalAdUpdate";
+import { ModalContainer } from "../../components/UI Components/ModalContainer";
+import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
 
 export const Home = () => {
   const { isTokenAdd } = useContext(UserContext);
   const { listCars, listMotorbikes } = useContext(AdsContext);
+  const [createAds, setCreateAds] = useState(true);
+
+  const handleModalCreateAds = () => {
+    setCreateAds(!createAds);
+  };
 
   return (
     <>
@@ -22,7 +29,7 @@ export const Home = () => {
         <Navbar />
         <MainContainer>
           {isTokenAdd ? (
-            <BannerCreateAds />
+            <BannerCreateAds setStatement={handleModalCreateAds} />
           ) : (
             <div className="top">
               <h1>
@@ -76,6 +83,11 @@ export const Home = () => {
         </MainContainer>
         <Footer />
       </Container>
+      {createAds && (
+        <ModalContainer>
+          <ModalCreateAds setStatement={handleModalCreateAds} />
+        </ModalContainer>
+      )}
       {/* <ContainerModal>
         
       </ContainerModal>

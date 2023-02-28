@@ -5,7 +5,7 @@ type UIInputProps = {
   propWidth?: string;
   propPadding?: string;
   propFontSize?: string;
-  propBorder?: string;
+  propBorder?: boolean;
   propRadios?: string;
   propBG?: string;
 };
@@ -19,8 +19,7 @@ export const UIInput = styled.input<UIInputProps>`
 
   font-size: ${(props) => (props.propFontSize ? props.propFontSize : "0.8rem")};
 
-  border: ${(props) =>
-    props.propBorder ? props.propBorder : "0.1rem solid #e9ecef"};
+  border: ${(props) => (props.propBorder ? "0.1rem solid #e9ecef" : "none")};
 
   border-radius: ${(props) => (props.propRadios ? props.propRadios : "0.5rem")};
 
