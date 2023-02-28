@@ -21,6 +21,10 @@ export const Container = styled.header`
 
     color: var(--gray2);
   }
+
+  .user-name {
+    cursor: pointer;
+  }
 `;
 
 export const MenuHamburger = styled.div`
@@ -221,6 +225,17 @@ export const ContainerModal = styled.div`
       }
     }
 
+    .container-flex {
+      width: auto;
+      display: flex;
+      align-items: center;
+
+      div {
+        margin-right: 1rem;
+        gap: 0;
+      }
+    }
+
     @media (width < 414px) {
       width: 20rem;
       padding: 0.8rem;
@@ -231,6 +246,10 @@ export const ContainerModal = styled.div`
       z-index: 10;
 
       transform: translate(-5%, -5%);
+
+      .container-flex {
+        display: inline-block;
+      }
 
       div {
         /* width: 12rem; */

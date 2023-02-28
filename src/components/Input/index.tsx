@@ -12,7 +12,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 1rem;
+
 
   label {
     font-family: "Inter";
