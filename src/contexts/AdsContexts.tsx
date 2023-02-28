@@ -15,9 +15,9 @@ interface AdsContextData {
   onSubmitUpdate: (id: string, dataUpdate: IAdsRequest) => void;
   isOpenModalUpdate: boolean;
   setIsOpenModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
-  isOpenModalDelete: boolean
+  isOpenModalDelete: boolean;
   setIsOpenModalDelete: React.Dispatch<React.SetStateAction<boolean>>;
-  adsApi: IAds
+  adsApi: IAds;
 }
 
 export const AdsContext = createContext<AdsContextData>({} as AdsContextData);
@@ -33,8 +33,8 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const [listMotorbikes, setlistMotorbikes] = useState<IAds[]>([]);
   const [type_vehicle, setTypeVehicle] = useState<string>("car");
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-  const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(true)
-  const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false)
+  const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(true);
+  const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
 
   //const tokenUser = localStorage.getItem("@login:token")
 
@@ -55,8 +55,8 @@ const AdsProvider = ({ children }: IAuthProvier) => {
     api
       .post("/ads", data)
       .then((res) => {
-        setListAds((oldAds) => [...oldAds, res.data])
-        setAdsApi(res.data)
+        setListAds((oldAds) => [...oldAds, res.data]);
+        setAdsApi(res.data);
         setIsOpenModal(false);
       })
       .catch((err) => console.log(err));
@@ -76,24 +76,25 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   }, [listAds]);
 
   const onSubmitUpdate = (id: string, dataUpdate: IAdsRequest) => {
-    api.patch(`/ads/${id}`, dataUpdate)
-    .then((res) => {
-        console.log(res.data)
-        setListAds((ads) => [...ads, res.data])
-        setIsOpenModal(false)
-    }) 
-    .catch((err) => console.log(err))
-}
+    api
+      .patch(`/ads/${id}`, dataUpdate)
+      .then((res) => {
+        console.log(res.data);
+        setListAds((ads) => [...ads, res.data]);
+        setIsOpenModal(false);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const delAds = (id: string) => {
     api
-    .delete(`/ads/${id}`)
-    .then(() => {
+      .delete(`/ads/${id}`)
+      .then(() => {
         const deletedFiltered = listAds.filter((elem) => elem.id !== id);
-        setListAds(deletedFiltered)
-    })
-    .catch((err) => console.log(err));
-  }
+        setListAds(deletedFiltered);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <AdsContext.Provider
@@ -108,11 +109,11 @@ const AdsProvider = ({ children }: IAuthProvier) => {
         listMotorbikes,
         delAds,
         onSubmitUpdate,
-        isOpenModalDelete, 
+        isOpenModalDelete,
         setIsOpenModalDelete,
         isOpenModalUpdate,
         setIsOpenModalUpdate,
-        adsApi
+        adsApi,
       }}
     >
       {children}
