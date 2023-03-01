@@ -14,6 +14,7 @@ export const Form = styled.form`
     height: 45px;
     border-radius: 4px;
     background-color: #FDFDFD;
+    padding: 5px;
     color: #000;
     border: 2px solid #DEE2E6;
   }
