@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 
 import { ISignInRequest } from "../../interfaces/User";
 import Footer from "../../components/Footer";
-import InputContainer from "../../components/Imputs";
 import Navbar from "../../components/Navbar";
 import { UserContext } from "../../contexts/UserContexts";
 import { Button, Container, FormContainer, MainContainer } from "./styles";
+
 import { loginSchema } from "../../validators/signin";
 
 export const SignIn = () => {

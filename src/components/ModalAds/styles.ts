@@ -194,36 +194,20 @@ export const Container = styled.div`
     font-weight: 500;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 500px) {
     margin: 0;
     display: flex;
     flex-direction: row;
     max-width: 100%;
     min-height: 380px;
-    img {
+    modalBox {
       max-width: 50%;
     }
-  }
-  @media screen and (min-width: 1024px) {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    max-width: 115%;
-    min-height: 380px;
   }
   @media screen and (min-width: 1440px) {
     margin: 0;
     display: flex;
     flex-direction: row;
-    max-width: 57%;
-    min-height: 400px;
-  }
-  @media screen and (min-width: 2560px) {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    max-width: 57%;
-    min-height: 260px;
-    max-height: 400px;
+    
   }
 `;

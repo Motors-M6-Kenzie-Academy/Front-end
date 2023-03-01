@@ -1,78 +1,71 @@
-import { HeaderContainer } from "./styles";
+import {
+  Container,
+  ContainerDesktop,
+  ContainerMobile,
+  Logo,
+  MenuHamburger,
+} from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
 import { Link } from "react-router-dom";
+
 import { UserContext } from "../../contexts/UserContexts";
 import { useContext } from "react";
+import { useState } from "react";
+
+import { ModalUpdateUser } from "../UI Modal/ModalUpdateUser";
+import { ModalContainer } from "../UI Components/ModalContainer";
+import { ModalUpdateAddress } from "../UI Modal/ModalUpdateAddress";
+import { ModalSettingsUser } from "../UI Modal/ModalSettingsUser";
+import { Navigation } from "../UI Components/Navigation";
 
 export default function Navbar() {
-  const handleHamburger = () => {
-    const list = document.querySelector(".nav-bar");
-    list?.classList.toggle("active");
-  };
-
   const { user, logout } = useContext(UserContext);
 
-  // const handleUser = () => {
-  //   const list = document.querySelector(".user-settings");
-  //   list?.classList.toggle("active");
-  // };
+  const [isOpenModalHamburger, setisOpenModalHamburger] = useState(false);
+  const [isOpenSettingsUser, setIsOpenSettingsUser] = useState(false);
 
-  // const sigla: any = [];
-  // const userName: any = [];
-  // const user = {};
+  const [updateUser, setUpdateUser] = useState(false);
+  const [updateAddress, setUpdateAddress] = useState(false);
 
-  // userName.push(user.name.split(" ")[0]);
-  // userName.push(user.name.split(" ")[1]);
+  const handleModalUpdateUser = () => {
+    setUpdateUser(!updateUser);
+  };
+  const handleModalUpdateAddress = () => {
+    setUpdateAddress(!updateAddress);
+  };
 
-  // sigla.push(userName[0].substring(0, 1));
-  // sigla.push(userName[1].substring(0, 1));
+  const handleSettingsModal = () => {
+    setIsOpenSettingsUser(!isOpenSettingsUser);
+  };
+  const handleHamburger = () => {
+    setisOpenModalHamburger(!isOpenModalHamburger);
+  };
 
   return (
     <>
-      <HeaderContainer>
-        <div className="logo">
-          <Link to={"/"}>
-            <img src={LogoImg} alt="Logo Motors" />
-          </Link>
-        </div>
-        <div className="hamburger" onClick={() => handleHamburger()}>
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
-
-        <nav className="nav-bar">
-          <ul>
-            <li>
-              <Link to={"/"}>Carros</Link>
-            </li>
-            <li>
-              <Link to={"/"}>Motos</Link>
-            </li>
-            <li>
-              <Link to={"/"}>Leilão</Link>
-            </li>
-            {/* {user ? (
-              <div className="container-user" onClick={() => handleUser()}>
-                <div className="circle">{sigla}</div>
-                <span className="user-name">{user?.name}</span>
-                <ul className="user-settings">
-                  <li>
-                    <a href="/">Editar Perfil</a>
-                  </li>
-                  <li>
-                    <a href="/">Editar Endereço</a>
-                  </li>
-                  <li>
-                    <a href="/">Minhas Compras</a>
-                  </li>
-                  <li>
-                    <a href="/">Sair</a>
-                  </li>
-                </ul>
-              </div>
+      <Container>
+        <Link to={"/"}>
+          <Logo src={LogoImg} alt="Logo Motos" />
+        </Link>
+        <ContainerMobile>
+          {isOpenModalHamburger &&
+            (user ? (
+              <Navigation>
+                <Link to={"#"} onClick={handleModalUpdateUser}>
+                  Editar Perfil
+                </Link>
+                <Link to={"/"} onClick={handleModalUpdateAddress}>
+                  Editar Endereço
+                </Link>
+                <Link to={"/"}>Meus Anúncios</Link>
+                <Link to={"/"}>Excluir Perfil</Link>
+                <button onClick={() => logout()}>Sair</button>
+              </Navigation>
             ) : (
               <>
+                <Link to={"/"}>Carros</Link>
+                <Link to={"/"}>Motos</Link>
+                <Link to={"/"}>Leilão</Link>
                 <li>
                   <a href="/">Fazer Login</a>
                 </li>
@@ -80,22 +73,58 @@ export default function Navbar() {
                   <a href="/">Cadastrar</a>
                 </li>
               </>
-            )} */}
-            {user ? (
-              <button onClick={() => logout()}>Logout</button>
-            ) : (
-              <>
-                <li>
-                  <Link to={"/signin"}>Fazer Login</Link>
-                </li>
-                <li>
-                  <Link to={"/register"}>Cadastrar</Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      </HeaderContainer>
+            ))}
+        </ContainerMobile>
+
+        <ContainerDesktop>
+          {user ? (
+            <Navigation>
+              <Link to={"/"}>Carros</Link>
+              <Link to={"/"}>Motos</Link>
+              <Link to={"/"}>Leilão</Link>
+              <div className="user-container-auth">
+                <span className="user-acronym">{user.name[0]}</span>
+                <span onClick={handleSettingsModal} className="user-name">
+                  {user?.name}
+                </span>
+              </div>
+              {isOpenSettingsUser && (
+                <ModalSettingsUser
+                  setStatementProfile={handleModalUpdateUser}
+                  setStatementAddress={handleModalUpdateAddress}
+                />
+              )}
+            </Navigation>
+          ) : (
+            <Navigation>
+              <Link to={"/"}>Carros</Link>
+              <Link to={"/"}>Motos</Link>
+              <Link to={"/"}>Leilão</Link>
+              <div className="settings-container">
+                <Link to={"/signin"}>Fazer Login</Link>
+                <Link to={"/register"}>Cadastrar</Link>
+              </div>
+            </Navigation>
+          )}
+        </ContainerDesktop>
+
+        <MenuHamburger onClick={() => handleHamburger()}>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </MenuHamburger>
+      </Container>
+
+      {updateAddress && (
+        <ModalContainer>
+          <ModalUpdateAddress setStatement={handleModalUpdateAddress} />
+        </ModalContainer>
+      )}
+      {updateUser && (
+        <ModalContainer>
+          <ModalUpdateUser setStatement={handleModalUpdateUser} />
+        </ModalContainer>
+      )}
     </>
   );
 }

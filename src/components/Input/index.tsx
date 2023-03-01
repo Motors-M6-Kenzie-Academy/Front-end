@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 
 interface InputProps {
   label?: string;
@@ -11,8 +12,6 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  margin-bottom: 1rem;
 
   label {
     font-family: "Inter";
@@ -54,10 +53,16 @@ export default function InputContainer({
   placeHolder,
   typeInput,
 }: InputProps) {
+  const { register } = useForm();
   return (
     <Container>
       <label htmlFor={label}>{label}</label>
-      <input type={typeInput} placeholder={placeHolder} id={label} />
+      <input
+        type={typeInput}
+        placeholder={placeHolder}
+        id={label}
+        {...register("password")}
+      />
     </Container>
   );
 }

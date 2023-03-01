@@ -1,207 +1,142 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
-  width: 100%;
+export const Container = styled.header`
+  width: 100vw;
+  height: 7vh;
 
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 5rem;
   background: #fdfdfd;
   border-bottom: 0.2rem solid #dee2e6;
-  z-index: 1;
+`;
 
-  .logo {
-    img {
-      width: 8rem;
-    }
+export const MenuHamburger = styled.div`
+  display: block;
+  cursor: pointer;
+
+  .line {
+    width: 1.5rem;
+    height: 0.2rem;
+    background-color: black;
+    margin: 0.3rem 0;
   }
 
-  .hamburger {
+  @media (width > 820px) {
     display: none;
   }
+`;
 
-  .nav-bar {
-    display: flex;
+export const Logo = styled.img``;
+
+// Estilização para tamanhos Desktops
+
+export const ContainerDesktop = styled.div`
+  height: 100%;
+  width: auto;
+
+  @media (width < 820px) {
+    display: none;
   }
+`;
 
-  .nav-bar ul {
+// Estilização para tamanhos Mobile
+
+export const ContainerMobile = styled.div`
+  height: 100%;
+  width: 100%;
+
+  @media (width > 820px) {
+    display: none;
+  }
+`;
+
+// Estilização para Modal Edit User
+
+export const ContainerModal = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  .container-flex {
+    width: auto;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
 
-    li:nth-child(4) {
-      display: flex;
-      align-items: center;
+    div {
+      margin-right: 1rem;
+      gap: 0;
+    }
+  }
 
-      height: 4.7rem;
-      border-left: 0.2rem solid #dee2e6;
-      padding-left: 1.2rem;
+  @media (width < 414px) {
+    width: 20rem;
+    padding: 0.8rem;
+
+    position: fixed;
+    left: 12%;
+    top: 8%;
+    z-index: 10;
+
+    transform: translate(-5%, -5%);
+
+    .container-flex {
+      display: inline-block;
     }
 
-    li:nth-child(5) {
-      border: 0.1rem solid #adb5bd;
-      border-radius: 0.4rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 0.3rem 0.8rem;
-    }
+    div {
+      /* width: 12rem; */
 
-    .container-user {
-      display: flex;
-      align-items: center;
-
-      gap: 1.2rem;
-
-      padding-left: 2rem;
-      border-left: 0.2rem solid #dee2e6;
-      cursor: pointer;
-
-      .circle {
-        border-radius: 50%;
-        padding: 0.5rem;
-        color: white;
-        background-color: #5126ea;
-
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: bold;
+      label {
         font-size: 0.8rem;
       }
+      input {
+        height: 1rem;
+      }
 
-      .user-name {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 600;
+      button {
         font-size: 0.8rem;
-        line-height: 2rem;
-        color: #495057;
-      }
-
-      ul.active {
-        display: none;
-      }
-
-      ul {
-        position: absolute;
-        top: 6rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      ul li {
-        border: none;
-        padding: 0;
       }
     }
   }
+`;
 
-  .nav-bar ul li a {
-    display: block;
-    color: black;
-    transition: 0.2s;
-    margin: 0 0.5rem;
+type ButtonProps = {
+  bgColor: string;
+  txColor: string;
+  border?: boolean;
+};
 
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 0.8rem;
-    line-height: 2rem;
+export const Button = styled.button<ButtonProps>`
+  height: 2.8rem;
+  width: 21rem;
 
-    color: #495057;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media only screen and (max-width: 1320px) {
-    padding: 0 5rem;
-  }
+  font-family: var(--inter);
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 600;
 
-  @media only screen and (max-width: 1100px) {
-    padding: 0 3rem;
-  }
-  @media only screen and (max-width: 900px) {
-    padding: 1rem;
-    .hamburger {
-      display: block;
-      cursor: pointer;
-    }
+  color: ${(props) => props.txColor};
+  background-color: ${(props) => props.bgColor};
 
-    .hamburger .line {
-      width: 1.5rem;
-      height: 0.2rem;
-      background-color: black;
-      margin: 0.3rem 0;
-    }
+  padding: 0.5rem 0.8rem;
 
-    .nav-bar {
-      position: absolute;
-      top: 4rem;
-      left: 0;
-      right: 0;
-      width: 100vw;
-      transition: 0.2s;
-      overflow: hidden;
-      background-color: var(--gray10);
-    }
+  border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
+  border-radius: 0.4rem;
 
-    .nav-bar ul {
-      display: block;
-      width: 100%;
-      margin: 1rem;
-      text-align: start;
-      transition: 0.5s;
-
-      li:nth-child(4) {
-        display: flex;
-        align-items: center;
-        padding: 0;
-
-        border-left: none;
-        border-top: 0.1rem solid #dee2e6;
-      }
-      li:nth-child(5) {
-        border: 0.1rem solid #adb5bd;
-        border-radius: 0.4rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 0.3rem 0.8rem;
-      }
-    }
-
-    .active {
-      display: none;
-    }
-
-    .nav-bar ul li {
-      margin-bottom: 1.2rem;
-    }
-
-    .nav-bar ul .container-user {
-      border: none;
-      /* background-color: red; */
-      padding: 0;
-      height: 15rem;
-      position: relative;
-      top: -6rem;
-
-      ul {
-        position: absolute;
-        top: 9rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      ul li {
-        border: none;
-        padding: 0;
-        height: 0.5rem;
-      }
-    }
+  @media only screen and (max-width: 414px) {
+    width: 14rem;
   }
 `;
