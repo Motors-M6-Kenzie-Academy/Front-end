@@ -41,6 +41,21 @@ export default function Navbar() {
     setisOpenModalHamburger(!isOpenModalHamburger);
   };
 
+  const sigla = [];
+  const userName = [];
+  const userLastName = [];
+
+  if (user) {
+    userName.push(user.name.split(" ")[0]);
+    userLastName.push(user.name.split(" ")[1]);
+
+    sigla.push(userName[0].substring(0, 1));
+
+    if (userLastName[0]) {
+      sigla.push(userLastName[0].substring(0, 1));
+    }
+  }
+
   return (
     <>
       <Container>
@@ -83,7 +98,7 @@ export default function Navbar() {
               <Link to={"/"}>Motos</Link>
               <Link to={"/"}>Leilão</Link>
               <div className="user-container-auth">
-                <span className="user-acronym">{user.name[0]}</span>
+                <span className="user-acronym">{sigla.join("")}</span>
                 <span onClick={handleSettingsModal} className="user-name">
                   {user?.name}
                 </span>

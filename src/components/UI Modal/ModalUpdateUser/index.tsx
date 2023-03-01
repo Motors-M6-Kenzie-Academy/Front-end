@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { editUserSchema } from "../../../validators";
 
-
 export interface ISubmitData {
   name: string;
   email: string;
@@ -45,7 +44,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="Ex: Samuel Leão Silva"
           {...register("name")}
-          error={errors?.name}
         />
       </FormGroup>
       <FormGroup>
@@ -55,7 +53,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="samuel@kenzie.com.br"
           {...register("email")}
-          error={errors?.email}
         />
       </FormGroup>
       <FormGroup>
@@ -65,7 +62,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="900.880.090-00"
           {...register("cpf")}
-          error={errors?.cpf}
         />
       </FormGroup>
       <FormGroup>
@@ -75,7 +71,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="(084) 90909-9092"
           {...register("phoneNumber")}
-          error={errors?.phoneNumber}
         />
       </FormGroup>
       <FormGroup>
@@ -84,8 +79,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           type={"text"}
           propBorder={true}
           placeholder="09/12/99"
-          {...register("birthdate")}
-          error={errors?.birthdate}
+          {...register("birthDate")}
         />
       </FormGroup>
       <FormGroup>
@@ -96,7 +90,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           type={"text"}
           placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           {...register("description")}
-          error={errors?.description}
         />
       </FormGroup>
 
