@@ -12,13 +12,6 @@ import * as yup from "yup";
   
     email: yup.string().email("E-mail inválido"),
 
-    password: yup
-    .string()
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      "Deve conter 8 caracteres,uma maiuscula, uma minuscula,um numero e um caractere especial"
-    ),
-
     cpf: yup
     .string()
     .min(11, "O CPF deve conter 11 números"),
