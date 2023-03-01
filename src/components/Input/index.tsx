@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
 interface InputProps {
-  label: string;
-  placeHolder: string;
-  typeInput: string;
+  label?: string;
+  placeHolder?: string;
+  typeInput?: string;
 }
 
 const Container = styled.div`

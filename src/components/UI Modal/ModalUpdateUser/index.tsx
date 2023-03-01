@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { editUserSchema } from "../../../validators";
 
-
 export interface ISubmitData {
   name: string;
   email: string;

@@ -15,7 +15,7 @@ import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
 import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
 
 export const Home = () => {
-  const { isTokenAdd } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { listCars, listMotorbikes } = useContext(AdsContext);
   const [createAds, setCreateAds] = useState(false);
   const [updateAds, setUpdateAds] = useState(false);
@@ -37,7 +37,7 @@ export const Home = () => {
       <Container>
         <Navbar />
         <MainContainer>
-          {isTokenAdd ? (
+          {user ? (
             <BannerCreateAds setStatement={handleModalCreateAds} />
           ) : (
             <div className="top">

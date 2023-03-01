@@ -48,6 +48,16 @@ export const ContainerMobile = styled.div`
   height: 100%;
   width: 100%;
 
+  button {
+    background: transparent;
+    font-family: var(--inter);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--gray2);
+    padding: 1rem;
+  }
+
   @media (width > 820px) {
     display: none;
   }
