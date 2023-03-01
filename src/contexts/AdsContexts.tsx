@@ -36,7 +36,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(true);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
 
-  //const tokenUser = localStorage.getItem("@login:token")
+  const tokenUser = localStorage.getItem("@login:token")
 
   const getAds = async () => {
     await api
@@ -53,7 +53,9 @@ const AdsProvider = ({ children }: IAuthProvier) => {
 
   const onSubmitAds = (data: IAdsRequest) => {
     api
-      .post("/ads", data)
+      .post("/ads", data ,{
+        headers: { Authorization: `Bearer ${tokenUser}` },
+      })
       .then((res) => {
         setListAds((oldAds) => [...oldAds, res.data]);
         setAdsApi(res.data);
@@ -77,9 +79,10 @@ const AdsProvider = ({ children }: IAuthProvier) => {
 
   const onSubmitUpdate = (id: string, dataUpdate: IAdsRequest) => {
     api
-      .patch(`/ads/${id}`, dataUpdate)
+      .patch(`/ads/${id}`, dataUpdate ,{
+        headers: { Authorization: `Bearer ${tokenUser}` },
+      })
       .then((res) => {
-        console.log(res.data);
         setListAds((ads) => [...ads, res.data]);
         setIsOpenModal(false);
       })
@@ -88,7 +91,9 @@ const AdsProvider = ({ children }: IAuthProvier) => {
 
   const delAds = (id: string) => {
     api
-      .delete(`/ads/${id}`)
+      .delete(`/ads/${id}`, {
+        headers: { Authorization: `Bearer ${tokenUser}` },
+      })
       .then(() => {
         const deletedFiltered = listAds.filter((elem) => elem.id !== id);
         setListAds(deletedFiltered);
