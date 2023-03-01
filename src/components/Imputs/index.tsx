@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 interface InputProps {
-  label: string;
-  placeHolder: string;
-  typeInput: string;
+  label?: string;
+  placeHolder?: string;
+  typeInput?: string;
 }
 
 const Container = styled.div`

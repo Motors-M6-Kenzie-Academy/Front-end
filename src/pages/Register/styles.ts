@@ -11,17 +11,19 @@ export const MainContainer = styled.main`
   align-items: flex-start;
 
   background-color: var(--gray8);
+  overflow: hidden;
 `;
 
 export const FormContainer = styled.form`
   margin: 2rem 0;
-  width: 25rem;
+  width: 100%;
+  max-width: 25rem;
   margin-bottom: 10rem;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2rem;
+  /* gap: 2rem; */
 
   padding: 3rem 2rem;
 
@@ -37,6 +39,20 @@ export const FormContainer = styled.form`
     color: var(--gray0);
   }
 
+  .container--title {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .container--inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
   p {
     font-family: var(--lexend);
     font-style: normal;
@@ -45,60 +61,49 @@ export const FormContainer = styled.form`
     color: var(--gray0);
   }
 
-  div {
-    margin-bottom: 1rem;
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    font-family: var(--inter);
+    font-size: 14px;
+    font-weight: 500;
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid var(--gray7);
+      border-radius: 4px;
+      padding: 0 10px;
+
+      font-family: var(--inter);
+      font-size: 16px;
+      font-weight: 300;
+    }
   }
 
   .form-account-type {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+
+    width: 100%;
   }
 
-  .teste {
-    display: flex;
-    width: 25rem;
-
-    div {
-      display: flex;
-      align-items: flex-start;
-
-      input {
-        width: 8rem;
-      }
-    }
-  }
-
-  @media only screen and (max-width: 414px) {
-    width: 19rem;
-
-    .formSubmit {
-      display: flex;
-      align-items: center;
-    }
-
-    .teste {
-      display: flex;
-      width: 18rem;
-
-      div {
-        input {
-          width: 6rem;
-          font-size: 0.6rem;
-        }
-      }
-    }
+  .container--error {
+    color: var(--alert1);
+    font-weight: 400;
   }
 `;
 
-type InputsAccountTypeProps = {
+type ButtonAccountTypeProps = {
   bgColor: string;
   border?: boolean;
 };
 
-export const FormSelectType = styled.input<InputsAccountTypeProps>`
-  width: 9rem;
+export const ButtonSelectType = styled.button<ButtonAccountTypeProps>`
+  width: 10rem;
   height: 3rem;
 
   padding: 0.5rem 0.8rem;
@@ -116,19 +121,19 @@ export const FormSelectType = styled.input<InputsAccountTypeProps>`
   border-radius: 0.4rem;
 
   @media only screen and (max-width: 414px) {
-    width: 6rem;
+    width: 7rem;
     padding: 0.3rem 0.5rem;
     font-size: 0.8rem;
   }
 `;
 
-type ButtonProps = {
+type ButtonFormProps = {
   bgColor: string;
   txColor: string;
   border?: boolean;
 };
 
-export const Button = styled.button<ButtonProps>`
+export const ButtonForm = styled.button<ButtonFormProps>`
   height: 2.8rem;
   width: 21rem;
 

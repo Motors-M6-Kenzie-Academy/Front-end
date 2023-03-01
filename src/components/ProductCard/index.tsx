@@ -20,7 +20,7 @@ const ProductCard = (info: any) => {
   } = info.info;
 
   const announcer = "Natália";
-  const { isTokenAdd } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <ContainerCard>
@@ -38,7 +38,7 @@ const ProductCard = (info: any) => {
       <div className="container--content">
         <h2>{title}</h2>
         <p className="container--description">{description}</p>
-        {isTokenAdd ? null : (
+        {user ? null : (
           <div className="container--announcer">
             <div className="avatar">{announcer[0]}</div>
             <p>{announcer}</p>
@@ -52,7 +52,7 @@ const ProductCard = (info: any) => {
           </div>
           <strong>R${price}</strong>
         </div>
-        {isTokenAdd && (
+        {user && (
           <div className="container--buttons--edit">
             <Button
               backgroud="var(--white)"

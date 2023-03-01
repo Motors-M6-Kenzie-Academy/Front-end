@@ -1,12 +1,16 @@
 import { HeaderContainer } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContexts";
+import { useContext } from "react";
 
 export default function Navbar() {
   const handleHamburger = () => {
     const list = document.querySelector(".nav-bar");
     list?.classList.toggle("active");
   };
+
+  const { user, logout } = useContext(UserContext);
 
   // const handleUser = () => {
   //   const list = document.querySelector(".user-settings");
@@ -77,12 +81,18 @@ export default function Navbar() {
                 </li>
               </>
             )} */}
-            <li>
-              <Link to={"/signin"}>Fazer Login</Link>
-            </li>
-            <li>
-              <Link to={"/register"}>Cadastrar</Link>
-            </li>
+            {user ? (
+              <button onClick={() => logout()}>Logout</button>
+            ) : (
+              <>
+                <li>
+                  <Link to={"/signin"}>Fazer Login</Link>
+                </li>
+                <li>
+                  <Link to={"/register"}>Cadastrar</Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </HeaderContainer>

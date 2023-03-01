@@ -11,14 +11,14 @@ import { Button, Container, MainContainer } from "./styles";
 import { AdsContext } from "../../contexts/AdsContexts";
 
 export const Home = () => {
-  const { isTokenAdd } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { listCars, listMotorbikes } = useContext(AdsContext);
 
   return (
     <Container>
       <Navbar />
       <MainContainer>
-        {isTokenAdd ? (
+        {user ? (
           <BannerCreateAds />
         ) : (
           <div className="top">

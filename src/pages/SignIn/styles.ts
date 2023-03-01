@@ -43,6 +43,30 @@ export const FormContainer = styled.form`
   .formInputs {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    font-family: var(--inter);
+    font-size: 14px;
+    font-weight: 500;
+
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid var(--gray7);
+      border-radius: 4px;
+      padding: 0 10px;
+
+      font-family: var(--inter);
+      font-size: 16px;
+      font-weight: 300;
+    }
   }
 
   .formSubmit {
@@ -51,6 +75,13 @@ export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .container--error {
+    color: var(--alert1);
+    font-weight: 400;
+    font-size: 0.9rem;
+    font-family: var(--inter);
   }
 
   a {
