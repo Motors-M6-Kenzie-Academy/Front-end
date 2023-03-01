@@ -99,8 +99,8 @@ export default function Navbar() {
               </div>
               {isOpenSettingsUser && (
                 <ModalSettingsUser
-                  setStatementAddress={handleModalUpdateUser}
-                  setStatementProfile={handleModalUpdateAddress}
+                  setStatementProfile={handleModalUpdateUser}
+                  setStatementAddress={handleModalUpdateAddress}
                 />
               )}
             </Navigation>

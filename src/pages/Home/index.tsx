@@ -2,25 +2,34 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import BannerCreateAds from "../../components/BannerCreateAds";
 import Footer from "../../components/Footer";
-import Modal from "../../components/ModalAds";
 import Navbar from "../../components/Navbar";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { UserContext } from "../../contexts/UserContexts";
 import ProductCard from "../../components/ProductCard";
-import { Button, Container, ContainerModal, MainContainer } from "./styles";
+import { Button, Container, MainContainer } from "./styles";
 import { AdsContext } from "../../contexts/AdsContexts";
-import ModalDelete from "../../components/ModalDelAds";
-import ModalAdUpdate from "../../components/modalAdUpdate";
+
 import { ModalContainer } from "../../components/UI Components/ModalContainer";
 import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
+import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
+import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
 
 export const Home = () => {
   const { isTokenAdd } = useContext(UserContext);
   const { listCars, listMotorbikes } = useContext(AdsContext);
-  const [createAds, setCreateAds] = useState(true);
+  const [createAds, setCreateAds] = useState(false);
+  const [updateAds, setUpdateAds] = useState(false);
+  const [deleteAds, setDeleteAds] = useState(false);
 
+  const handleModalDeleteAds = () => {
+    setUpdateAds(!updateAds);
+    setDeleteAds(!deleteAds);
+  };
   const handleModalCreateAds = () => {
     setCreateAds(!createAds);
+  };
+  const handleModalUpdateAds = () => {
+    setUpdateAds(!updateAds);
   };
 
   return (
@@ -83,17 +92,27 @@ export const Home = () => {
         </MainContainer>
         <Footer />
       </Container>
+
       {createAds && (
         <ModalContainer>
           <ModalCreateAds setStatement={handleModalCreateAds} />
         </ModalContainer>
       )}
-      {/* <ContainerModal>
-        
-      </ContainerModal>
-      <Modal />
-      <ModalAdUpdate />
-      <ModalDelete /> */}
+
+      {updateAds && (
+        <ModalContainer>
+          <ModalUpdateAds
+            setStatement={handleModalUpdateAds}
+            setConfirmDelete={handleModalDeleteAds}
+          />
+        </ModalContainer>
+      )}
+
+      {deleteAds && (
+        <ModalContainer>
+          <ModalDeleteAds setStatement={handleModalDeleteAds} />
+        </ModalContainer>
+      )}
     </>
   );
 };

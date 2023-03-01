@@ -30,22 +30,34 @@ export const ModalUpdateAddress = ({
         <UILabel>CEP</UILabel>
         <UIInput
           type={"number"}
+          propBorder={true}
           placeholder="89888.888"
           {...register("zipcode")}
         />
       </FormGroup>
       <FormGroup>
         <UILabel>Estado</UILabel>
-        <UIInput type={"text"} placeholder="Paraná" {...register("state")} />
+        <UIInput
+          type={"text"}
+          propBorder={true}
+          placeholder="Paraná"
+          {...register("state")}
+        />
       </FormGroup>
       <FormGroup>
         <UILabel>Cidade</UILabel>
-        <UIInput type={"text"} placeholder="9Curitiba" {...register("city")} />
+        <UIInput
+          type={"text"}
+          propBorder={true}
+          placeholder="9Curitiba"
+          {...register("city")}
+        />
       </FormGroup>
       <FormGroup>
         <UILabel>Rua</UILabel>
         <UIInput
           type={"text"}
+          propBorder={true}
           placeholder="Rua do paraná"
           {...register("roadName")}
         />
@@ -54,6 +66,7 @@ export const ModalUpdateAddress = ({
         <UILabel>Número</UILabel>
         <UIInput
           type={"number"}
+          propBorder={true}
           placeholder="1090"
           {...register("houseNumber")}
         />
@@ -62,6 +75,7 @@ export const ModalUpdateAddress = ({
         <UILabel>Complemento</UILabel>
         <UIInput
           type={"text"}
+          propBorder={true}
           placeholder="Apart 12"
           {...register("complement")}
         />

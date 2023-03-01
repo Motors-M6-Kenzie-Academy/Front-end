@@ -28,6 +28,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UILabel>Nome</UILabel>
         <UIInput
           type={"text"}
+          propBorder={true}
           placeholder="Ex: Samuel Leão Silva"
           {...register("name")}
         />
@@ -36,6 +37,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UILabel>Email</UILabel>
         <UIInput
           type={"email"}
+          propBorder={true}
           placeholder="samuel@kenzie.com.br"
           {...register("email")}
         />
@@ -44,6 +46,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UILabel>CPF</UILabel>
         <UIInput
           type={"text"}
+          propBorder={true}
           placeholder="900.880.090-00"
           {...register("cpf")}
         />
@@ -52,6 +55,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UILabel>Celular</UILabel>
         <UIInput
           type={"text"}
+          propBorder={true}
           placeholder="(084) 90909-9092"
           {...register("phoneNumber")}
         />
@@ -60,6 +64,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UILabel>Data de Nascimento</UILabel>
         <UIInput
           type={"text"}
+          propBorder={true}
           placeholder="09/12/99"
           {...register("birthdate")}
         />
@@ -68,6 +73,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UILabel>Descrição</UILabel>
         <UIInput
           propPadding="2rem"
+          propBorder={true}
           type={"text"}
           placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           {...register("description")}
