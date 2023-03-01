@@ -3,6 +3,7 @@ import { FormGroup } from "../../UI Components/FormGroup";
 import { UIButton } from "../../UI Components/Button";
 import { UIInput } from "../../UI Components/Input";
 import { UILabel } from "../../UI Components/Label";
+import { UISpan } from "../../UI Components/Span";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { useForm } from "react-hook-form";
@@ -45,8 +46,8 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="Ex: Samuel Leão Silva"
           {...register("name")}
-          error={errors?.name}
         />
+        {errors.name && <UISpan>Esse campo deve conter apenas letras, sem acentuações</UISpan>}
       </FormGroup>
       <FormGroup>
         <UILabel>Email</UILabel>
@@ -55,8 +56,8 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="samuel@kenzie.com.br"
           {...register("email")}
-          error={errors?.email}
         />
+        {errors.email && <UISpan>E-mail inválido</UISpan>}
       </FormGroup>
       <FormGroup>
         <UILabel>CPF</UILabel>
@@ -65,8 +66,8 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="900.880.090-00"
           {...register("cpf")}
-          error={errors?.cpf}
         />
+        {errors.cpf && <UISpan>O CPF deve conter 11 números</UISpan>}
       </FormGroup>
       <FormGroup>
         <UILabel>Celular</UILabel>
@@ -75,8 +76,8 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           propBorder={true}
           placeholder="(084) 90909-9092"
           {...register("phoneNumber")}
-          error={errors?.phoneNumber}
         />
+        {errors.phoneNumber && <UISpan>O telefone deve conter 13 números</UISpan>}
       </FormGroup>
       <FormGroup>
         <UILabel>Data de Nascimento</UILabel>
@@ -84,9 +85,9 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           type={"text"}
           propBorder={true}
           placeholder="09/12/99"
-          {...register("birthdate")}
-          error={errors?.birthdate}
+          {...register("birthDate")}
         />
+        {errors.birthDate && <UISpan>O formato de data é DD/MM/AAAA</UISpan>}
       </FormGroup>
       <FormGroup>
         <UILabel>Descrição</UILabel>
@@ -96,8 +97,8 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           type={"text"}
           placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           {...register("description")}
-          error={errors?.description}
         />
+        {errors.description && <UISpan>Este campo deve conter no máximo 250 caracteres</UISpan>}
       </FormGroup>
 
       <FormGroup propColumn="row" propJustify="flex-end">

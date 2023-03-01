@@ -18,7 +18,7 @@ import * as yup from "yup";
 
     phoneNumber: yup
     .string()
-    .min(13, "O telefone deve conter no mínimo 13 números"),
+    .min(13, "O telefone deve conter 13 números"),
 
     birthDate: yup
     .string()
