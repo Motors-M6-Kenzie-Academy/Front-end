@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { AdsContext } from "../../contexts/AdsContexts";
 import { Button } from "../Button";
 import { ContainerBannerCreateAds } from "./styles";
 
-const BannerCreateAds = () => {
-  const { setIsOpenModal } = useContext(AdsContext);
-
+type ModalCreateAdsProps = {
+  setStatement: () => void;
+};
+const BannerCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
   const obj = {
     name: "Natalia",
     email: "usuario@gmail.com",
@@ -43,7 +42,7 @@ const BannerCreateAds = () => {
           borderColor="var(--brand1)"
           isWidth={true}
           width="160px"
-          onClick={() => setIsOpenModal(true)}
+          onClick={setStatement}
         >
           Criar anúncio
         </Button>

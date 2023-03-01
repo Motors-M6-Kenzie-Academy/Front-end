@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,4 +196,16 @@ export const Button = styled.button<ButtonProps>`
   @media only screen and (max-width: 414px) {
     width: 6rem;
   }
+`;
+
+export const ContainerModal = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
 `;

@@ -43,6 +43,8 @@ const GlobalStyle = createGlobalStyle`
     --random10: #6100FF;
     --random11: #5700E3;
     --random12: #30007D;
+
+    --transparent: none;
     
     --lexend: "Lexend", sans-serif;
     --inter: "Inter", sans-serif;

@@ -3,14 +3,22 @@ import Footer from "../../components/Footer";
 import InputContainer from "../../components/Input";
 import Navbar from "../../components/Navbar";
 import { Button, Container, FormContainer, MainContainer } from "./styles";
+import { useForm } from "react-hook-form";
 
 export const SignIn = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => console.log(data);
   return (
     <>
       <Container>
         <Navbar />
         <MainContainer>
-          <FormContainer>
+          <FormContainer onSubmit={handleSubmit(onSubmit)}>
             <h2>Login</h2>
             <div className="formInputs">
               <InputContainer
@@ -24,6 +32,7 @@ export const SignIn = () => {
                 placeHolder="Digitar Senha"
                 typeInput="password"
                 key={"password"}
+                {...register("password")}
               />
             </div>
             <div className="formSubmit">
