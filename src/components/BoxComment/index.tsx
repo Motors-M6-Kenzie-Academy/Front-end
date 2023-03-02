@@ -18,28 +18,29 @@ const BoxComment = (data: any) => {
                 <div className="nameUser">
                     <strong>{user!.name}</strong>
                 </div>
-
-                <form onSubmit={handleSubmit(onSubmitComments)}>
-                    <input type="text" placeholder="Carro muito confortável, foi uma ótima experiência de compra..."/>
-                    <Button
-                    type="submit"
-                    backgroud="var(--brand1)"
-                    color="var(--white)"
-                    border={true}
-                    borderColor="var(--brand1)"
-                    isWidth={true}
-                    width="100px"
-                    >
-                        Comentar
-                    </Button>
-                </form>
-
-                <div className="tags">
-                    <span>Gostei muito!</span>
-                    <span>Incrível</span>
-                    <span>Recomndarei para meus amigos!</span>
-                </div>
             </div>
+
+            <form onSubmit={handleSubmit(onSubmitComments)}>
+                <input type="text" placeholder="Carro muito confortável, foi uma ótima experiência de compra..."/>
+                <Button
+                type="submit"
+                backgroud="var(--brand1)"
+                color="var(--white)"
+                border={true}
+                borderColor="var(--brand1)"
+                isWidth={true}
+                width="100px"
+                >
+                    Comentar
+                </Button>
+            </form>
+
+            <div className="tags">
+                <span>Gostei muito!</span>
+                <span>Incrível</span>
+                <span>Recomndarei para meus amigos!</span>
+            </div>
+            
         </DivComment>
     );
 };
