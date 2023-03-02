@@ -7,9 +7,9 @@ import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { FormGroup } from "../../UI Components/FormGroup";
 import { UILabel } from "../../UI Components/Label";
 import { UIInput } from "../../UI Components/Input";
-import { UISpan } from "../../UI Components/Span";
 import { UIButton } from "../../UI Components/Button";
 import { editUserSchema } from "../../../validators/patch";
+import { UIMessage } from "../../UI Components/Message";
 
 export interface ISubmitData {
   name: string;
@@ -47,9 +47,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="Ex: Samuel Leão Silva"
           {...register("name")}
         />
-        {errors.name && (
-          <UISpan>Esse campo deve conter apenas letras, sem acentuações</UISpan>
-        )}
+        {errors.name && <UIMessage propMessage="Esse campo recebe apenas letras, sem acentuações" propIsError={true} />}
       </FormGroup>
       <FormGroup>
         <UILabel>Email</UILabel>
@@ -59,7 +57,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="samuel@kenzie.com.br"
           {...register("email")}
         />
-        {errors.email && <UISpan>E-mail inválido</UISpan>}
+        {errors.email && <UIMessage propMessage="E-mail inválido" propIsError={true} />}
       </FormGroup>
       <FormGroup>
         <UILabel>CPF</UILabel>
@@ -69,7 +67,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="900.880.090-00"
           {...register("cpf")}
         />
-        {errors.cpf && <UISpan>O CPF deve conter 11 números</UISpan>}
+        {errors.cpf && <UIMessage propMessage="O CPF deve conter 11 números" propIsError={true} />}
       </FormGroup>
       <FormGroup>
         <UILabel>Celular</UILabel>
@@ -79,9 +77,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="(084) 90909-9092"
           {...register("phoneNumber")}
         />
-        {errors.phoneNumber && (
-          <UISpan>O telefone deve conter 13 números</UISpan>
-        )}
+        {errors.phoneNumber && <UIMessage propMessage="O telefone deve conter 13 números" propIsError={true} />}
       </FormGroup>
       <FormGroup>
         <UILabel>Data de Nascimento</UILabel>
@@ -91,7 +87,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="09/12/99"
           {...register("birthDate")}
         />
-        {errors.birthDate && <UISpan>O formato de data é DD/MM/AAAA</UISpan>}
+        {errors.birthDate && <UIMessage propMessage="A data deve ser em formato de DD/MM/AAA" propIsError={true} />}
       </FormGroup>
       <FormGroup>
         <UILabel>Descrição</UILabel>
@@ -102,9 +98,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           {...register("description")}
         />
-        {errors.description && (
-          <UISpan>Este campo deve conter no máximo 250 caracteres</UISpan>
-        )}
+        {errors.description && <UIMessage propMessage="Este campo deve conter no máximo 250 caracteres" propIsError={true} />}
       </FormGroup>
 
       <FormGroup propColumn="row" propJustify="flex-end">

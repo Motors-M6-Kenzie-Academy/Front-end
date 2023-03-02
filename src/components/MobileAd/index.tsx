@@ -1,6 +1,8 @@
 import { Button } from "../Button";
 import Car from "../../assets/car.svg";
 import { MobileContainer } from "./styles";
+import ListComments from "../CommentsList";
+import BoxComment from "../BoxComment";
 
 const MobileAd = () => (
   <MobileContainer>
@@ -62,6 +64,9 @@ const MobileAd = () => (
         Ver todos os anúncios
       </Button>
     </div>
+
+    <ListComments />
+    <BoxComment />
   </MobileContainer>
 );
 

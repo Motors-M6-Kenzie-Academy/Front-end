@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Car from "../../assets/car.svg";
 import Bike from "../../assets/moto.svg";
+import { CommentsContext } from "../../contexts/CommentsContext";
 import { UserContext } from "../../contexts/UserContexts";
 import { Button } from "../Button";
 
@@ -10,6 +11,7 @@ import { ContainerCard, ContainerIsActive } from "./styles";
 
 const ProductCard = (info: any) => {
   const {
+    id,
     title,
     description,
     typeVehicle,
@@ -23,7 +25,13 @@ const ProductCard = (info: any) => {
 
   const announcer = "Natália";
   const { user } = useContext(UserContext);
+  const {setAdsId} = useContext(CommentsContext)
   const navigate = useNavigate();
+
+  const view = () => {
+    setAdsId(id)
+    navigate("/ad")
+  }
 
   return (
     <ContainerCard>
@@ -74,7 +82,7 @@ const ProductCard = (info: any) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
-              onClick={() => navigate("/ad")}
+              onClick={() => view()}
             >
               Ver como
             </Button>

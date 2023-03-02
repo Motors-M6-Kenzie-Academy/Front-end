@@ -1,6 +1,8 @@
 import { Button } from "../Button";
 import Car from "../../assets/car.svg";
 import { ColumnContainer, DesktopContainer, RowContainer } from "./styles";
+import ListComments from "../CommentsList";
+import BoxComment from "../BoxComment";
 
 const DesktopAd = () => (
   <DesktopContainer>
@@ -40,6 +42,9 @@ const DesktopAd = () => (
             and scrambled it to make a type specimen book.
           </p>
         </div>
+
+        <ListComments />
+        <BoxComment />
       </ColumnContainer>
 
       <ColumnContainer>

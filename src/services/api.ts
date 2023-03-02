@@ -164,7 +164,7 @@ export const RequestAPI = async (
         const response = await api
           .post(`${endpoint}/${id}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Listagem do comment
