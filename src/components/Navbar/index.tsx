@@ -7,6 +7,9 @@ import {
 } from "./styles";
 import LogoImg from "../../assets/LogoImg.svg";
 import { Link } from "react-router-dom";
+
+import { UserContext } from "../../contexts/UserContexts";
+import { useContext } from "react";
 import { useState } from "react";
 
 import { ModalUpdateUser } from "../UI Modal/ModalUpdateUser";
@@ -15,12 +18,9 @@ import { ModalUpdateAddress } from "../UI Modal/ModalUpdateAddress";
 import { ModalSettingsUser } from "../UI Modal/ModalSettingsUser";
 import { Navigation } from "../UI Components/Navigation";
 
-type IUser = {
-  name: string;
-};
-
 export default function Navbar() {
-  const [user, setUser] = useState<IUser>({ name: "Bruno Azev" });
+  const { user, logout } = useContext(UserContext);
+
   const [isOpenModalHamburger, setisOpenModalHamburger] = useState(false);
   const [isOpenSettingsUser, setIsOpenSettingsUser] = useState(false);
 
@@ -43,13 +43,17 @@ export default function Navbar() {
 
   const sigla = [];
   const userName = [];
+  const userLastName = [];
 
   if (user) {
-    userName.push(user?.name.split(" ")[0]);
-    userName.push(user?.name.split(" ")[1]);
+    userName.push(user.name.split(" ")[0]);
+    userLastName.push(user.name.split(" ")[1]);
 
     sigla.push(userName[0].substring(0, 1));
-    sigla.push(userName[1].substring(0, 1));
+
+    if (userLastName[0]) {
+      sigla.push(userLastName[0].substring(0, 1));
+    }
   }
 
   return (
@@ -70,18 +74,16 @@ export default function Navbar() {
                 </Link>
                 <Link to={"/"}>Meus Anúncios</Link>
                 <Link to={"/"}>Excluir Perfil</Link>
-                <Link to={"/"}>Sair</Link>
+                <button onClick={() => logout()}>Sair</button>
               </Navigation>
             ) : (
-              <Navigation>
+              <>
                 <Link to={"/"}>Carros</Link>
                 <Link to={"/"}>Motos</Link>
                 <Link to={"/"}>Leilão</Link>
-                <div className="settings-container">
-                  <Link to={"/signin"}>Fazer Login</Link>
-                  <Link to={"/register"}>Cadastrar</Link>
-                </div>
-              </Navigation>
+                <Link to={"/signin"}>Fazer Login</Link>
+                <Link to={"/register"}>Cadastrar</Link>
+              </>
             ))}
         </ContainerMobile>
 
@@ -92,7 +94,7 @@ export default function Navbar() {
               <Link to={"/"}>Motos</Link>
               <Link to={"/"}>Leilão</Link>
               <div className="user-container-auth">
-                <span className="user-acronym">{sigla}</span>
+                <span className="user-acronym">{sigla.join("")}</span>
                 <span onClick={handleSettingsModal} className="user-name">
                   {user?.name}
                 </span>
