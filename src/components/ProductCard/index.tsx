@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Car from "../../assets/car.svg";
 import Bike from "../../assets/moto.svg";
+import { CommentsContext } from "../../contexts/CommentsContext";
 import { UserContext } from "../../contexts/UserContexts";
 import { Button } from "../Button";
 
@@ -8,6 +9,7 @@ import { ContainerCard, ContainerIsActive } from "./styles";
 
 const ProductCard = (info: any) => {
   const {
+    id,
     title,
     description,
     typeVehicle,
@@ -21,6 +23,7 @@ const ProductCard = (info: any) => {
 
   const announcer = "Natália";
   const { user } = useContext(UserContext);
+  const {setAdsId} = useContext(CommentsContext)
 
   return (
     <ContainerCard>
@@ -71,6 +74,7 @@ const ProductCard = (info: any) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
+              onClick={() => setAdsId(id)}
             >
               Ver como
             </Button>
