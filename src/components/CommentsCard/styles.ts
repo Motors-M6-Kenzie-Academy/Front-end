@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-    width: 663px;
-    height: 70px;
+    width: 41.4375rem;
+    height: 4.375rem;
     display: flex;
     flex-direction: column;
     background-color: transparent;
@@ -17,19 +17,19 @@ export const Card = styled.div`
         align-items: center;
         justify-content: center;
 
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
         border-radius: 100%;
 
         font-family: var(--inter);
-        font-size: 30px;
+        font-size: 1.875rem;
 
         background-color: var(--brand2);
         color: var(--white);
     }
 
       strong{
-        font-size: 14px;
+        font-size: .875rem;
         font-weight: 500;
         font-family: var(--lexend);
       }
