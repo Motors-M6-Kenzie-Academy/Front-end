@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
-
 import { UserContext } from "../../../contexts/UserContexts";
 import { ContainerSettingsUser } from "./styles";
 

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { UIButton } from "../../UI Components/Button";
@@ -7,121 +9,162 @@ import { FormTitle } from "../../UI Components/FormTitle";
 import { UIInput } from "../../UI Components/Input";
 import { UILabel } from "../../UI Components/Label";
 import { UIMessage } from "../../UI Components/Message";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { ForgotPasswordSchema } from "../../../schemaYup/forgotPassword.modal.schema";
-import { RequestAPI } from "../../../services/api";
 
 type ModalForgotPasswordProps = {
   setStatement: () => void;
 };
 
-type IResponseApiError = {
-  Error: string;
-};
-type IResponseApiSuccess = {
-  0: object;
-  1: string;
+type ValidationsProps = {
+  status: boolean;
+  isSuccess?: object;
+  isError?: object;
 };
 
 export const ModalForgotPassword = ({
   setStatement,
 }: ModalForgotPasswordProps) => {
-  const [isCodeRecive, setIsCodeRecive] = useState(false);
-  const [isEmailOpen, setIsEmailOpen] = useState(true);
-  const [isError, setIsError] = useState<IResponseApiError>();
-  const [isSuccess, setIsSuccess] = useState<IResponseApiSuccess>();
+  const navigate = useNavigate();
+  const [isEmailRecive, setIsEmailRecive] = useState<ValidationsProps>();
+  const [isCodeRecive, setIsCodeRecive] = useState<ValidationsProps>();
+  const [isNewPassRecive, setIsNewPassRecive] = useState<ValidationsProps>();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(ForgotPasswordSchema),
-  });
+  } = useForm();
 
-  const handleReciveCode = () => {
-    setIsEmailOpen(false);
-    setIsCodeRecive(true);
+  const handleExitButton = () => {
+    setStatement();
+    navigate("/signin");
   };
 
-  const onSubmit = async (data: any) => {
-    const resp = await RequestAPI("user/reset", "post", data);
+  const onSubmitForm = async (data: any) => {
+    console.log(data);
 
-    if (resp["Error"]) setIsError(resp);
-    if (resp["0"]) setIsSuccess(resp);
+    if (data?.newPass) {
+      const resp = await axios
+        .post("http://localhost:3000/user/reset", data)
+        .then((resp) => resp)
+        .catch((err) => err);
+
+      setIsNewPassRecive({
+        status: resp?.data && true,
+        isSuccess: resp?.data,
+        isError: resp?.response,
+      });
+
+      return resp;
+    }
+
+    if (data?.code) {
+      const resp = await axios
+        .post("http://localhost:3000/user/reset", data)
+        .then((resp) => resp)
+        .catch((err) => err);
+      console.log(resp);
+
+      setIsCodeRecive({
+        status: resp?.data && true,
+        isSuccess: resp?.data,
+        isError: resp?.response,
+      });
+
+      return resp;
+    }
+
+    if (data?.email) {
+      const resp = await axios
+        .post("http://localhost:3000/user/reset", data)
+        .then((resp) => resp)
+        .catch((err) => err);
+
+      setIsEmailRecive({
+        status: resp?.data && true,
+        isSuccess: resp?.data,
+        isError: resp?.response,
+      });
+
+      return resp;
+    }
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer onSubmit={handleSubmit(onSubmitForm)}>
       <FormGroup propColumn="row" propJustify="space-between">
         <FormTitle>Recuperação de Senha</FormTitle>
         <UIButton
-          onClick={setStatement}
+          onClick={handleExitButton}
           propBG="--transparent"
           propTextColor="--gray1"
         >
           X
         </UIButton>
       </FormGroup>
-      {isEmailOpen && (
-        <FormGroup>
-          <UILabel>Email</UILabel>
-          <UIInput
-            placeholder="Insira seu Email"
-            propBorder={true}
-            {...register("email", { required: true })}
-          />
-
-          <UIButton propBG="--brand1" onClick={handleReciveCode}>
-            Enviar
-          </UIButton>
-        </FormGroup>
-      )}
-      {isCodeRecive && (
-        <FormGroup>
-          <UILabel>Código de Verificação</UILabel>
-          <UIInput
-            placeholder="Insira seu Código"
-            propBorder={true}
-            {...register("resetCode", { required: true })}
-          />
-          {errors?.email && (
-            <UIMessage
-              propIsError={true}
-              propMessage={errors.email?.message?.toString()!}
-            />
-          )}
-          {errors?.resetCode && (
-            <UIMessage
-              propIsError={true}
-              propMessage={errors.resetCode?.message?.toString()!}
-            />
-          )}
-          {isSuccess && (
+      <FormGroup>
+        <UILabel>Email</UILabel>
+        <UIInput
+          placeholder="Insira seu Email"
+          propBorder={true}
+          {...register("email", { required: true })}
+          disabled={isEmailRecive?.status}
+        />
+        {isEmailRecive?.isSuccess && (
+          <>
             <UIMessage
               propIsSuccess={true}
               propMessage={
-                "Você receberá um novo email com uma senha provisória."
+                "Você receberá um código de verificação no seu email"
               }
             />
-          )}
-          {isError && (
+            <UILabel>Código de Verificação</UILabel>
+            <UIInput
+              placeholder="Insira seu Código"
+              propBorder={true}
+              {...register("code", { required: true })}
+              disabled={isCodeRecive?.status}
+            />
+          </>
+        )}
+        {isEmailRecive?.isError && (
+          <UIMessage
+            propIsError={true}
+            propMessage={"Email não foi encontrado."}
+          />
+        )}
+        {isCodeRecive?.isError && (
+          <UIMessage
+            propIsError={true}
+            propMessage={"Código de verificação inválido!"}
+          />
+        )}
+
+        {isCodeRecive?.isSuccess && (
+          <>
             <UIMessage
-              propIsError={true}
-              propMessage={
-                "Usuário não encontrado ou Código de verificação inválido."
-              }
+              propIsSuccess={true}
+              propMessage={"Código de verificado com sucesso!"}
             />
-          )}
-          <UIButton
-            propBG="--brand1"
-            onClick={handleReciveCode}
-            type={"submit"}
-          >
-            Enviar
-          </UIButton>
-        </FormGroup>
-      )}
+            <UILabel>Nova Senha</UILabel>
+            <UIInput
+              placeholder="Insira sua nova senha"
+              propBorder={true}
+              {...register("newPass", { required: true })}
+              disabled={isNewPassRecive?.status}
+            />
+          </>
+        )}
+        {isNewPassRecive?.isSuccess && (
+          <UIMessage
+            propIsSuccess={true}
+            propMessage={"Nova senha alterada com sucesso!"}
+          />
+        )}
+
+        <UIButton propBG="--brand1" type={"submit"}>
+          Enviar
+        </UIButton>
+      </FormGroup>
     </FormContainer>
   );
 };
