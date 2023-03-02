@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { AdsContext } from "../../contexts/AdsContexts";
 import { UserContext } from "../../contexts/UserContexts";
 import { Button } from "../Button";
 import { ContainerBannerCreateAds } from "./styles";
@@ -9,7 +8,6 @@ type ModalCreateAdsProps = {
 };
 
 const BannerCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
-  const { setIsOpenModal } = useContext(AdsContext);
   const { user } = useContext(UserContext);
 
   return (
