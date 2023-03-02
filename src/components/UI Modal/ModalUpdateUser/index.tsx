@@ -1,14 +1,15 @@
-import { FormContainer } from "../../UI Components/FormContainer";
-import { FormGroup } from "../../UI Components/FormGroup";
-import { UIButton } from "../../UI Components/Button";
-import { UIInput } from "../../UI Components/Input";
-import { UILabel } from "../../UI Components/Label";
-import { UISpan } from "../../UI Components/Span";
-import { FormTitle } from "../../UI Components/FormTitle";
-import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editUserSchema } from "../../../validators";
+
+import { FormContainer } from "../../UI Components/FormContainer";
+import { FormTitle } from "../../UI Components/FormTitle";
+import { FormParagraphy } from "../../UI Components/FormParagraphy";
+import { FormGroup } from "../../UI Components/FormGroup";
+import { UILabel } from "../../UI Components/Label";
+import { UIInput } from "../../UI Components/Input";
+import { UISpan } from "../../UI Components/Span";
+import { UIButton } from "../../UI Components/Button";
+import { editUserSchema } from "../../../validators/patch";
 
 export interface ISubmitData {
   name: string;
@@ -46,7 +47,9 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="Ex: Samuel Leão Silva"
           {...register("name")}
         />
-        {errors.name && <UISpan>Esse campo deve conter apenas letras, sem acentuações</UISpan>}
+        {errors.name && (
+          <UISpan>Esse campo deve conter apenas letras, sem acentuações</UISpan>
+        )}
       </FormGroup>
       <FormGroup>
         <UILabel>Email</UILabel>
@@ -76,7 +79,9 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="(084) 90909-9092"
           {...register("phoneNumber")}
         />
-        {errors.phoneNumber && <UISpan>O telefone deve conter 13 números</UISpan>}
+        {errors.phoneNumber && (
+          <UISpan>O telefone deve conter 13 números</UISpan>
+        )}
       </FormGroup>
       <FormGroup>
         <UILabel>Data de Nascimento</UILabel>
@@ -97,7 +102,9 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
           placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           {...register("description")}
         />
-        {errors.description && <UISpan>Este campo deve conter no máximo 250 caracteres</UISpan>}
+        {errors.description && (
+          <UISpan>Este campo deve conter no máximo 250 caracteres</UISpan>
+        )}
       </FormGroup>
 
       <FormGroup propColumn="row" propJustify="flex-end">

@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Car from "../../assets/car.svg";
 import Bike from "../../assets/moto.svg";
 import { UserContext } from "../../contexts/UserContexts";
@@ -21,6 +23,7 @@ const ProductCard = (info: any) => {
 
   const announcer = "Natália";
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     <ContainerCard>
@@ -40,8 +43,8 @@ const ProductCard = (info: any) => {
         <p className="container--description">{description}</p>
         {user ? null : (
           <div className="container--announcer">
-            <div className="avatar">{announcer[0]}</div>
-            <p>{announcer}</p>
+            <div className="avatar">{user!.name[0]}</div>
+            <p>{user!.name}</p>
           </div>
         )}
 
@@ -71,6 +74,7 @@ const ProductCard = (info: any) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
+              onClick={() => navigate("/ad")}
             >
               Ver como
             </Button>
