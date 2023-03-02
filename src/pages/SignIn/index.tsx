@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { ModalContainer } from "../../components/UI Components/ModalContainer";
+import { ModalForgotPassword } from "../../components/UI Modal/ModalForgotPassword";
+import { UILabel } from "../../components/UI Components/Label";
+import { FormGroup } from "../../components/UI Components/FormGroup";
 
 import { ISignInRequest } from "../../interfaces/User";
 import Footer from "../../components/Footer";
@@ -12,6 +17,7 @@ import { Button, Container, FormContainer, MainContainer } from "./styles";
 import { loginSchema } from "../../validators/signin";
 
 export const SignIn = () => {
+  const [forgotPassword, setForgotPassword] = useState(false);
   const { loginUser } = useContext(UserContext);
 
   const {
@@ -20,6 +26,11 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm<ISignInRequest>({ resolver: yupResolver(loginSchema) });
 
+  const onSubmit = (data: any) => console.log(data);
+
+  const handleModalForgotPassword = () => {
+    setForgotPassword(!forgotPassword);
+  };
   return (
     <>
       <Container>
@@ -52,10 +63,12 @@ export const SignIn = () => {
               <p className="container--error">{errors.password?.message}</p>
             </div>
             <div className="formSubmit">
-              <Link to={"/"}>
-                <span className="tx-end">Esqueci minha senha</span>
-              </Link>
-              <Button type="submit" bgColor={"blue"} txColor={"white"}>
+              <FormGroup propJustify="flex-end" propColumn="row">
+                <UILabel onClick={handleModalForgotPassword}>
+                  Esqueceu sua senha?
+                </UILabel>
+              </FormGroup>
+              <Button type={"submit"} bgColor={"blue"} txColor={"white"}>
                 Entrar
               </Button>
               <Link to={"/register"}>
@@ -75,6 +88,12 @@ export const SignIn = () => {
         </MainContainer>
         <Footer />
       </Container>
+
+      {forgotPassword && (
+        <ModalContainer>
+          <ModalForgotPassword setStatement={handleModalForgotPassword} />
+        </ModalContainer>
+      )}
     </>
   );
 };
