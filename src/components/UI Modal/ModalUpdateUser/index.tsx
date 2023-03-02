@@ -8,7 +8,7 @@ import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editUserSchema } from "../../../validators";
+import { editUserSchema } from "../../../validators/patch";
 
 export interface ISubmitData {
   name: string;
