@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type LabelProps = {
+type UILabelProps = {
   fontFamily?: string;
   fontStyle?: string;
   fontWeight?: number;
@@ -8,7 +8,7 @@ type LabelProps = {
   color?: string;
 };
 
-export const UILabel = styled.label<LabelProps>`
+export const UILabel = styled.label<UILabelProps>`
   font-family: var(
     ${(props) => (props.fontFamily ? `--${props.fontFamily}` : "--inter")}
   );

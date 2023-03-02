@@ -20,3 +20,4 @@ export const FormContainer = styled.form`
   background-color: var(--gray10);
   border-radius: 1rem;
 `;
+
