@@ -9,6 +9,10 @@ import { UIMessage } from "../../UI Components/Message";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { editUserSchema } from "../../../validators/patch";
+import axios from "axios";
+import { UserContext } from "../../../contexts/UserContexts";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface ISubmitData {
   name: string;
@@ -24,6 +28,9 @@ type ModalUpdateUserProps = {
 };
 
 export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
+  const navigate = useNavigate();
+  const [isUpdated, setIsUpdated] = useState<number>();
+  const { user } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -32,12 +39,39 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
     resolver: yupResolver(editUserSchema),
   });
 
-  const Submit = (data: any) => console.log(data);
+  const SubmitForm = async (data: any) => {
+    const token = localStorage.getItem("@motors:token");
+
+    const resp = await axios
+      .patch(`http://localhost:3000/user/${user?.id}`, data, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((resp) => {
+        setIsUpdated(resp.status);
+        return resp;
+      })
+      .catch((err) => {
+        setIsUpdated(resp.response.status);
+        return err;
+      });
+    navigate(0);
+  };
 
   return (
-    <FormContainer onSubmit={handleSubmit(Submit)}>
+    <FormContainer onSubmit={handleSubmit(SubmitForm)}>
       <FormTitle>Editar perfil</FormTitle>
-      <FormParagraphy>informações pessoais</FormParagraphy>
+      <FormParagraphy propTextColor="--gray1" propFontSize="0.9rem">
+        informações pessoais
+      </FormParagraphy>
+      {isUpdated === 200 && (
+        <UIMessage
+          propMessage="Alterações realizadas com sucesso!"
+          propIsSuccess={true}
+        />
+      )}
+
       <FormGroup>
         <UILabel>Nome</UILabel>
         <UIInput
@@ -85,7 +119,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UIInput
           type={"text"}
           propBorder={true}
-          placeholder="(084) 90909-9092"
+          placeholder="+55(99)99999-9999 "
           {...register("phoneNumber")}
         />
         {errors.phoneNumber && (
@@ -100,7 +134,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UIInput
           type={"text"}
           propBorder={true}
-          placeholder="09/12/99"
+          placeholder="09/12/1990"
           {...register("birthDate")}
         />
         {errors.birthDate && (
