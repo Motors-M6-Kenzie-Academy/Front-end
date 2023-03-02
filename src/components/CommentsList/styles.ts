@@ -8,4 +8,5 @@ export const DivComments = styled.ul`
     list-style: none;
     background-color: #FDFDFD;
     border-radius: 4px;
+    padding: 10px;
 `
