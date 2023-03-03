@@ -17,6 +17,7 @@ import { ModalContainer } from "../UI Components/ModalContainer";
 import { ModalUpdateAddress } from "../UI Modal/ModalUpdateAddress";
 import { ModalSettingsUser } from "../UI Modal/ModalSettingsUser";
 import { Navigation } from "../UI Components/Navigation";
+import { ModalDeleteUser } from "../UI Modal/ModalDeleteUser";
 
 export default function Navbar() {
   const { user, logout } = useContext(UserContext);
@@ -26,12 +27,17 @@ export default function Navbar() {
 
   const [updateUser, setUpdateUser] = useState(false);
   const [updateAddress, setUpdateAddress] = useState(false);
+  const [deleteUser, setDeleteUser] = useState(false);
 
   const handleModalUpdateUser = () => {
     setUpdateUser(!updateUser);
   };
   const handleModalUpdateAddress = () => {
     setUpdateAddress(!updateAddress);
+  };
+
+  const handleModalDeleteUser = () => {
+    setDeleteUser(!deleteUser);
   };
 
   const handleSettingsModal = () => {
@@ -103,6 +109,7 @@ export default function Navbar() {
                 <ModalSettingsUser
                   setStatementProfile={handleModalUpdateUser}
                   setStatementAddress={handleModalUpdateAddress}
+                  setStatementDeleteProfile={handleModalDeleteUser}
                 />
               )}
             </Navigation>
@@ -134,6 +141,12 @@ export default function Navbar() {
       {updateUser && (
         <ModalContainer>
           <ModalUpdateUser setStatement={handleModalUpdateUser} />
+        </ModalContainer>
+      )}
+
+      {deleteUser && (
+        <ModalContainer>
+          <ModalDeleteUser setStatement={handleModalDeleteUser} />
         </ModalContainer>
       )}
     </>

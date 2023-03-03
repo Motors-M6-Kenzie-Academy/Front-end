@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { IUserFullRequest } from "../../interfaces/User";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { UserContext } from "../../contexts/UserContexts";
-
 import {
   ButtonSelectType,
   Container,
@@ -13,31 +13,59 @@ import {
   MainContainer,
   ButtonForm,
 } from "./styles";
-import { IUserFullRequest } from "../../interfaces/User";
-import { schema } from "../../validators/register";
+import { CreateAccountSchema } from "../../schemaYup/createAccount.schema";
+import { UIMessage } from "../../components/UI Components/Message";
+
+type AccounttypeProps = {
+  accountType: string;
+};
 
 export const Register = () => {
-  const { createUser, setAccountType, accountType } = useContext(UserContext);
+  const [accountType, setAccountType] = useState<AccounttypeProps>();
+  const [isError, setIsError] = useState<number>();
+  const [isSuccess, setIsSuccess] = useState<boolean>();
+  const navigate = useNavigate();
 
-  const onSubmitFunction = (data: any) => {
-    data.accountType = accountType;
-    createUser(data);
+  const SubmitForm = async (data: any) => {
+    data["accountType"] = accountType?.accountType;
+
+    await axios
+      .post(`http://localhost:3000/user`, data)
+      .then((resp) => {
+        setIsSuccess(true);
+        navigate("/signin");
+      })
+      .catch((err) => {
+        setIsError(err.response.status);
+      });
   };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUserFullRequest>({ resolver: yupResolver(schema) });
+  } = useForm<IUserFullRequest>({ resolver: yupResolver(CreateAccountSchema) });
 
   return (
     <Container>
       <Navbar />
       <MainContainer>
-        <FormContainer onSubmit={handleSubmit(onSubmitFunction)}>
+        <FormContainer onSubmit={handleSubmit(SubmitForm)}>
           <div className="container--title">
             <h2>Cadastro</h2>
             <p>informações pessoais</p>
+            {isSuccess && (
+              <UIMessage
+                propMessage="Usuário Cadastrado com Sucesso!"
+                propIsSuccess={true}
+              />
+            )}
+            {isError && (
+              <UIMessage
+                propMessage="Usuário já cadastrado"
+                propIsError={true}
+              />
+            )}
           </div>
           <div className="container--inputs">
             <label htmlFor="name">
@@ -89,7 +117,7 @@ export const Register = () => {
               <input
                 className="info--input"
                 type="text"
-                placeholder="00/00/00"
+                placeholder="00/00/0000"
                 id="birthDate"
                 {...register("birthDate")}
               />
@@ -173,18 +201,36 @@ export const Register = () => {
             <p>Tipo de conta</p>
             <div className="form-account-type">
               <ButtonSelectType
-                bgColor="var(--brand1)"
-                border={false}
+                bgColor={
+                  accountType?.accountType === "Comprador"
+                    ? "var(--brand1)"
+                    : "var(--white)"
+                }
+                textColor={
+                  accountType?.accountType === "Comprador"
+                    ? "var(--gray10)"
+                    : "var(--gray1)"
+                }
+                border={true}
                 type="button"
-                onClick={() => setAccountType("Comprador")}
+                onClick={() => setAccountType({ accountType: "Comprador" })}
               >
                 Comprador
               </ButtonSelectType>
               <ButtonSelectType
-                bgColor="var(--white)"
+                bgColor={
+                  accountType?.accountType === "Anunciante"
+                    ? "var(--brand1)"
+                    : "var(--white)"
+                }
                 border={true}
+                textColor={
+                  accountType?.accountType === "Anunciante"
+                    ? "var(--gray10)"
+                    : "var(--gray1)"
+                }
                 type="button"
-                onClick={() => setAccountType("Anunciante")}
+                onClick={() => setAccountType({ accountType: "Anunciante" })}
               >
                 Anunciante
               </ButtonSelectType>
