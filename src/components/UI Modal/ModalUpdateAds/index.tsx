@@ -1,27 +1,52 @@
 import { useForm } from "react-hook-form";
+import { AdsContext } from "../../../contexts/AdsContexts";
 import { UIButton } from "../../UI Components/Button";
 import { FormContainer } from "../../UI Components/FormContainer";
 import { FormGroup } from "../../UI Components/FormGroup";
-import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { UIInput } from "../../UI Components/Input";
 import { UILabel } from "../../UI Components/Label";
+import { useContext, useState } from "react";
+import { UIMessage } from "../../UI Components/Message";
+import { useNavigate } from "react-router-dom";
 
 type ModalUpdateAdsProps = {
   setStatement: () => void;
   setConfirmDelete: () => void;
 };
+
+type vehicleTypeProps = {
+  vehicleType: string;
+};
+
+type RespProps = {
+  data: object;
+  response: object;
+};
 export const ModalUpdateAds = ({
   setStatement,
   setConfirmDelete,
 }: ModalUpdateAdsProps) => {
+  const navigate = useNavigate();
+  const { onSubmitUpdate, adsApi, isError, isSuccess } = useContext(AdsContext);
+
+  const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const Submit = (data: any) => console.log(data);
+  const Submit = async (data: any) => {
+    data["typeVehicle"] = vehicleType?.vehicleType;
+    await onSubmitUpdate(adsApi.id, data);
+
+    if (isSuccess) {
+      navigate(0);
+    }
+  };
+
   return (
     <FormContainer onSubmit={handleSubmit(Submit)}>
       <FormGroup propColumn="row" propJustify="space-between">
@@ -34,7 +59,18 @@ export const ModalUpdateAds = ({
           X
         </UIButton>
       </FormGroup>
-
+      {isSuccess && (
+        <UIMessage
+          propMessage="Anúncio foi editado com sucesso!"
+          propIsSuccess={true}
+        />
+      )}
+      {isError && (
+        <UIMessage
+          propMessage="Não foi possivel editar anuncio, preencha os campos corretamente."
+          propIsError={true}
+        />
+      )}
       <FormTitle>Tipo de anúncio</FormTitle>
       <FormGroup propColumn="row" propJustify="center">
         <UIButton propBG="--brand1" propWidth="50%">
@@ -107,14 +143,38 @@ export const ModalUpdateAds = ({
       <FormTitle>Tipo de veículo</FormTitle>
 
       <FormGroup propColumn="row" propJustify="center">
-        <UIButton propBG="--brand1" propWidth="50%">
+        <UIButton
+          propBG={
+            vehicleType?.vehicleType === "car"
+              ? "var(--brand1)"
+              : "var(--white)"
+          }
+          propTextColor={
+            vehicleType?.vehicleType === "car"
+              ? "var(--gray10)"
+              : "var(--gray1)"
+          }
+          propWidth="50%"
+          type="button"
+          onClick={() => setvehicleType({ vehicleType: "car" })}
+        >
           Carro
         </UIButton>
         <UIButton
-          propBG="--transparent"
+          propBG={
+            vehicleType?.vehicleType === "motorbike"
+              ? "var(--brand1)"
+              : "var(--white)"
+          }
           propBorder={true}
-          propTextColor={"--gray1"}
+          propTextColor={
+            vehicleType?.vehicleType === "motorbike"
+              ? "var(--gray10)"
+              : "var(--gray1)"
+          }
           propWidth="50%"
+          type="button"
+          onClick={() => setvehicleType({ vehicleType: "motorbike" })}
         >
           Moto
         </UIButton>
