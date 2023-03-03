@@ -11,6 +11,8 @@ import { editUserSchema } from "../../../validators/patch";
 import { UserContext } from "../../../contexts/UserContexts";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface ISubmitData {
   name: string;
