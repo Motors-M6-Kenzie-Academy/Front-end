@@ -30,36 +30,28 @@ export interface ICommentsProvierProps {
 }
 
 const CommentsProvider = ({ children }: ICommentsProvierProps) => {
-
   const [listComments, setListComments] = useState<ICommentsResponse[]>([]);
   const [commentsApi, setCommentsApi] = useState<ICommentsResponse>(
     {} as ICommentsResponse
   );
   const [adsId, setAdsId] = useState<string>("");
 
-  const getComments = async () => {
+  const token = localStorage.getItem("@motors:token")?.toString();
 
+  const getComments = async () => {
     await api
       .get(`/comments/${adsId}`)
       .then((res) => {
         setListComments(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
 
   const onSubmitComments = async (data: ICommentsRequest) => {
-    const response = await RequestAPI("comments/", "post", data, `${adsId}`);
+    const response = await RequestAPI("comments", "post", data, adsId, token);
+    console.log(response);
     setListComments((oldComments) => [...oldComments, response]);
     setCommentsApi(response);
-
-    // api
-    // .post("/comments/", data)
-    // .then((res) => {
-    //     setListComments((oldComments) => [...oldComments, res.data])
-    //     setCommentsApi(res.data)
-    // })
-    // .catch((err) => console.log(err));
   };
 
   return (

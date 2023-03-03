@@ -66,7 +66,7 @@ const MobileAd = () => (
     </div>
 
     <ListComments />
-    <BoxComment />
+    {/* <BoxComment /> */}
   </MobileContainer>
 );
 
