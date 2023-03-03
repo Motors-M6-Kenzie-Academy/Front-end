@@ -7,7 +7,7 @@ import { CommentsContext } from "../../contexts/CommentsContext";
 import { Button } from "../Button";
 
 const BoxComment = (data: any) => {
-  const { handleSubmit } = useForm<ICommentsRequest>();
+  const { register, handleSubmit } = useForm<ICommentsRequest>();
   const { userLogged } = useContext(UserContext);
   const { onSubmitComments } = useContext(CommentsContext);
 
@@ -24,6 +24,7 @@ const BoxComment = (data: any) => {
         <input
           type="text"
           placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+          {...register("content")}
         />
         <Button
           type="submit"

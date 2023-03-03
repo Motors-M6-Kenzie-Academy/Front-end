@@ -9,7 +9,8 @@ export const RequestAPI = async (
   endpoint: string,
   method?: string,
   data?: object,
-  id?: string
+  id?: string,
+  token?: string
 ) => {
   switch (endpoint) {
     // *** Endpoint's do User
@@ -158,11 +159,13 @@ export const RequestAPI = async (
 
     // *** Endpoint's do Comments
 
-    case `comments/${id}`:
+    case `comments`:
       // Criação do comments
       if (method === "post") {
         const response = await api
-          .post(`${endpoint}/${id}`, data)
+          .post(`${endpoint}/${id}`, data, {
+            headers: { Authorization: token },
+          })
           .then((resp) => resp.data)
           .catch((err) => err.response);
         return response;
