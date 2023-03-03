@@ -7,13 +7,13 @@ import { PrivateRout } from "./pages/PrivateRoute";
 import AdsProvider from "./contexts/AdsContexts";
 import UserProvider from "./contexts/UserContexts";
 import AdPage from "./pages/Ad";
-import CommnetsProvider from "./contexts/CommentsContext";
+import CommentsProvider from "./contexts/CommentsContext";
 
 function App() {
   return (
     <UserProvider>
       <AdsProvider>
-        <CommnetsProvider>
+        <CommentsProvider>
           <GlobalStyle />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -22,7 +22,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/private" element={<PrivateRout />} />
           </Routes>
-        </CommnetsProvider>
+        </CommentsProvider>
       </AdsProvider>
     </UserProvider>
   );

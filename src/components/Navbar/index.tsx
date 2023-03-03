@@ -20,7 +20,7 @@ import { Navigation } from "../UI Components/Navigation";
 import { ModalDeleteUser } from "../UI Modal/ModalDeleteUser";
 
 export default function Navbar() {
-  const { user, logout } = useContext(UserContext);
+  const { userLogged, logout } = useContext(UserContext);
 
   const [isOpenModalHamburger, setisOpenModalHamburger] = useState(false);
   const [isOpenSettingsUser, setIsOpenSettingsUser] = useState(false);
@@ -51,9 +51,9 @@ export default function Navbar() {
   const userName = [];
   const userLastName = [];
 
-  if (user) {
-    userName.push(user.name.split(" ")[0]);
-    userLastName.push(user.name.split(" ")[1]);
+  if (userLogged) {
+    userName.push(userLogged.name.split(" ")[0]);
+    userLastName.push(userLogged.name.split(" ")[1]);
 
     sigla.push(userName[0].substring(0, 1));
 
@@ -70,7 +70,7 @@ export default function Navbar() {
         </Link>
         <ContainerMobile>
           {isOpenModalHamburger &&
-            (user ? (
+            (userLogged ? (
               <Navigation>
                 <Link to={"#"} onClick={handleModalUpdateUser}>
                   Editar Perfil
@@ -94,7 +94,7 @@ export default function Navbar() {
         </ContainerMobile>
 
         <ContainerDesktop>
-          {user ? (
+          {userLogged ? (
             <Navigation>
               <Link to={"/"}>Carros</Link>
               <Link to={"/"}>Motos</Link>
@@ -102,7 +102,7 @@ export default function Navbar() {
               <div className="user-container-auth">
                 <span className="user-acronym">{sigla.join("")}</span>
                 <span onClick={handleSettingsModal} className="user-name">
-                  {user?.name}
+                  {userLogged?.name}
                 </span>
               </div>
               {isOpenSettingsUser && (

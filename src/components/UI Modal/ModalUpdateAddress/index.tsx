@@ -21,7 +21,7 @@ export const ModalUpdateAddress = ({
 }: ModalUpdateAddressProps) => {
   const navigate = useNavigate();
   const [isUpdated, setIsUpdated] = useState<number>();
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
 
   const {
     register,
@@ -34,7 +34,7 @@ export const ModalUpdateAddress = ({
     const token = localStorage.getItem("@motors:token");
 
     const resp = await axios
-      .patch(`http://localhost:3000/address/${user?.id}`, data, {
+      .patch(`http://localhost:3000/address/${userLogged?.id}`, data, {
         headers: {
           Authorization: token,
         },

@@ -6,17 +6,17 @@ import { UserContext } from "../../contexts/UserContexts";
 import { CommentsContext } from "../../contexts/CommentsContext";
 import { Button } from "../Button";
 
-const BoxComment = () => {
-  const { handleSubmit } = useForm<ICommentsRequest>();
-  const { user } = useContext(UserContext);
+const BoxComment = (data: any) => {
+  const { register, handleSubmit } = useForm<ICommentsRequest>();
+  const { userLogged } = useContext(UserContext);
   const { onSubmitComments } = useContext(CommentsContext);
 
   return (
     <DivComment>
       <div className="headerBox">
-        <div className="avatar">{user!.name[0]}</div>
+        <div className="avatar">{userLogged!.name[0]}</div>
         <div className="nameUser">
-          <strong>{user!.name}</strong>
+          <strong>{userLogged!.name}</strong>
         </div>
       </div>
 
@@ -24,6 +24,7 @@ const BoxComment = () => {
         <input
           type="text"
           placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
+          {...register("content")}
         />
         <Button
           type="submit"

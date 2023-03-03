@@ -15,7 +15,7 @@ type ModalDeleteUserProps = {
 };
 
 export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
   const navigate = useNavigate();
   const [deleteUser, setDeleteUser] = useState<boolean>();
   const handleExitButton = () => {
@@ -28,7 +28,7 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
     const token = localStorage.getItem("@motors:token");
 
     await axios
-      .delete(`http://localhost:3000/user/${user?.id}`, {
+      .delete(`http://localhost:3000/user/${userLogged?.id}`, {
         headers: {
           Authorization: token,
         },

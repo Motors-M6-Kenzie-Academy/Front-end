@@ -4,18 +4,21 @@ import { useContext } from "react";
 import CommentCard from "../CommentsCard";
 
 const ListComments = () => {
-    const {listComments} = useContext(CommentsContext)
-    
-    return (
-        <DivComments>
-            <h3>Comentários</h3>
-            {
-                listComments?.map((comment) => (
-                    <CommentCard key={comment.id} content={comment.content} />
-                ))
-            }
-        </DivComments>
-    )
-}
+  const { listComments } = useContext(CommentsContext);
 
-export default ListComments
+  return (
+    <DivComments>
+      <h3>Comentários</h3>
+      {listComments?.map((comment) => (
+        <CommentCard
+          key={comment.id}
+          content={comment.content}
+          createdAt={comment.createdAt}
+          user={comment.user}
+        />
+      ))}
+    </DivComments>
+  );
+};
+
+export default ListComments;

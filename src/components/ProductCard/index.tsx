@@ -27,15 +27,19 @@ const ProductCard = (info: any) => {
     price,
     cover,
     gallery_image,
+    user,
   } = info.info;
 
   const announcer = "Natália";
-  const { user } = useContext(UserContext);
-  const { setAdsId } = useContext(CommentsContext);
+
+  const { userLogged } = useContext(UserContext);
+  const { adsId, setAdsId, getComments } = useContext(CommentsContext);
+
   const navigate = useNavigate();
 
   const view = () => {
     setAdsId(id);
+    getComments();
     navigate("/ad");
   };
 
@@ -67,13 +71,13 @@ const ProductCard = (info: any) => {
         <div className="container--content">
           <h2>{title}</h2>
           <p className="container--description">{description}</p>
-          {user ? null : (
+          {userLogged ? null : (
             <div className="container--announcer">
-              {/* <div className="avatar">{user!.name[0]}</div> */}
-              {/* <p>{user!.name}</p> */}
+
+              <div className="avatar">{user.name[0]}</div>
+              <p>{user.name}</p>
             </div>
           )}
-
           <div className="container--tag--price">
             <div className="container--tags">
               <div className="tag">{mileage}</div>
@@ -81,33 +85,32 @@ const ProductCard = (info: any) => {
             </div>
             <strong>R${price}</strong>
           </div>
-          {user && (
-            <div className="container--buttons--edit">
-              <Button
-                backgroud="var(--white)"
-                color="var(--black)"
-                border={true}
-                borderColor="var(--black)"
-                isHeight={true}
-                height="38px"
-                onClick={handleModalUpdateAds}
-              >
-                Editar
-              </Button>
-              <Button
-                backgroud="var(--white)"
-                color="var(--black)"
-                border={true}
-                borderColor="var(--black)"
-                isHeight={true}
-                height="38px"
-                onClick={() => view()}
-              >
-                Ver como
-              </Button>
-            </div>
-          )}
         </div>
+        {userLogged && (
+          <div className="container--buttons--edit">
+            <Button
+              backgroud="var(--white)"
+              color="var(--black)"
+              border={true}
+              borderColor="var(--black)"
+              isHeight={true}
+              height="38px"
+            >
+              Editar
+            </Button>
+            <Button
+              backgroud="var(--white)"
+              color="var(--black)"
+              border={true}
+              borderColor="var(--black)"
+              isHeight={true}
+              height="38px"
+              onClick={() => view()}
+            >
+              Ver como
+            </Button>
+          </div>
+        )}
       </ContainerCard>
       {updateAds && (
         <ModalContainer>

@@ -1,29 +1,28 @@
 import { Card } from "./styles";
-import { CommentsContext } from "../../contexts/CommentsContext";
-import { useContext } from "react";
+import { IUserResponseComments } from "../../interfaces/User";
 
 interface IComment {
-    key?: string;
-    content: string;
+  key?: string;
+  content: string;
+  createdAt: string;
+  user: IUserResponseComments;
 }
-const CommentCard = ({content}: IComment) => {
-    const {commentsApi} = useContext(CommentsContext)
+const CommentCard = ({ content, user, createdAt }: IComment) => {
+  return (
+    <Card>
+      <div className="headerCard">
+        <div className="avatar">{user?.name[0]}</div>
+        <div className="nameUser">
+          <strong>{user?.name}</strong>
+        </div>
+        <div className="created">{createdAt}</div>
+      </div>
 
-    return (
-        <Card>
-            <div className="headerCard">
-                <div className="avatar">{commentsApi.user.name[0]}</div>
-                <div className="nameUser">
-                    <strong>{commentsApi.user.name}</strong>
-                </div>
-                <div className="created"></div>
-            </div>
+      <div className="comment">
+        <p>{content}</p>
+      </div>
+    </Card>
+  );
+};
 
-            <div className="comment">
-                <p>{content}</p>
-            </div>
-        </Card>
-    )
-}
-
-export default CommentCard
+export default CommentCard;
