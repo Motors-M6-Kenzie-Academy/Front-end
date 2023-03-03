@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -11,22 +10,23 @@ import { FormGroup } from "../../components/UI Components/FormGroup";
 import { ISignInRequest } from "../../interfaces/User";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import { UserContext } from "../../contexts/UserContexts";
+
 import { Button, Container, FormContainer, MainContainer } from "./styles";
 
 import { loginSchema } from "../../validators/signin";
+import { UIMessage } from "../../components/UI Components/Message";
+import { UserContext } from "../../contexts/UserContexts";
+import { useContext } from "react";
 
 export const SignIn = () => {
+  const { loginUser, isError } = useContext(UserContext);
   const [forgotPassword, setForgotPassword] = useState(false);
-  const { loginUser } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ISignInRequest>({ resolver: yupResolver(loginSchema) });
-
-  const onSubmit = (data: any) => console.log(data);
 
   const handleModalForgotPassword = () => {
     setForgotPassword(!forgotPassword);
@@ -39,6 +39,12 @@ export const SignIn = () => {
           <FormContainer onSubmit={handleSubmit(loginUser)}>
             <h2>Login</h2>
             <div className="formInputs">
+              {isError && (
+                <UIMessage
+                  propMessage="Usuário ou Senha inválidos"
+                  propIsError={true}
+                />
+              )}
               <label htmlFor="email">
                 Email
                 <input
@@ -49,7 +55,10 @@ export const SignIn = () => {
                   {...register("email")}
                 />
               </label>
-              <p className="container--error">{errors.email?.message}</p>
+              <UIMessage
+                propMessage={errors.email?.message!}
+                propIsError={true}
+              />
               <label htmlFor="password">
                 Senha
                 <input
@@ -60,7 +69,10 @@ export const SignIn = () => {
                   {...register("password")}
                 />
               </label>
-              <p className="container--error">{errors.password?.message}</p>
+              <UIMessage
+                propMessage={errors.email?.message!}
+                propIsError={true}
+              />
             </div>
             <div className="formSubmit">
               <FormGroup propJustify="flex-end" propColumn="row">

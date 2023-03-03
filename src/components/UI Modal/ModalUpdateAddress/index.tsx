@@ -6,6 +6,11 @@ import { UILabel } from "../../UI Components/Label";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { UserContext } from "../../../contexts/UserContexts";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UIMessage } from "../../UI Components/Message";
 
 type ModalUpdateAddressProps = {
   setStatement: () => void;
@@ -14,22 +19,63 @@ type ModalUpdateAddressProps = {
 export const ModalUpdateAddress = ({
   setStatement,
 }: ModalUpdateAddressProps) => {
+  const navigate = useNavigate();
+  const [isUpdated, setIsUpdated] = useState<number>();
+  const { user } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const Submit = (data: any) => console.log(data);
+  const SubmitForm = async (data: any) => {
+    console.log(data);
+    const token = localStorage.getItem("@motors:token");
+
+    const resp = await axios
+      .patch(`http://localhost:3000/address/${user?.id}`, data, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((resp) => {
+        setIsUpdated(resp.status);
+        return resp;
+      })
+      .catch((err) => {
+        setIsUpdated(resp.response.status);
+        return err;
+      });
+
+    navigate(0);
+  };
 
   return (
-    <FormContainer onSubmit={handleSubmit(Submit)}>
-      <FormTitle>Editar endereço</FormTitle>
-      <FormParagraphy>informações de endereço</FormParagraphy>
+    <FormContainer onSubmit={handleSubmit(SubmitForm)}>
+      <FormGroup propColumn="row" propJustify="space-between">
+        <FormTitle>Editar endereço</FormTitle>
+        <UIButton
+          onClick={setStatement}
+          propBG="--transparent"
+          propTextColor="--gray1"
+        >
+          X
+        </UIButton>
+      </FormGroup>
+      <FormParagraphy propTextColor="--gray1" propFontSize="0.8rem">
+        informações de endereço
+      </FormParagraphy>
+      {isUpdated === 200 && (
+        <UIMessage
+          propMessage="Alterações realizadas com sucesso!"
+          propIsSuccess={true}
+        />
+      )}
       <FormGroup>
         <UILabel>CEP</UILabel>
         <UIInput
-          type={"number"}
+          type={"string"}
           propBorder={true}
           placeholder="89888.888"
           {...register("zipcode")}

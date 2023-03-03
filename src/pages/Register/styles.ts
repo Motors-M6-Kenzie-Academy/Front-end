@@ -100,6 +100,7 @@ export const FormContainer = styled.form`
 type ButtonAccountTypeProps = {
   bgColor: string;
   border?: boolean;
+  textColor?: string;
 };
 
 export const ButtonSelectType = styled.button<ButtonAccountTypeProps>`
@@ -116,7 +117,7 @@ export const ButtonSelectType = styled.button<ButtonAccountTypeProps>`
   text-align: center;
 
   background-color: ${(props) => props.bgColor};
-  color: ${(props) => (props.border ? `black` : `white`)};
+  color: ${(props) => (props.textColor ? props.textColor : `black`)};
   border: ${(props) => props.border && `0.1rem solid var(--gray5)`};
   border-radius: 0.4rem;
 
