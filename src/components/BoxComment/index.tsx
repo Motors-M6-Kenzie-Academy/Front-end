@@ -36,9 +36,9 @@ const BoxComment = (data: any) => {
             </form>
 
             <div className="tags">
-                <span>Gostei muito!</span>
-                <span>Incrível</span>
-                <span>Recomndarei para meus amigos!</span>
+                <span className="ideia">Gostei muito!</span>
+                <span className="ideia">Incrível</span>
+                <span className="ideia">Recomndarei para meus amigos!</span>
             </div>
             
         </DivComment>
