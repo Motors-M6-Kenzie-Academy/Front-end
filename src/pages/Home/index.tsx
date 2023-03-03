@@ -13,6 +13,8 @@ import { ModalContainer } from "../../components/UI Components/ModalContainer";
 import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
 import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
 import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
+import BoxComment from "../../components/BoxComment";
+import ListComments from "../../components/CommentsList";
 
 export const Home = () => {
   const { user } = useContext(UserContext);
@@ -90,6 +92,7 @@ export const Home = () => {
             </div>
           </div>
         </MainContainer>
+        <BoxComment />
         <Footer />
       </Container>
 

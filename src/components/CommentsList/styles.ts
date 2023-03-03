@@ -9,9 +9,15 @@ export const DivComments = styled.ul`
     background-color: #FDFDFD;
     border-radius: .25rem;
     padding: .625rem;
+    
 
     h3{
         font-size: 1.25rem;
+        font-family: var(--lexend);
         color: #212529
+    }
+
+    @media screen and (min-width: 700px) {
+        margin: 0 5.625rem;
     }
 `

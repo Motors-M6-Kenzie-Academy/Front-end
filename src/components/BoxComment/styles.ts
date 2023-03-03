@@ -7,10 +7,13 @@ export const DivComment = styled.div`
     flex-direction: column;
     background-color: #FDFDFD;
     border-radius: .25rem;
+    padding: 20px;
 
     .headerBox{
         display: flex;
         flex-direction: row;
+        gap: 20px;
+        align-items: center
     }
 
     .avatar {
@@ -23,7 +26,7 @@ export const DivComment = styled.div`
         border-radius: 100%;
 
         font-family: var(--inter);
-        font-size: 1.875rem;
+        font-size: 14px;
 
         background-color: var(--brand2);
         color: var(--white);
@@ -40,6 +43,8 @@ export const DivComment = styled.div`
         height: 6.25rem;
         border: var(--gray7)
         border-radius: .25rem;
+        padding: 10px;
+        font-size: 16px;
       }
 
       placeholder{
@@ -50,11 +55,26 @@ export const DivComment = styled.div`
       .tags{
         display: flex;
         flex-direction: row;
-        gap: .625rem;
-        background-color: var(--gray7);
+        gap: 20px;
+        margin-top: 15px;
+        
         color: var(--gray3);
-        font-size: .75rem;
+        font-size: 12px;
+        font-family: var(--lexend);
+      }
+
+      .ideia{
+        background-color: var(--gray7);
+        padding: 5px;
         border-radius: 1.5rem;
+      }
+
+      form{
+        border: var(--gray7);
+      }
+
+      Button{
+        margin-left: 500px;
       }
       
     @media screen and (min-width: 43.75rem) {
