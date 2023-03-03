@@ -7,7 +7,7 @@ import { Button } from "../Button";
 import { ContainerCardAuction, ContainerCardAuctionButton } from "./styles";
 
 const ProductCardAuction = () => {
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
 
   const obj = {
     title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
@@ -30,7 +30,7 @@ const ProductCardAuction = () => {
         <div className="container--description">
           <p>{obj.description}</p>
         </div>
-        {user ? null : (
+        {userLogged ? null : (
           <div className="container--announcer">
             <div className="avatar">{obj.announcer[0]}</div>
             <p>{obj.announcer}</p>
@@ -47,7 +47,7 @@ const ProductCardAuction = () => {
       </ContainerCardAuction>
 
       <div className="container--button">
-        {user ? (
+        {userLogged ? (
           <div className="container--buttons--edit">
             <Button
               backgroud="var(--white)"

@@ -8,20 +8,20 @@ type ModalCreateAdsProps = {
 };
 
 const BannerCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
 
   return (
     <ContainerBannerCreateAds>
       <div className="background--blue"></div>
       <div className="container--create--ads">
         <div className="container--announcer">
-          <div className="avatar">{user!.name[0]}</div>
+          <div className="avatar">{userLogged!.name[0]}</div>
           <div className="container--name--type">
-            <strong>{user!.name}</strong>
-            <p className="tag">{user!.accountType}</p>
+            <strong>{userLogged!.name}</strong>
+            <p className="tag">{userLogged!.accountType}</p>
           </div>
         </div>
-        <p className="paragraph--description">{user!.description}</p>
+        <p className="paragraph--description">{userLogged!.description}</p>
         <Button
           backgroud="var(--white)"
           color="var(--brand1)"

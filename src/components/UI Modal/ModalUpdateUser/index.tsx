@@ -10,8 +10,6 @@ import { UILabel } from "../../UI Components/Label";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { UIMessage } from "../../UI Components/Message";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { editUserSchema } from "../../../validators/patch";
 import axios from "axios";
 import { UserContext } from "../../../contexts/UserContexts";
@@ -34,7 +32,7 @@ type ModalUpdateUserProps = {
 export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
   const navigate = useNavigate();
   const [isUpdated, setIsUpdated] = useState<number>();
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -47,7 +45,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
     const token = localStorage.getItem("@motors:token");
 
     const resp = await axios
-      .patch(`http://localhost:3000/user/${user?.id}`, data, {
+      .patch(`http://localhost:3000/user/${userLogged?.id}`, data, {
         headers: {
           Authorization: token,
         },
@@ -91,7 +89,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage=" Esse campo deve conter apenas letras, sem acentuações"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Email</UILabel>
@@ -105,7 +102,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         {errors.email && (
           <UIMessage propIsError={true} propMessage="E-mail inválido" />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>CPF</UILabel>
@@ -122,7 +118,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="O CPF deve conter 11 números"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Celular</UILabel>
@@ -139,7 +134,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="O telefone deve conter 13 números"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Data de Nascimento</UILabel>
@@ -156,7 +150,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="O formato de data é DD/MM/AAAA"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Descrição</UILabel>
@@ -174,7 +167,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="Este campo deve conter no máximo 250 caracteres"
           />
         )}
-
       </FormGroup>
 
       <FormGroup propColumn="row" propJustify="flex-end">

@@ -21,17 +21,20 @@ const ProductCard = (info: any) => {
     price,
     cover,
     gallery_image,
+    user,
   } = info.info;
 
   const announcer = "Natália";
-  const { user } = useContext(UserContext);
-  const {setAdsId} = useContext(CommentsContext)
+  const { userLogged } = useContext(UserContext);
+  const { adsId, setAdsId, getComments } = useContext(CommentsContext);
   const navigate = useNavigate();
 
   const view = () => {
-    setAdsId(id)
-    navigate("/ad")
-  }
+    setAdsId(id);
+    console.log(adsId);
+    getComments();
+    navigate("/ad");
+  };
 
   return (
     <ContainerCard>
@@ -49,10 +52,10 @@ const ProductCard = (info: any) => {
       <div className="container--content">
         <h2>{title}</h2>
         <p className="container--description">{description}</p>
-        {user ? null : (
+        {userLogged ? null : (
           <div className="container--announcer">
-            <div className="avatar">{user!.name[0]}</div>
-            <p>{user!.name}</p>
+            <div className="avatar">{user.name[0]}</div>
+            <p>{user.name}</p>
           </div>
         )}
 
@@ -63,7 +66,7 @@ const ProductCard = (info: any) => {
           </div>
           <strong>R${price}</strong>
         </div>
-        {user && (
+        {userLogged && (
           <div className="container--buttons--edit">
             <Button
               backgroud="var(--white)"
