@@ -44,7 +44,7 @@ const DesktopAd = () => (
         </div>
 
         <ListComments />
-        <BoxComment />
+        {/* <BoxComment /> */}
       </ColumnContainer>
 
       <ColumnContainer>

@@ -69,8 +69,8 @@ const ProductCard = (info: any) => {
           <p className="container--description">{description}</p>
           {user ? null : (
             <div className="container--announcer">
-              <div className="avatar">{user!.name[0]}</div>
-              <p>{user!.name}</p>
+              {/* <div className="avatar">{user!.name[0]}</div> */}
+              {/* <p>{user!.name}</p> */}
             </div>
           )}
 
