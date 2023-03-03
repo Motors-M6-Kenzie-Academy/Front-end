@@ -18,6 +18,7 @@ interface IUserProviderData {
   setAccountType: React.Dispatch<React.SetStateAction<string>>;
   logout: () => void;
   user?: IListUser;
+  isError?: boolean;
 }
 
 interface IListUserRes {
@@ -35,10 +36,12 @@ const UserProvider = ({ children }: IUserProviderProps) => {
   const [isTokenAdd, setIsTokenAdd] = useState(false);
   const [accountType, setAccountType] = useState("Anunciante");
   const [user, setUser] = useState<IListUser>();
+  const [isError, setIsError] = useState<boolean>();
 
   const navigate = useNavigate();
 
   const createUser = (data: IUserFullRequest) => {
+    console.log(data);
     api
       .post("/user", data)
       .then(() => {
@@ -55,10 +58,11 @@ const UserProvider = ({ children }: IUserProviderProps) => {
       const { data }: ISignInResponse = await api.post("/signin", datas);
       localStorage.setItem("@motors:token", data.token);
       setIsTokenAdd(true);
+      setIsError(false);
       navigate("/");
     } catch (error) {
       // toast.error("Não foi possível realizar o login.");
-      console.log(error);
+      setIsError(true);
     }
   };
 
@@ -99,6 +103,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         setAccountType,
         logout,
         user,
+        isError,
       }}
     >
       {children}

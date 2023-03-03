@@ -20,7 +20,7 @@ export const RequestAPI = async (
         const response = await api
           .post(`${endpoint}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Listagem de todos os usuários
@@ -28,7 +28,7 @@ export const RequestAPI = async (
         const response = await api
           .get(`${endpoint}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
 
         return response;
       }
@@ -40,7 +40,7 @@ export const RequestAPI = async (
         const response = await api
           .get(`${endpoint}/${id}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Update do usuário
@@ -48,7 +48,7 @@ export const RequestAPI = async (
         const response = await api
           .patch(`${endpoint}/${id}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Delete do usuário
@@ -56,7 +56,7 @@ export const RequestAPI = async (
         const response = await api
           .delete(`${endpoint}/${id}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -67,7 +67,7 @@ export const RequestAPI = async (
         const response = await api
           .post(`${endpoint}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -78,7 +78,7 @@ export const RequestAPI = async (
         const resp = await api
           .post(`${endpoint}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return resp;
       }
       break;
@@ -89,7 +89,7 @@ export const RequestAPI = async (
         const response = await api
           .patch(`${endpoint}/${id}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -100,7 +100,7 @@ export const RequestAPI = async (
         const response = await api
           .get(`${endpoint}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -113,7 +113,7 @@ export const RequestAPI = async (
         const response = await api
           .post(`${endpoint}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -124,7 +124,7 @@ export const RequestAPI = async (
         const response = await api
           .get(`${endpoint}/${id}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Update do Ad
@@ -132,7 +132,7 @@ export const RequestAPI = async (
         const response = await api
           .patch(`${endpoint}/${id}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Delete do Ad
@@ -140,7 +140,7 @@ export const RequestAPI = async (
         const response = await api
           .delete(`${endpoint}/${id}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -151,7 +151,7 @@ export const RequestAPI = async (
         const response = await api
           .get(`${endpoint}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
@@ -172,7 +172,7 @@ export const RequestAPI = async (
         const response = await api
           .get(`${endpoint}/${id}`)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       // Delete do comment
@@ -180,7 +180,7 @@ export const RequestAPI = async (
         const response = await api
           .delete(`${endpoint}/${id}`, data)
           .then((resp) => resp.data)
-          .catch((err) => err.response.data);
+          .catch((err) => err.response);
         return response;
       }
       break;
