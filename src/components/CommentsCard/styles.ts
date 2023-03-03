@@ -7,9 +7,10 @@ export const Card = styled.div`
     flex-direction: column;
     background-color: transparent;
 
-    .headerBox{
+    .headerCard{
         display: flex;
         flex-direction: row;
+        gap: 15px;
     }
 
     .avatar {
@@ -22,7 +23,7 @@ export const Card = styled.div`
         border-radius: 100%;
 
         font-family: var(--inter);
-        font-size: 1.875rem;
+        font-size: .875rem;
 
         background-color: var(--brand2);
         color: var(--white);
@@ -32,5 +33,15 @@ export const Card = styled.div`
         font-size: .875rem;
         font-weight: 500;
         font-family: var(--lexend);
+      }
+
+      .created{
+        color: var(--grey3)
+        font-size: .75rem;
+      }
+
+      .comment{
+        font-size: .875rem;
+        color: var(--grey2)
       }
 `
