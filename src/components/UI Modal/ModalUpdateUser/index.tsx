@@ -1,8 +1,5 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
+import axios from "axios";
 import { FormContainer } from "../../UI Components/FormContainer";
-
 import { FormGroup } from "../../UI Components/FormGroup";
 import { UIButton } from "../../UI Components/Button";
 import { UIInput } from "../../UI Components/Input";
@@ -13,7 +10,6 @@ import { UIMessage } from "../../UI Components/Message";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { editUserSchema } from "../../../validators/patch";
-import axios from "axios";
 import { UserContext } from "../../../contexts/UserContexts";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -91,7 +87,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage=" Esse campo deve conter apenas letras, sem acentuações"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Email</UILabel>
@@ -105,7 +100,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         {errors.email && (
           <UIMessage propIsError={true} propMessage="E-mail inválido" />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>CPF</UILabel>
@@ -122,7 +116,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="O CPF deve conter 11 números"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Celular</UILabel>
@@ -139,7 +132,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="O telefone deve conter 13 números"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Data de Nascimento</UILabel>
@@ -156,7 +148,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="O formato de data é DD/MM/AAAA"
           />
         )}
-
       </FormGroup>
       <FormGroup>
         <UILabel>Descrição</UILabel>
@@ -174,7 +165,6 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
             propMessage="Este campo deve conter no máximo 250 caracteres"
           />
         )}
-
       </FormGroup>
 
       <FormGroup propColumn="row" propJustify="flex-end">

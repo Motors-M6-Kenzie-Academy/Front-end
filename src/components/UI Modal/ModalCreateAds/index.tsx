@@ -1,22 +1,39 @@
 import { useForm } from "react-hook-form";
+import { useState, useContext } from "react";
 import { UIButton } from "../../UI Components/Button";
 import { FormContainer } from "../../UI Components/FormContainer";
 import { FormGroup } from "../../UI Components/FormGroup";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { UIInput } from "../../UI Components/Input";
 import { UILabel } from "../../UI Components/Label";
+import { AdsContext } from "../../../contexts/AdsContexts";
+import { UIMessage } from "../../UI Components/Message";
 
 type ModalCreateAdsProps = {
   setStatement: () => void;
 };
+
+type vehicleTypeProps = {
+  vehicleType: string;
+};
+
 export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
+  const { onSubmitAds, adsApi, listAds } = useContext(AdsContext);
+  const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const Submit = (data: any) => console.log(data);
+  const Submit = async (data: any) => {
+    data["typeVehicle"] = vehicleType?.vehicleType;
+
+    await onSubmitAds(data);
+
+    console.log(adsApi);
+    // console.log(listAds);
+  };
 
   return (
     <FormContainer onSubmit={handleSubmit(Submit)}>
@@ -30,7 +47,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           X
         </UIButton>
       </FormGroup>
-
+      {adsApi.id && (
+        <UIMessage
+          propMessage="Anúncio foi criado com sucesso!"
+          propIsSuccess={true}
+        />
+      )}
       <FormTitle>Tipo de anúncio</FormTitle>
       <FormGroup propColumn="row" propJustify="center">
         <UIButton propBG="--brand1" propWidth="50%">
@@ -98,14 +120,38 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
       <FormTitle>Tipo de veículo</FormTitle>
 
       <FormGroup propColumn="row" propJustify="center">
-        <UIButton propBG="--brand1" propWidth="50%">
+        <UIButton
+          propBG={
+            vehicleType?.vehicleType === "car"
+              ? "var(--brand1)"
+              : "var(--white)"
+          }
+          propTextColor={
+            vehicleType?.vehicleType === "car"
+              ? "var(--gray10)"
+              : "var(--gray1)"
+          }
+          propWidth="50%"
+          type="button"
+          onClick={() => setvehicleType({ vehicleType: "car" })}
+        >
           Carro
         </UIButton>
         <UIButton
-          propBG="--transparent"
+          propBG={
+            vehicleType?.vehicleType === "motorbike"
+              ? "var(--brand1)"
+              : "var(--white)"
+          }
           propBorder={true}
-          propTextColor={"--gray1"}
+          propTextColor={
+            vehicleType?.vehicleType === "motorbike"
+              ? "var(--gray10)"
+              : "var(--gray1)"
+          }
           propWidth="50%"
+          type="button"
+          onClick={() => setvehicleType({ vehicleType: "motorbike" })}
         >
           Moto
         </UIButton>
@@ -143,8 +189,8 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
         <UIButton
           propBG="--gray6"
           propTextColor="--gray2"
-          onClick={setStatement}
           type="reset"
+          onClick={setStatement}
         >
           Cancelar
         </UIButton>
