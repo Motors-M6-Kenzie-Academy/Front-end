@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 
 const api = axios.create({
   baseURL: "http://localhost:3000/",
@@ -12,8 +11,6 @@ export const RequestAPI = async (
   data?: object,
   id?: string
 ) => {
-  const [isError, setIsError] = useState<object>();
-  const [isSuccess, setIsSuccess] = useState<object>();
   switch (endpoint) {
     // *** Endpoint's do User
 

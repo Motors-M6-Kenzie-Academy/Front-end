@@ -6,6 +6,7 @@ import { Register } from "./pages/Register";
 import { PrivateRout } from "./pages/PrivateRoute";
 import AdsProvider from "./contexts/AdsContexts";
 import UserProvider from "./contexts/UserContexts";
+import AdPage from "./pages/Ad";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <GlobalStyle />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/ad" element={<AdPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/private" element={<PrivateRout />} />
