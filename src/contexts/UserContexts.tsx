@@ -17,7 +17,7 @@ interface IUserProviderData {
   accountType: string;
   setAccountType: React.Dispatch<React.SetStateAction<string>>;
   logout: () => void;
-  user?: IListUser;
+  userLogged?: IListUser;
   isError?: boolean;
 }
 
@@ -35,7 +35,7 @@ export const UserContext = createContext<IUserProviderData>(
 const UserProvider = ({ children }: IUserProviderProps) => {
   const [isTokenAdd, setIsTokenAdd] = useState(false);
   const [accountType, setAccountType] = useState("Anunciante");
-  const [user, setUser] = useState<IListUser>();
+  const [userLogged, setUserLogged] = useState<IListUser>();
   const [isError, setIsError] = useState<boolean>();
 
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         const userId = jwt_decode<JwtPayload>(token).sub;
 
         const userFound = data.find((e) => e.id === userId);
-        userFound && setUser(userFound);
+        userFound && setUserLogged(userFound);
       } catch (error) {
         console.log(error);
       }
@@ -89,7 +89,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
   }, [isTokenAdd]);
 
   const logout = () => {
-    setUser(undefined);
+    setUserLogged(undefined);
     localStorage.removeItem("@motors:token");
   };
 
@@ -102,7 +102,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
         accountType,
         setAccountType,
         logout,
-        user,
+        userLogged,
         isError,
       }}
     >

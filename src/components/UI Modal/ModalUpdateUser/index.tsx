@@ -7,8 +7,6 @@ import { UILabel } from "../../UI Components/Label";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { UIMessage } from "../../UI Components/Message";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { editUserSchema } from "../../../validators/patch";
 import { UserContext } from "../../../contexts/UserContexts";
 import { useContext, useState } from "react";
@@ -30,7 +28,7 @@ type ModalUpdateUserProps = {
 export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
   const navigate = useNavigate();
   const [isUpdated, setIsUpdated] = useState<number>();
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -43,7 +41,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
     const token = localStorage.getItem("@motors:token");
 
     const resp = await axios
-      .patch(`http://localhost:3000/user/${user?.id}`, data, {
+      .patch(`http://localhost:3000/user/${userLogged?.id}`, data, {
         headers: {
           Authorization: token,
         },

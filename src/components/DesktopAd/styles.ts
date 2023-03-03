@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const DesktopContainer = styled.div`
   background: linear-gradient(
     180deg,
-    #4529e6 48.25%,
-    #f1f3f5 31.26%,
+    #4529e6 25.25%,
+    #f1f3f5 25.26%,
     #f1f3f5 100%
   );
   padding: 30px 0;
@@ -71,7 +71,7 @@ export const DesktopContainer = styled.div`
 
   .container--cover--image {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;

@@ -16,7 +16,9 @@ interface CommentsContextData {
   setListComments: React.Dispatch<React.SetStateAction<ICommentsResponse[]>>;
   commentsApi: ICommentsResponse;
   setCommentsApi: React.Dispatch<React.SetStateAction<ICommentsResponse>>;
-  setAdsId: Dispatch<SetStateAction<string>>;
+  adsId: string;
+  setAdsId: React.Dispatch<React.SetStateAction<string>>;
+  getComments: () => void;
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -27,7 +29,8 @@ export interface ICommentsProvierProps {
   children: ReactNode;
 }
 
-const CommnetsProvider = ({ children }: ICommentsProvierProps) => {
+const CommentsProvider = ({ children }: ICommentsProvierProps) => {
+
   const [listComments, setListComments] = useState<ICommentsResponse[]>([]);
   const [commentsApi, setCommentsApi] = useState<ICommentsResponse>(
     {} as ICommentsResponse
@@ -35,17 +38,15 @@ const CommnetsProvider = ({ children }: ICommentsProvierProps) => {
   const [adsId, setAdsId] = useState<string>("");
 
   const getComments = async () => {
+
     await api
-      .get("/ads")
+      .get(`/comments/${adsId}`)
       .then((res) => {
         setListComments(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    getComments();
-  }, []);
 
   const onSubmitComments = async (data: ICommentsRequest) => {
     const response = await RequestAPI("comments/", "post", data, `${adsId}`);
@@ -69,7 +70,9 @@ const CommnetsProvider = ({ children }: ICommentsProvierProps) => {
         setListComments,
         commentsApi,
         setCommentsApi,
+        adsId,
         setAdsId,
+        getComments,
       }}
     >
       {children}
@@ -77,4 +80,4 @@ const CommnetsProvider = ({ children }: ICommentsProvierProps) => {
   );
 };
 
-export default CommnetsProvider;
+export default CommentsProvider;
