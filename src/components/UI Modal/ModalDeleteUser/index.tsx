@@ -27,13 +27,14 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
 
     const token = localStorage.getItem("@motors:token");
 
-    const resp = await axios
+    await axios
       .delete(`http://localhost:3000/user/${user?.id}`, {
         headers: {
           Authorization: token,
         },
       })
       .then((resp) => {
+        localStorage.removeItem("@motors:token");
         setDeleteUser(true);
         return resp;
       })
