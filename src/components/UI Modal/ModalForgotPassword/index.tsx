@@ -40,8 +40,6 @@ export const ModalForgotPassword = ({
   };
 
   const onSubmitForm = async (data: any) => {
-    console.log(data);
-
     if (data?.newPass) {
       const resp = await axios
         .post("http://localhost:3000/user/reset", data)
@@ -62,7 +60,6 @@ export const ModalForgotPassword = ({
         .post("http://localhost:3000/user/reset", data)
         .then((resp) => resp)
         .catch((err) => err);
-      console.log(resp);
 
       setIsCodeRecive({
         status: resp?.data && true,

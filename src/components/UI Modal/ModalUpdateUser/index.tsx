@@ -1,8 +1,5 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
+import axios from "axios";
 import { FormContainer } from "../../UI Components/FormContainer";
-
 import { FormGroup } from "../../UI Components/FormGroup";
 import { UIButton } from "../../UI Components/Button";
 import { UIInput } from "../../UI Components/Input";
@@ -11,7 +8,6 @@ import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { UIMessage } from "../../UI Components/Message";
 import { editUserSchema } from "../../../validators/patch";
-import axios from "axios";
 import { UserContext } from "../../../contexts/UserContexts";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";

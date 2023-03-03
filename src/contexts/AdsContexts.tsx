@@ -18,6 +18,8 @@ interface AdsContextData {
   isOpenModalDelete: boolean;
   setIsOpenModalDelete: React.Dispatch<React.SetStateAction<boolean>>;
   adsApi: IAds;
+  isError: boolean;
+  isSuccess: boolean;
 }
 
 export const AdsContext = createContext<AdsContextData>({} as AdsContextData);
@@ -35,8 +37,10 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(true);
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
+  const [isError, setIsErro] = useState<boolean>(false);
+  const [isSuccess, setIsSucess] = useState<boolean>(false);
 
-  const tokenUser = localStorage.getItem("@login:token")
+  const tokenUser = localStorage.getItem("@motors:token");
 
   const getAds = async () => {
     await api
@@ -51,17 +55,17 @@ const AdsProvider = ({ children }: IAuthProvier) => {
     getAds();
   }, []);
 
-  const onSubmitAds = (data: IAdsRequest) => {
-    api
-      .post("/ads", data ,{
-        headers: { Authorization: `Bearer ${tokenUser}` },
+  const onSubmitAds = async (data: IAdsRequest) => {
+    await api
+      .post("/ads", data, {
+        headers: { Authorization: tokenUser },
       })
       .then((res) => {
         setListAds((oldAds) => [...oldAds, res.data]);
         setAdsApi(res.data);
-        setIsOpenModal(false);
+        return res.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => err.response);
   };
 
   useEffect(() => {
@@ -79,20 +83,24 @@ const AdsProvider = ({ children }: IAuthProvier) => {
 
   const onSubmitUpdate = (id: string, dataUpdate: IAdsRequest) => {
     api
-      .patch(`/ads/${id}`, dataUpdate ,{
-        headers: { Authorization: `Bearer ${tokenUser}` },
+      .patch(`/ads/${id}`, dataUpdate, {
+        headers: { Authorization: tokenUser },
       })
       .then((res) => {
         setListAds((ads) => [...ads, res.data]);
-        setIsOpenModal(false);
+        setIsSucess(true);
+        return res.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setIsErro(true);
+        return err.response;
+      });
   };
 
   const delAds = (id: string) => {
     api
       .delete(`/ads/${id}`, {
-        headers: { Authorization: `Bearer ${tokenUser}` },
+        headers: { Authorization: tokenUser },
       })
       .then(() => {
         const deletedFiltered = listAds.filter((elem) => elem.id !== id);
@@ -119,6 +127,8 @@ const AdsProvider = ({ children }: IAuthProvier) => {
         isOpenModalUpdate,
         setIsOpenModalUpdate,
         adsApi,
+        isError,
+        isSuccess,
       }}
     >
       {children}

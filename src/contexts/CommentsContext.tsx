@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useState, useEffect } from "react";
+import {
+  createContext,
+  ReactNode,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { IAds } from "../interfaces/Ads";
 import { ICommentsRequest, ICommentsResponse } from "../interfaces/Comments";
 import api, { RequestAPI } from "../services/api";
@@ -23,6 +30,7 @@ export interface ICommentsProvierProps {
 }
 
 const CommentsProvider = ({ children }: ICommentsProvierProps) => {
+
   const [listComments, setListComments] = useState<ICommentsResponse[]>([]);
   const [commentsApi, setCommentsApi] = useState<ICommentsResponse>(
     {} as ICommentsResponse
@@ -30,7 +38,7 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   const [adsId, setAdsId] = useState<string>("");
 
   const getComments = async () => {
-    console.log(adsId, "id");
+
     await api
       .get(`/comments/${adsId}`)
       .then((res) => {
@@ -39,10 +47,6 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
       })
       .catch((err) => console.log(err));
   };
-
-  // useEffect(() => {
-  //   getComments();
-  // }, []);
 
   const onSubmitComments = async (data: ICommentsRequest) => {
     const response = await RequestAPI("comments/", "post", data, `${adsId}`);

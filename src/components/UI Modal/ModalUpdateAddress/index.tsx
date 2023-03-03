@@ -47,8 +47,6 @@ export const ModalUpdateAddress = ({
         setIsUpdated(resp.response.status);
         return err;
       });
-
-    navigate(0);
   };
 
   return (
