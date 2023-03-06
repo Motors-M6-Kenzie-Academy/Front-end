@@ -75,7 +75,7 @@ export const ModalUpdateAddress = ({
         <UIInput
           type={"string"}
           propBorder={true}
-          placeholder="89888.888"
+          placeholder="89888-888"
           {...register("zipcode")}
         />
       </FormGroup>
@@ -93,7 +93,7 @@ export const ModalUpdateAddress = ({
         <UIInput
           type={"text"}
           propBorder={true}
-          placeholder="9Curitiba"
+          placeholder="Curitiba"
           {...register("city")}
         />
       </FormGroup>
