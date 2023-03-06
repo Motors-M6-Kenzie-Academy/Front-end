@@ -21,7 +21,6 @@ const BoxComment = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmitComments)}>
-        <div className="divForm">
         <input
           type="text"
           placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
@@ -38,7 +37,6 @@ const BoxComment = () => {
         >
           Comentar
         </Button>
-        </div>
       </form>
 
       <div className="tags">

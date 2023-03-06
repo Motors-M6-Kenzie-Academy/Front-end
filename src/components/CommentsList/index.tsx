@@ -9,7 +9,7 @@ const ListComments = () => {
   return (
     <DivComments>
       <h3>Comentários</h3>
-      {listComments?.map((comment) => (
+      {listComments?.reverse().map((comment) => (
         <CommentCard
           key={comment.id}
           content={comment.content}

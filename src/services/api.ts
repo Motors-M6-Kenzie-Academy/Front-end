@@ -164,7 +164,7 @@ export const RequestAPI = async (
       if (method === "post") {
         const response = await api
           .post(`${endpoint}/${id}`, data, {
-            headers: { Authorization: token },
+            headers: { Authorization: `Bearer ${token}`},
           })
           .then((resp) => resp.data)
           .catch((err) => err.response);

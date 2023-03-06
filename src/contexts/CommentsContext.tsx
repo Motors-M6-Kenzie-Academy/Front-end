@@ -11,6 +11,7 @@ interface CommentsContextData {
   adsId: string;
   setAdsId: React.Dispatch<React.SetStateAction<string>>;
   getComments: () => void;
+  onDelComment: (id: string) => void
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -39,11 +40,28 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
       .catch((err) => console.log(err));
   };
 
-  const onSubmitComments = async (data: ICommentsRequest) => {
-    const response = await RequestAPI("comments", "post", data, adsId, token);
-    setListComments((oldComments) => [...oldComments, response]);
-    setCommentsApi(response);
+  const onSubmitComments = (data: ICommentsRequest) => {
+    api
+      .post(`comments/${adsId}`, data, {
+        headers: { Authorization: `Bearer ${token}`},
+      })
+      .then((res) => {
+      setListComments((oldComments) => [...oldComments, res.data]);
+      setCommentsApi(res.data)
+      return res.data
+    })
+      .catch((err) => err.response);
   };
+
+  const onDelComment = (id: string) => {
+    api
+    .delete(`comments/${id}`)
+    .then(() => {
+      const delFilter = listComments.filter((el) => el.id !== id);
+      setListComments(delFilter)
+    })
+    .catch((err) => console.log(err))
+  }
 
   return (
     <CommentsContext.Provider
@@ -56,6 +74,7 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
         adsId,
         setAdsId,
         getComments,
+        onDelComment
       }}
     >
       {children}

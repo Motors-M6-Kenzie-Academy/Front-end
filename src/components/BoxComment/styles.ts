@@ -19,6 +19,7 @@ export const DivComment = styled.div`
     flex-direction: row;
     gap: 20px;
     align-items: center;
+    margin-bottom: 20px;
   }
 
   .avatar {
@@ -44,7 +45,7 @@ export const DivComment = styled.div`
   }
 
   input {
-    width: 100%;
+    width: 45rem;
     height: 6.25rem;
     border: var(--gray7);
     border-radius: 0.25rem;
@@ -61,7 +62,6 @@ export const DivComment = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
-    margin-top: 15px;
 
     color: var(--gray3);
     font-size: 12px;
@@ -82,7 +82,7 @@ export const DivComment = styled.div`
   }
 
   Button {
-    margin-left: 500px;
+    margin-left: 620px;
   }
 
   @media screen and (min-width: 43.75rem) {
