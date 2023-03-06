@@ -30,8 +30,6 @@ const ProductCard = (info: any) => {
     user,
   } = info.info;
 
-  const announcer = "Natália";
-
   const { userLogged } = useContext(UserContext);
   const { adsId, setAdsId, getComments } = useContext(CommentsContext);
 
@@ -40,7 +38,7 @@ const ProductCard = (info: any) => {
   const view = () => {
     setAdsId(id);
     getComments();
-    navigate("/ad");
+    navigate(`/ad/${adsId}`);
   };
 
   const handleModalDeleteAds = () => {
@@ -73,7 +71,6 @@ const ProductCard = (info: any) => {
           <p className="container--description">{description}</p>
           {userLogged ? null : (
             <div className="container--announcer">
-
               <div className="avatar">{user.name[0]}</div>
               <p>{user.name}</p>
             </div>

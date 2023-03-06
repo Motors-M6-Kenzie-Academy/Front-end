@@ -23,7 +23,7 @@ export const DesktopContainer = styled.div`
     position: relative;
     bottom: 15px;
     border-radius: 4px;
-    padding: 24px;
+    padding: 22px;
 
     h2 {
       font-family: var(--lexend);
@@ -45,8 +45,8 @@ export const DesktopContainer = styled.div`
     flex-direction: column;
     gap: 30px;
 
+    width: 334px;
     height: fit-content;
-    width: 400px;
     background: var(--white);
 
     /* position: relative; */
@@ -100,8 +100,8 @@ export const DesktopContainer = styled.div`
     grid-gap: 20px 8px;
 
     img {
-      width: 90px;
-      height: 90px;
+      width: 100%;
+      height: 100%;
       background-color: var(--gray8);
     }
   }
@@ -173,6 +173,16 @@ export const RowContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 40px;
+  overflow: hidden;
+
+  .bigger--container {
+    width: 60%;
+    margin-left: 15px;
+  }
+
+  .smaller--container {
+    width: 40%;
+  }
 `;
 
 export const ColumnContainer = styled.div`

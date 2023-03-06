@@ -147,8 +147,8 @@ export const MobileContainer = styled.div`
     }
 
     img {
-      width: 76px;
-      height: 76px;
+      width: 100%;
+      height: 100%;
       background-color: var(--gray8);
     }
   }
