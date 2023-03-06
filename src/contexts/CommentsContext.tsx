@@ -49,7 +49,6 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
 
   const onSubmitComments = async (data: ICommentsRequest) => {
     const response = await RequestAPI("comments", "post", data, adsId, token);
-    console.log(response);
     setListComments((oldComments) => [...oldComments, response]);
     setCommentsApi(response);
   };
