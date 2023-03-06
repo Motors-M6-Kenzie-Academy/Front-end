@@ -1,12 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useState,
-  useEffect,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import { IAds } from "../interfaces/Ads";
+import { createContext, ReactNode, useState } from "react";
 import { ICommentsRequest, ICommentsResponse } from "../interfaces/Comments";
 import api, { RequestAPI } from "../services/api";
 
@@ -49,7 +41,6 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
 
   const onSubmitComments = async (data: ICommentsRequest) => {
     const response = await RequestAPI("comments", "post", data, adsId, token);
-    console.log(response);
     setListComments((oldComments) => [...oldComments, response]);
     setCommentsApi(response);
   };
