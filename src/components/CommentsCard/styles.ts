@@ -6,6 +6,7 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     background-color: transparent;
+    padding: 20px;
 
     .headerCard{
         display: flex;

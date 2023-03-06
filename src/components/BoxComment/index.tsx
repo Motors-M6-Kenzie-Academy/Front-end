@@ -6,7 +6,7 @@ import { UserContext } from "../../contexts/UserContexts";
 import { CommentsContext } from "../../contexts/CommentsContext";
 import { Button } from "../Button";
 
-const BoxComment = (data: any) => {
+const BoxComment = () => {
   const { register, handleSubmit } = useForm<ICommentsRequest>();
   const { userLogged } = useContext(UserContext);
   const { onSubmitComments } = useContext(CommentsContext);
@@ -21,6 +21,7 @@ const BoxComment = (data: any) => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmitComments)}>
+        <div className="divForm">
         <input
           type="text"
           placeholder="Carro muito confortável, foi uma ótima experiência de compra..."
@@ -37,12 +38,13 @@ const BoxComment = (data: any) => {
         >
           Comentar
         </Button>
+        </div>
       </form>
 
       <div className="tags">
         <span className="ideia">Gostei muito!</span>
         <span className="ideia">Incrível</span>
-        <span className="ideia">Recomndarei para meus amigos!</span>
+        <span className="ideia">Recomendarei para meus amigos!</span>
       </div>
     </DivComment>
   );

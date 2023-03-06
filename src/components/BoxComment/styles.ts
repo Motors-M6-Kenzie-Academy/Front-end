@@ -7,7 +7,7 @@ export const DivComment = styled.div`
     flex-direction: column;
     background-color: #FDFDFD;
     border-radius: .25rem;
-    padding: 20px;
+    padding: 40px;
 
     .headerBox{
         display: flex;
@@ -39,10 +39,11 @@ export const DivComment = styled.div`
       }
 
       input{
-        width: 37.5rem;
+        width: 42rem;
         height: 6.25rem;
         border: var(--gray7)
         border-radius: .25rem;
+        margin-top: 5px;
         padding: 10px;
         font-size: 16px;
       }
@@ -65,16 +66,16 @@ export const DivComment = styled.div`
 
       .ideia{
         background-color: var(--gray7);
-        padding: 5px;
+        padding: 8px;
         border-radius: 1.5rem;
       }
 
-      form{
+      divForm{
         border: var(--gray7);
       }
 
       Button{
-        margin-left: 500px;
+        margin-left: 573px;
       }
       
     @media screen and (min-width: 43.75rem) {
