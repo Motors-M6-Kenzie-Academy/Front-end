@@ -14,9 +14,9 @@ const BoxComment = () => {
   return (
     <DivComment>
       <div className="headerBox">
-        <div className="avatar">{userLogged!.name[0]}</div>
+        <div className="avatar">{userLogged?.name[0]}</div>
         <div className="nameUser">
-          <strong>{userLogged!.name}</strong>
+          <strong>{userLogged?.name}</strong>
         </div>
       </div>
 
