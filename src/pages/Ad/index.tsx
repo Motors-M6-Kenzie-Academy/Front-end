@@ -7,7 +7,7 @@ import MobileAd from "../../components/MobileAd";
 import DesktopAd from "../../components/DesktopAd";
 
 const AdPage = () => {
-  const isTablet = useMediaQuery({ query: "(max-width: 800px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 900px)" });
 
   return (
     <>
