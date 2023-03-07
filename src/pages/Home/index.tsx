@@ -47,13 +47,23 @@ export const Home = () => {
               </h1>
               <p>Um ambiente feito para você explorar o seu melhor</p>
               <div>
-                <Link to={"/"}>
-                  <Button bgColor="transparent" txColor="white" border={true}>
+                <a href="#cars">
+                  <Button
+                    type="button"
+                    bgColor="transparent"
+                    txColor="white"
+                    border={true}
+                  >
                     Carros
                   </Button>
-                </Link>
-                <Link to={"/"}>
-                  <Button bgColor="transparent" txColor="white" border={true}>
+                </a>
+                <Link to="#motorbikes">
+                  <Button
+                    type="button"
+                    bgColor="transparent"
+                    txColor="white"
+                    border={true}
+                  >
                     Motos
                   </Button>
                 </Link>
@@ -81,7 +91,7 @@ export const Home = () => {
               ))}
             </div>
           </div>
-          <div className="motorsbike" id="motorsbike">
+          <div className="motorsbike" id="motorbikes">
             <h2 className="title-section">Motos</h2>
             <div className="scroll-card-motorsbike">
               {listMotorbikes?.map((ad) => (
