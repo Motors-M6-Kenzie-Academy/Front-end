@@ -100,6 +100,7 @@ export const ContainerCard = styled.div`
   .container--buttons--edit {
     display: flex;
     gap: 0.9375rem;
+    margin-top: 1.25rem;
   }
 `;
 
@@ -107,7 +108,7 @@ export const ContainerIsActive = styled.div<IContainerIsActiveProps>`
   width: fit-content;
   padding: 0.4375rem;
   position: relative;
-  top: 2.3125rem;
+  top: 0.5rem;
   left: 0.5rem;
 
   font-family: var(--inter);

@@ -1,7 +1,7 @@
 import { Card } from "./styles";
 import { IUserResponseComments } from "../../interfaces/User";
 import { CommentsContext } from "../../contexts/CommentsContext";
-import {useContext} from "react"
+import { useContext } from "react";
 
 interface IComment {
   id: string;
@@ -11,17 +11,24 @@ interface IComment {
   user: IUserResponseComments;
 }
 const CommentCard = ({ id, content, user, createdAt }: IComment) => {
-  const {onDelComment} = useContext(CommentsContext)
+  const { onDelComment } = useContext(CommentsContext);
+  const date = createdAt.split("T")[0];
 
   return (
     <Card>
       <div className="headerCard">
-        <div className="avatar">{user?.name[0]}</div>
-        <div className="nameUser">
-          <strong>{user?.name}</strong>
+        <div className="container--split">
+          <div className="avatar">{user?.name[0]}</div>
+          <div className="nameUser">
+            <strong>{user?.name}</strong>
+          </div>
         </div>
-        <div className="created">{createdAt}</div>
-        <button type="button" onClick={() => onDelComment(id)}>X</button>
+        <div className="container--split">
+          <div className="created">{date}</div>
+          <button type="button" onClick={() => onDelComment(id)}>
+            X
+          </button>
+        </div>
       </div>
 
       <div className="comment">
