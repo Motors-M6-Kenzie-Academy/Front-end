@@ -9,7 +9,11 @@ import ListComments from "../CommentsList";
 import BoxComment from "../BoxComment";
 import { AdsContext } from "../../contexts/AdsContexts";
 
-const MobileAd = () => {
+type ModalUpdateProps = {
+  handleUpdateToggle: () => void
+}
+
+const MobileAd = ({handleUpdateToggle}: ModalUpdateProps) => {
   const { listAds } = useContext(AdsContext);
   const params = useParams();
 
@@ -99,7 +103,7 @@ const MobileAd = () => {
         </Button>
       </div>
 
-      <ListComments />
+      <ListComments handleUpdateToggle={handleUpdateToggle}/>
       <BoxComment />
     </MobileContainer>
   );

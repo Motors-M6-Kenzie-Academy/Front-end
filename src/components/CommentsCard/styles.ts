@@ -40,15 +40,23 @@ export const Card = styled.div`
         font-family: var(--lexend);
       }
 
-      button{
-        font-size: 12px;
-        border-radius: 50%;
-      }
-
       .created{
         font-family: var(--inter);
         color: var(--grey3)
         font-size: .75rem;
+      }
+
+      .iconsCard{
+        font-size: 25px;
+      }
+
+      .iconsCard:hover{
+        cursor: pointer;
+      }
+
+      .iconEdit{
+        margin-left: 300px;
+        margin-right: 20px;
       }
 
       .comment{

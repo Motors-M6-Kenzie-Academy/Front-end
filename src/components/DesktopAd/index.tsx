@@ -10,7 +10,11 @@ import ListComments from "../CommentsList";
 import BoxComment from "../BoxComment";
 import { AdsContext } from "../../contexts/AdsContexts";
 
-const DesktopAd = () => {
+type ModalUpdateProps = {
+  handleUpdateToggle: () => void
+}
+
+const DesktopAd = ({handleUpdateToggle}: ModalUpdateProps) => {
   const { listAds } = useContext(AdsContext);
   const params = useParams();
 
@@ -69,7 +73,7 @@ const DesktopAd = () => {
             <p>{adFound && adFound.description}</p>
           </div>
 
-          <ListComments />
+          <ListComments handleUpdateToggle={handleUpdateToggle}/>
           <BoxComment />
         </ColumnContainer>
 

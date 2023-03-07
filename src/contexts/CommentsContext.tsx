@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, ReactNode, useState } from "react";
 import { ICommentsRequest, ICommentsResponse } from "../interfaces/Comments";
 import api from "../services/api";
@@ -13,7 +14,10 @@ interface CommentsContextData {
   getComments: () => void;
   onDelComment: (id: string) => void;
   commentId: string;
-  setCommentId: React.Dispatch<React.SetStateAction<string>>
+  setCommentId: React.Dispatch<React.SetStateAction<string>>;
+  onPatchComment:  (commentId: string, data: string) => void;
+  openUpdate: boolean;
+  setOpenUpdate: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -31,6 +35,7 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   );
   const [adsId, setAdsId] = useState<string>("");
   const [commentId, setCommentId] = useState<string>("");
+  const [openUpdate, setOpenUpdate] = useState(false)
 
   const token = localStorage.getItem("@motors:token")?.toString();
 
@@ -56,6 +61,18 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
       .catch((err) => err.response);
   };
 
+  const onPatchComment = async (commentId: string, content: string) => {
+
+    api
+    .patch(`comments/${commentId}`, {content}, {
+      headers: { Authorization: `Bearer ${token}`},
+    })
+    .then((res) => {
+      getComments()
+    })
+    .catch((err) => console.log(err))
+  }
+
   const onDelComment = (commentId: string) => {
     api
     .delete(`comments/${commentId}`)
@@ -79,7 +96,10 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
         getComments,
         onDelComment,
         commentId,
-        setCommentId
+        setCommentId,
+        onPatchComment,
+        openUpdate,
+        setOpenUpdate
       }}
     >
       {children}
