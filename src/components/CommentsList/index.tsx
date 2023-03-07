@@ -4,10 +4,15 @@ import { useContext } from "react";
 import CommentCard from "../CommentsCard";
 import LoadingAnimation from "../LoadingAnimation";
 
-const ListComments = () => {
+type ModalUpdateProps = {
+  handleUpdateToggle: () => void
+}
+
+const ListComments = ({handleUpdateToggle}: ModalUpdateProps) => {
   const { listComments, isLoading } = useContext(CommentsContext);
 
   return (
+    
     <DivComments>
       <h3>Comentários</h3>
       {isLoading ? (
@@ -19,11 +24,12 @@ const ListComments = () => {
       ) : (
         listComments?.map((comment) => (
           <CommentCard
-            id={comment.id}
-            key={comment.id}
-            content={comment.content}
-            createdAt={comment.createdAt}
-            user={comment.user}
+          id={comment.id}
+          key={comment.id}
+          content={comment.content}
+          createdAt={comment.createdAt}
+          user={comment.user}
+          handleUpdateToggle={handleUpdateToggle}
           />
         ))
       )}

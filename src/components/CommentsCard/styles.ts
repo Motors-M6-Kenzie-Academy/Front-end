@@ -55,6 +55,19 @@ export const Card = styled.div`
     border-radius: 50%;
   }
 
+  .iconsCard{
+    font-size: 25px;
+  }
+
+  .iconsCard:hover{
+    cursor: pointer;
+  }
+
+  .iconEdit{
+    margin-left: 300px;
+    margin-right: 20px;
+  }
+
   .created {
     font-family: var(--inter);
     color: var(--grey3);
@@ -71,5 +84,53 @@ export const Card = styled.div`
     p {
       overflow-wrap: break-word;
     }
-  }
-`;
+
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100%;
+
+        font-family: var(--inter);
+        font-size: .875rem;
+
+        background-color: var(--brand2);
+        color: var(--white);
+    }
+
+      strong{
+        font-size: .875rem;
+        font-weight: 500;
+        font-family: var(--lexend);
+      }
+
+      .created{
+        font-family: var(--inter);
+        color: var(--grey3)
+        font-size: .75rem;
+      }
+
+      .iconsCard{
+        font-size: 25px;
+      }
+
+      .iconsCard:hover{
+        cursor: pointer;
+      }
+
+      .iconEdit{
+        margin-left: 300px;
+        margin-right: 20px;
+        font-size: 25px;
+      }
+
+      .comment{
+        font-family: var(--inter);
+        font-size: .875rem;
+        color: var(--grey2);
+        padding: 10px;
+      }
+`

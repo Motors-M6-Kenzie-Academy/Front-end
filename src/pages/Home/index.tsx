@@ -14,12 +14,14 @@ import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
 import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
 import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
 
+
 export const Home = () => {
   const { userLogged } = useContext(UserContext);
   const { listCars, listMotorbikes } = useContext(AdsContext);
   const [createAds, setCreateAds] = useState(false);
   const [updateAds, setUpdateAds] = useState(false);
   const [deleteAds, setDeleteAds] = useState(false);
+  
 
   const handleModalDeleteAds = () => {
     setUpdateAds(!updateAds);
@@ -31,6 +33,7 @@ export const Home = () => {
   const handleModalUpdateAds = () => {
     setUpdateAds(!updateAds);
   };
+
 
   return (
     <>
@@ -113,6 +116,7 @@ export const Home = () => {
           <ModalDeleteAds setStatement={handleModalDeleteAds} />
         </ModalContainer>
       )}
+
     </>
   );
 };
