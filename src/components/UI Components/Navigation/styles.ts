@@ -28,13 +28,18 @@ export const NavigationContainer = styled.nav`
   }
 
   .user-acronym {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-family: var(--inter);
     font-style: normal;
     font-weight: 600;
     font-size: 0.8rem;
-
     color: var(--gray2);
 
+    min-height: 2rem;
+    min-width: 2rem;
     padding: 0.5rem;
     background-color: var(--brand1);
     border-radius: 50%;

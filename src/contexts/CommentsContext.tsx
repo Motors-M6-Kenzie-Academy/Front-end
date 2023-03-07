@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createContext, ReactNode, useState } from "react";
 import { ICommentsRequest, ICommentsResponse } from "../interfaces/Comments";
 import api from "../services/api";
@@ -11,13 +10,15 @@ interface CommentsContextData {
   setCommentsApi: React.Dispatch<React.SetStateAction<ICommentsResponse>>;
   adsId: string;
   setAdsId: React.Dispatch<React.SetStateAction<string>>;
-  getComments: () => void;
+  getComments: (id: string) => void;
   onDelComment: (id: string) => void;
   commentId: string;
   setCommentId: React.Dispatch<React.SetStateAction<string>>;
   onPatchComment:  (commentId: string, data: string) => void;
   openUpdate: boolean;
-  setOpenUpdate: React.Dispatch<React.SetStateAction<boolean>>
+  setOpenUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -36,14 +37,16 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   const [adsId, setAdsId] = useState<string>("");
   const [commentId, setCommentId] = useState<string>("");
   const [openUpdate, setOpenUpdate] = useState(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const token = localStorage.getItem("@motors:token")?.toString();
 
-  const getComments = async () => {
+  const getComments = async (id: string) => {
     await api
-      .get(`/comments/${adsId}`)
+      .get(`/comments/${id}`)
       .then((res) => {
         setListComments(res.data.reverse());
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -51,13 +54,13 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   const onSubmitComments = (data: ICommentsRequest) => {
     api
       .post(`comments/${adsId}`, data, {
-        headers: { Authorization: `Bearer ${token}`},
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-      setListComments((oldComments) => [...oldComments, res.data]);
-      setCommentsApi(res.data)
-      getComments()
-    })
+        setListComments((oldComments) => [...oldComments, res.data]);
+        setCommentsApi(res.data);
+        getComments(adsId);
+      })
       .catch((err) => err.response);
   };
 
@@ -68,20 +71,20 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
       headers: { Authorization: `Bearer ${token}`},
     })
     .then((res) => {
-      getComments()
+      getComments(adsId)
     })
     .catch((err) => console.log(err))
   }
 
   const onDelComment = (commentId: string) => {
     api
-    .delete(`comments/${commentId}`)
-    .then(() => {
-      const delFilter = listComments.filter((el) => el.id !== commentId);
-      setListComments(delFilter)
-    })
-    .catch((err) => console.log(err))
-  }
+      .delete(`comments/${commentId}`)
+      .then(() => {
+        const delFilter = listComments.filter((el) => el.id !== commentId);
+        setListComments(delFilter);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <CommentsContext.Provider
@@ -99,7 +102,9 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
         setCommentId,
         onPatchComment,
         openUpdate,
-        setOpenUpdate
+        setOpenUpdate,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

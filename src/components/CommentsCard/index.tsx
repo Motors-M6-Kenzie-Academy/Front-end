@@ -13,13 +13,9 @@ interface IComment {
   handleUpdateToggle: () => void
 }
 
-
-
-
-
-
 const CommentCard = ({ id, content, user, createdAt, handleUpdateToggle }: IComment) => {
   const {onDelComment, setCommentId} = useContext(CommentsContext)
+  const date = createdAt.split("T")[0];
 
   const up = () => {
     setCommentId(id)
@@ -30,12 +26,16 @@ const CommentCard = ({ id, content, user, createdAt, handleUpdateToggle }: IComm
     <>
     <Card>
       <div className="headerCard">
-        <div className="avatar">{user?.name[0]}</div>
-        <div className="nameUser">
-          <strong>{user?.name}</strong>
+        <div className="container--split">
+          <div className="avatar">{user?.name[0]}</div>
+          <div className="nameUser">
+            <strong>{user?.name}</strong>
+          </div>
         </div>
-        <div className="created">{createdAt}</div>
-
+        <div className="container--split">
+          <div className="created">{date}</div>
+        </div>
+        
         <div className="iconsCard">
           <AiFillEdit type="button" onClick={() => up()} className="iconEdit"/>
           <AiFillDelete type="button" onClick={() => onDelComment(id)} />

@@ -27,17 +27,19 @@ const ProductCard = (info: any) => {
     price,
     cover,
     gallery_image,
+    isPublished,
     user,
   } = info.info;
 
   const { userLogged } = useContext(UserContext);
-  const { adsId, setAdsId, getComments } = useContext(CommentsContext);
+  const { setAdsId, getComments, setIsLoading } = useContext(CommentsContext);
 
   const navigate = useNavigate();
 
   const view = () => {
     setAdsId(id);
-    getComments();
+    setIsLoading(true);
+    getComments(id);
     navigate(`/ad/${id}`);
   };
 
@@ -55,10 +57,22 @@ const ProductCard = (info: any) => {
   return (
     <>
       <ContainerCard>
-        {/* <ContainerIsActive backgroundColor="var(--brand1)" color="var(--white)">
-        {obj.isActive ? "Ativo" : "Inativo"} 
-        Ativo
-      </ContainerIsActive> */}
+        {isPublished ? (
+          <ContainerIsActive
+            backgroundColor="var(--brand1)"
+            color="var(--white)"
+          >
+            {"Ativo"}
+          </ContainerIsActive>
+        ) : (
+          <ContainerIsActive
+            backgroundColor="var(--gray4)"
+            color="var(--white)"
+          >
+            {"Inativo"}
+          </ContainerIsActive>
+        )}
+
         <div className="container--img">
           {info.type === "cars" ? (
             <img src={Car} alt="car" />
@@ -71,8 +85,8 @@ const ProductCard = (info: any) => {
           <p className="container--description">{description}</p>
           {userLogged ? null : (
             <div className="container--announcer">
-              <div className="avatar">{user.name[0]}</div>
-              <p>{user.name}</p>
+              <div className="avatar">{user?.name[0]}</div>
+              <p>{user?.name}</p>
             </div>
           )}
           <div className="container--tag--price">
