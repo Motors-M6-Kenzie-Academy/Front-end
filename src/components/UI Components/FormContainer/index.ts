@@ -8,6 +8,8 @@ export const FormContainer = styled.form`
 
   width: 30rem;
   max-width: 90%;
+  max-height: 100vh;
+  overflow: scroll;
 
   padding: 2rem;
 
@@ -20,4 +22,3 @@ export const FormContainer = styled.form`
   background-color: var(--gray10);
   border-radius: 1rem;
 `;
-

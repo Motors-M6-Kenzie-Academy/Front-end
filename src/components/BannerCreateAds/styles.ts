@@ -51,6 +51,7 @@ export const ContainerBannerCreateAds = styled.div`
 
     .container--name--type {
       display: flex;
+      align-items: center;
       gap: 10px;
 
       strong {

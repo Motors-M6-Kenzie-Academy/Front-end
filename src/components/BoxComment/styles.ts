@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DivComment = styled.div`
   width: 100%;
-  max-width: 750px;
   height: 18.0625rem;
   display: flex;
   flex-direction: column;
@@ -12,6 +11,10 @@ export const DivComment = styled.div`
 
   @media screen and (max-width: 900px) {
     width: 90%;
+  }
+
+  @media screen and (min-width: 900px) {
+    max-width: 750px;
   }
 
   .headerBox {
