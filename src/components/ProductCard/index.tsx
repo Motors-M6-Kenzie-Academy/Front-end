@@ -37,8 +37,8 @@ const ProductCard = (info: any) => {
 
   const view = () => {
     setAdsId(id);
-    navigate(`/ad/${adsId}`);
     getComments();
+    navigate(`/ad/${id}`);
   };
 
   const handleModalDeleteAds = () => {

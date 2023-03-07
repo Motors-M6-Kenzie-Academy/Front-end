@@ -11,6 +11,7 @@ const ListComments = () => {
       <h3>Comentários</h3>
       {listComments?.reverse().map((comment) => (
         <CommentCard
+          id={comment.id}
           key={comment.id}
           content={comment.content}
           createdAt={comment.createdAt}

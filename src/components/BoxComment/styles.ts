@@ -45,7 +45,7 @@ export const DivComment = styled.div`
   }
 
   input {
-    width: 45rem;
+    width: 100%;
     height: 6.25rem;
     border: var(--gray7);
     border-radius: 0.25rem;
@@ -72,6 +72,8 @@ export const DivComment = styled.div`
     background-color: var(--gray7);
     padding: 5px;
     border-radius: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 9.5px;
   }
 
   form {

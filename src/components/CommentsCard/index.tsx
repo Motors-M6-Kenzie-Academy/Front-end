@@ -4,14 +4,14 @@ import { CommentsContext } from "../../contexts/CommentsContext";
 import {useContext} from "react"
 
 interface IComment {
+  id: string;
   key?: string;
   content: string;
   createdAt: string;
   user: IUserResponseComments;
 }
-const CommentCard = ({ content, user, createdAt }: IComment) => {
-  const {onDelComment, commentsApi} = useContext(CommentsContext)
-  const id = commentsApi.id
+const CommentCard = ({ id, content, user, createdAt }: IComment) => {
+  const {onDelComment} = useContext(CommentsContext)
 
   return (
     <Card>
