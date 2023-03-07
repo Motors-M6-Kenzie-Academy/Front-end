@@ -11,15 +11,18 @@ export const DivComments = styled.ul`
   border-radius: 0.25rem;
   padding: 0.625rem;
 
+  h3{
+    font-family: var(--lexend);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 20px;
+  }
+  
   @media screen and (max-width: 900px) {
     width: 90%;
   }
 
-  h3 {
-    font-size: 1.25rem;
-    font-family: var(--lexend);
-    color: #212529;
-  }
 
   @media screen and (min-width: 700px) {
     margin: 0 5.625rem;

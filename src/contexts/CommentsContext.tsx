@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 import { ICommentsRequest, ICommentsResponse } from "../interfaces/Comments";
-import api, { RequestAPI } from "../services/api";
+import api from "../services/api";
 
 interface CommentsContextData {
   onSubmitComments: (data: ICommentsRequest) => void;
@@ -11,6 +11,9 @@ interface CommentsContextData {
   adsId: string;
   setAdsId: React.Dispatch<React.SetStateAction<string>>;
   getComments: () => void;
+  onDelComment: (id: string) => void;
+  commentId: string;
+  setCommentId: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -27,6 +30,7 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
     {} as ICommentsResponse
   );
   const [adsId, setAdsId] = useState<string>("");
+  const [commentId, setCommentId] = useState<string>("");
 
   const token = localStorage.getItem("@motors:token")?.toString();
 
@@ -34,16 +38,33 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
     await api
       .get(`/comments/${adsId}`)
       .then((res) => {
-        setListComments(res.data);
+        setListComments(res.data.reverse());
       })
       .catch((err) => console.log(err));
   };
 
-  const onSubmitComments = async (data: ICommentsRequest) => {
-    const response = await RequestAPI("comments", "post", data, adsId, token);
-    setListComments((oldComments) => [...oldComments, response]);
-    setCommentsApi(response);
+  const onSubmitComments = (data: ICommentsRequest) => {
+    api
+      .post(`comments/${adsId}`, data, {
+        headers: { Authorization: `Bearer ${token}`},
+      })
+      .then((res) => {
+      setListComments((oldComments) => [...oldComments, res.data]);
+      setCommentsApi(res.data)
+      getComments()
+    })
+      .catch((err) => err.response);
   };
+
+  const onDelComment = (commentId: string) => {
+    api
+    .delete(`comments/${commentId}`)
+    .then(() => {
+      const delFilter = listComments.filter((el) => el.id !== commentId);
+      setListComments(delFilter)
+    })
+    .catch((err) => console.log(err))
+  }
 
   return (
     <CommentsContext.Provider
@@ -56,6 +77,9 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
         adsId,
         setAdsId,
         getComments,
+        onDelComment,
+        commentId,
+        setCommentId
       }}
     >
       {children}

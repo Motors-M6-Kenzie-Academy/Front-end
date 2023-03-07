@@ -40,7 +40,7 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
       })
       .catch((err) => err);
 
-    navigate(0);
+    navigate("/");
   };
   return (
     <FormContainer onSubmit={(e) => SubmitForm(e)}>
