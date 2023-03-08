@@ -37,6 +37,11 @@ const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
     navigate(`/ad/${id}`);
   };
 
+  const handleEdit = () => {
+    setAdsId(id);
+    handleButtonToggle();
+  };
+
   return (
     <>
       <ContainerCard>
@@ -89,7 +94,7 @@ const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
-              onClick={handleButtonToggle}
+              onClick={() => handleEdit()}
             >
               Editar
             </Button>

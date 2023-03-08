@@ -10,6 +10,7 @@ import { AdsContext } from "../../../contexts/AdsContexts";
 import { UIMessage } from "../../UI Components/Message";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CreateAdsSchema } from "../../../schemaYup/createAds.schema";
+import { useNavigate } from "react-router";
 
 type ModalCreateAdsProps = {
   setStatement: () => void;
@@ -20,6 +21,7 @@ type vehicleTypeProps = {
 };
 
 export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
+  const navigate = useNavigate();
   const { onSubmitAds, isSuccess } = useContext(AdsContext);
   const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
   const {
@@ -34,6 +36,10 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
     data["typeVehicle"] = vehicleType?.vehicleType;
     onSubmitAds(data);
   };
+
+  if (isSuccess) {
+    navigate(0);
+  }
 
   return (
     <FormContainer onSubmit={handleSubmit(Submit)}>

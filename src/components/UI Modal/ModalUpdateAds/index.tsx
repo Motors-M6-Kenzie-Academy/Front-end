@@ -9,6 +9,7 @@ import { UILabel } from "../../UI Components/Label";
 import { useContext, useState } from "react";
 import { UIMessage } from "../../UI Components/Message";
 import { useNavigate } from "react-router-dom";
+import { CommentsContext } from "../../../contexts/CommentsContext";
 
 type ModalUpdateAdsProps = {
   setStatement: () => void;
@@ -24,7 +25,8 @@ export const ModalUpdateAds = ({
   setConfirmDelete,
 }: ModalUpdateAdsProps) => {
   const navigate = useNavigate();
-  const { onSubmitUpdate, adsApi, isError, isSuccess } = useContext(AdsContext);
+  const { onSubmitUpdate, isError, isSuccess } = useContext(AdsContext);
+  const { adsId } = useContext(CommentsContext);
 
   const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
 
@@ -32,7 +34,7 @@ export const ModalUpdateAds = ({
 
   const Submit = (data: any) => {
     data["typeVehicle"] = vehicleType?.vehicleType;
-    onSubmitUpdate(adsApi.id, data);
+    onSubmitUpdate(adsId, data);
 
     if (isSuccess) {
       navigate(0);
