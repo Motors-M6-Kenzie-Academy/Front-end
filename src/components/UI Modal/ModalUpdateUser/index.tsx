@@ -1,4 +1,7 @@
-import axios from "axios";
+// Imports React Native Functions
+import { useContext, useState } from "react";
+
+// Imports Components UI
 import { FormContainer } from "../../UI Components/FormContainer";
 import { FormGroup } from "../../UI Components/FormGroup";
 import { UIButton } from "../../UI Components/Button";
@@ -7,68 +10,80 @@ import { UILabel } from "../../UI Components/Label";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { UIMessage } from "../../UI Components/Message";
-import { editUserSchema } from "../../../validators/patch";
-import { UserContext } from "../../../contexts/UserContexts";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+// Imports Extras Libs
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
-export interface ISubmitData {
-  name: string;
-  email: string;
-  cpf: string;
-  phoneNumber: string;
-  birthDate: string;
-  description: string;
-}
+// Imports Others Functions
+import { editUserSchema } from "../../../validators/patch";
+import { UserContext } from "../../../contexts/UserContexts";
+import { getData } from "../../../utils/getData";
 
-type ModalUpdateUserProps = {
-  setStatement: () => void;
-};
+// Imports @Types
+import {
+  ISubmitFormData,
+  ModalUpdateUserProps,
+  UpdateStatement,
+} from "./@types";
 
-export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
+export const ModalUpdateUser = ({
+  handleButtonToggle,
+}: ModalUpdateUserProps) => {
   const navigate = useNavigate();
-  const [isUpdated, setIsUpdated] = useState<number>();
-  const { userLogged } = useContext(UserContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISubmitData>({
+  } = useForm<ISubmitFormData>({
     resolver: yupResolver(editUserSchema),
   });
 
-  const SubmitForm = async (data: any) => {
-    const token = localStorage.getItem("@motors:token");
+  const { userLogged } = useContext(UserContext);
+  const [isUpdated, setIsUpdated] = useState<UpdateStatement>();
 
-    const resp = await axios
-      .patch(`http://localhost:3000/user/${userLogged?.id}`, data, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((resp) => {
-        setIsUpdated(resp.status);
-        return resp;
-      })
-      .catch((err) => {
-        setIsUpdated(resp.response.status);
-        return err;
+  const SubmitForm = async (data: any) => {
+    const token = localStorage.getItem("@motors:token")!;
+
+    await getData({
+      endpoint: "user",
+      data,
+      method: "patch",
+      token,
+      id: userLogged?.id,
+    }).then((resp) => {
+      setIsUpdated({
+        status: resp,
+        message:
+          resp === 200
+            ? "Alterações realizadas com sucesso!"
+            : "Verifique se os campos foram preenchidos corretamente.",
       });
-    navigate(0);
+      setTimeout(() => navigate(0), 1000 * 2);
+    });
   };
 
   return (
     <FormContainer onSubmit={handleSubmit(SubmitForm)}>
-      <FormTitle>Editar perfil</FormTitle>
+      <FormGroup propJustify="space-between" propColumn="row">
+        <FormTitle>Editar perfil</FormTitle>
+        <UIButton
+          propBG="--transparent"
+          propTextColor="--black"
+          onClick={handleButtonToggle}
+        >
+          X
+        </UIButton>
+      </FormGroup>
       <FormParagraphy propTextColor="--gray1" propFontSize="0.9rem">
         informações pessoais
       </FormParagraphy>
-      {isUpdated === 200 && (
+      {isUpdated?.status && (
         <UIMessage
-          propMessage="Alterações realizadas com sucesso!"
-          propIsSuccess={true}
+          propMessage={isUpdated.message}
+          propIsError={isUpdated?.status === 404}
+          propIsSuccess={isUpdated?.status === 200}
         />
       )}
 
@@ -171,7 +186,7 @@ export const ModalUpdateUser = ({ setStatement }: ModalUpdateUserProps) => {
         <UIButton
           propBG="--gray6"
           propTextColor="--gray2"
-          onClick={setStatement}
+          onClick={handleButtonToggle}
           type="reset"
         >
           Cancelar

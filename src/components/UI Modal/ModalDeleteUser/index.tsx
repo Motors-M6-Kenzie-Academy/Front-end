@@ -1,23 +1,32 @@
-import axios from "axios";
+// Imports React Native Functions
+import { useContext, useState } from "react";
+
+// Imports Components UI
 import { UIButton } from "../../UI Components/Button";
 import { FormContainer } from "../../UI Components/FormContainer";
 import { FormGroup } from "../../UI Components/FormGroup";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { UILabel } from "../../UI Components/Label";
-import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
 import { UIInput } from "../../UI Components/Input";
 import { UIMessage } from "../../UI Components/Message";
+
+// Imports Extras Libs
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+// Imports Others Functions
 import { UserContext } from "../../../contexts/UserContexts";
+import { getData } from "../../../utils/getData";
 
 type ModalDeleteUserProps = {
   setStatement: () => void;
 };
 
 export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
-  const { userLogged } = useContext(UserContext);
   const navigate = useNavigate();
+  const { userLogged } = useContext(UserContext);
   const [deleteUser, setDeleteUser] = useState<boolean>();
+
   const handleExitButton = () => {
     setStatement();
   };
@@ -25,22 +34,19 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
   const SubmitForm = async (e: any) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("@motors:token");
+    const token = localStorage.getItem("@motors:token")!;
 
-    await axios
-      .delete(`http://localhost:3000/user/${userLogged?.id}`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((resp) => {
-        localStorage.removeItem("@motors:token");
-        setDeleteUser(true);
-        return resp;
-      })
-      .catch((err) => err);
-
-    navigate("/");
+    await getData({
+      endpoint: "user",
+      method: "delete",
+      token,
+      id: userLogged?.id,
+    }).then((resp) => {
+      console.log(resp.data);
+      localStorage.removeItem("@motors:token");
+      setDeleteUser(true);
+      setTimeout(() => navigate(0), 1000 * 2);
+    });
   };
   return (
     <FormContainer onSubmit={(e) => SubmitForm(e)}>

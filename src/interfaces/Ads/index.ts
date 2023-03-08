@@ -1,3 +1,4 @@
+import { IUserResponse } from "../User";
 import { IUserResponseComments } from "../User";
 
 export interface IAdsRequest {
@@ -23,3 +24,5 @@ export interface IAds extends IAdsRequest {
 export interface IAdsResponse {
   data: IAds[];
 }
+
+

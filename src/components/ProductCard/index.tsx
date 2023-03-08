@@ -1,39 +1,33 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Car from "../../assets/car.svg";
 import Bike from "../../assets/moto.svg";
-import { AdsContext } from "../../contexts/AdsContexts";
-import { CommentsContext } from "../../contexts/CommentsContext";
+import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContexts";
+import { IAds } from "../../interfaces/Ads";
 import { Button } from "../Button";
-import { ModalContainer } from "../UI Components/ModalContainer";
-import { ModalUpdateAds } from "../UI Modal/ModalUpdateAds";
-
 import { ContainerCard, ContainerIsActive } from "./styles";
+import { CommentsContext } from "../../contexts/CommentsContext";
+import { useNavigate } from "react-router";
 
-const ProductCard = (info: any) => {
-  const [createAds, setCreateAds] = useState(false);
-  const [updateAds, setUpdateAds] = useState(false);
-  const [deleteAds, setDeleteAds] = useState(false);
+type ProductCardProps = {
+  handleButtonToggle: () => void;
+  type: string;
+  info: IAds;
+};
 
+const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
+  const { userLogged } = useContext(UserContext);
   const {
     id,
     title,
     description,
-    typeVehicle,
-    typeAds,
     releaseYear,
     mileage,
     price,
-    cover,
-    gallery_image,
-    isPublished,
     user,
-  } = info.info;
+    isPublished,
+  } = info;
 
-  const { userLogged } = useContext(UserContext);
   const { setAdsId, getComments, setIsLoading } = useContext(CommentsContext);
-
   const navigate = useNavigate();
 
   const view = () => {
@@ -43,15 +37,9 @@ const ProductCard = (info: any) => {
     navigate(`/ad/${id}`);
   };
 
-  const handleModalDeleteAds = () => {
-    setUpdateAds(!updateAds);
-    setDeleteAds(!deleteAds);
-  };
-  const handleModalCreateAds = () => {
-    setCreateAds(!createAds);
-  };
-  const handleModalUpdateAds = () => {
-    setUpdateAds(!updateAds);
+  const handleEdit = () => {
+    setAdsId(id);
+    handleButtonToggle();
   };
 
   return (
@@ -74,7 +62,7 @@ const ProductCard = (info: any) => {
         )}
 
         <div className="container--img">
-          {info.type === "cars" ? (
+          {type === "car" ? (
             <img src={Car} alt="car" />
           ) : (
             <img src={Bike} alt="motorbike" />
@@ -106,6 +94,7 @@ const ProductCard = (info: any) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
+              onClick={() => handleEdit()}
             >
               Editar
             </Button>
@@ -123,14 +112,6 @@ const ProductCard = (info: any) => {
           </div>
         )}
       </ContainerCard>
-      {updateAds && (
-        <ModalContainer>
-          <ModalUpdateAds
-            setStatement={handleModalUpdateAds}
-            setConfirmDelete={handleModalDeleteAds}
-          />
-        </ModalContainer>
-      )}
     </>
   );
 };

@@ -14,26 +14,25 @@ import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
 import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
 import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
 
-
 export const Home = () => {
   const { userLogged } = useContext(UserContext);
-  const { listCars, listMotorbikes } = useContext(AdsContext);
+  const { listCars, listMotorbikes, setIsSucess } = useContext(AdsContext);
+
   const [createAds, setCreateAds] = useState(false);
   const [updateAds, setUpdateAds] = useState(false);
   const [deleteAds, setDeleteAds] = useState(false);
-  
 
   const handleModalDeleteAds = () => {
     setUpdateAds(!updateAds);
     setDeleteAds(!deleteAds);
   };
   const handleModalCreateAds = () => {
+    setIsSucess(false);
     setCreateAds(!createAds);
   };
   const handleModalUpdateAds = () => {
     setUpdateAds(!updateAds);
   };
-
 
   return (
     <>
@@ -89,17 +88,39 @@ export const Home = () => {
           <div className="cars" id="cars">
             <h2 className="title-section">Carros</h2>
             <div className="scroll-card-cars">
-              {listCars?.map((ad) => (
-                <ProductCard info={ad} key={ad.id} type="cars" />
-              ))}
+              {Object.keys(listCars).length ? (
+                listCars?.map((ad) => (
+                  <ProductCard
+                    info={ad}
+                    key={ad.id}
+                    type="car"
+                    handleButtonToggle={handleModalUpdateAds}
+                  />
+                ))
+              ) : (
+                <span className="empty-products">
+                  Não há produtos no momento.
+                </span>
+              )}
             </div>
           </div>
           <div className="motorsbike" id="motorbikes">
             <h2 className="title-section">Motos</h2>
             <div className="scroll-card-motorsbike">
-              {listMotorbikes?.map((ad) => (
-                <ProductCard info={ad} key={ad.id} type="bike" />
-              ))}
+              {Object.keys(listMotorbikes).length ? (
+                listMotorbikes?.map((ad) => (
+                  <ProductCard
+                    info={ad}
+                    key={ad.id}
+                    type="motorbike"
+                    handleButtonToggle={handleModalUpdateAds}
+                  />
+                ))
+              ) : (
+                <span className="empty-products">
+                  Não há produtos no momento.
+                </span>
+              )}
             </div>
           </div>
         </MainContainer>
@@ -126,7 +147,6 @@ export const Home = () => {
           <ModalDeleteAds setStatement={handleModalDeleteAds} />
         </ModalContainer>
       )}
-
     </>
   );
 };

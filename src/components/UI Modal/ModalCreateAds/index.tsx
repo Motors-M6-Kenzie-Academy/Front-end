@@ -8,6 +8,9 @@ import { UIInput } from "../../UI Components/Input";
 import { UILabel } from "../../UI Components/Label";
 import { AdsContext } from "../../../contexts/AdsContexts";
 import { UIMessage } from "../../UI Components/Message";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CreateAdsSchema } from "../../../schemaYup/createAds.schema";
+import { useNavigate } from "react-router";
 
 type ModalCreateAdsProps = {
   setStatement: () => void;
@@ -18,19 +21,25 @@ type vehicleTypeProps = {
 };
 
 export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
-  const { onSubmitAds, adsApi, listAds } = useContext(AdsContext);
+  const navigate = useNavigate();
+  const { onSubmitAds, isSuccess } = useContext(AdsContext);
   const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(CreateAdsSchema),
+  });
 
   const Submit = (data: any) => {
     data["typeVehicle"] = vehicleType?.vehicleType;
     onSubmitAds(data);
-
   };
+
+  if (isSuccess) {
+    navigate(0);
+  }
 
   return (
     <FormContainer onSubmit={handleSubmit(Submit)}>
@@ -45,7 +54,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           X
         </UIButton>
       </FormGroup>
-      {adsApi.id && (
+      {isSuccess && (
         <UIMessage
           propMessage="Anúncio foi criado com sucesso!"
           propIsSuccess={true}
@@ -75,6 +84,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           placeholder="Digitar título"
           {...register("title")}
         />
+        {errors.title && (
+          <UIMessage
+            propMessage={errors.title.message as string}
+            propIsError={true}
+          />
+        )}
       </FormGroup>
       <FormGroup propColumn="row" propJustify="flex-start">
         <FormGroup>
@@ -85,6 +100,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
             placeholder="Digitar ano"
             {...register("releaseYear")}
           />
+          {errors.releaseYear && (
+            <UIMessage
+              propMessage={errors.releaseYear.message as string}
+              propIsError={true}
+            />
+          )}
         </FormGroup>
         <FormGroup>
           <UILabel>Quilometragem</UILabel>
@@ -94,6 +115,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
             placeholder="0"
             {...register("mileage")}
           />
+          {errors.mileage && (
+            <UIMessage
+              propMessage={errors.mileage.message as string}
+              propIsError={true}
+            />
+          )}
         </FormGroup>
         <FormGroup>
           <UILabel>Preço</UILabel>
@@ -103,6 +130,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
             placeholder="Digitar preço"
             {...register("price")}
           />
+          {errors.price && (
+            <UIMessage
+              propMessage={errors.price.message as string}
+              propIsError={true}
+            />
+          )}
         </FormGroup>
       </FormGroup>
 
@@ -114,6 +147,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           placeholder="Digitar descrição"
           {...register("description")}
         />
+        {errors.description && (
+          <UIMessage
+            propMessage={errors.description.message as string}
+            propIsError={true}
+          />
+        )}
       </FormGroup>
 
       <FormTitle>Tipo de veículo</FormTitle>
@@ -121,16 +160,13 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
       <FormGroup propColumn="row" propJustify="center">
         <UIButton
           propBG={
-            vehicleType?.vehicleType === "car"
-              ? "var(--brand1)"
-              : "var(--white)"
+            vehicleType?.vehicleType === "car" ? "--brand1" : "--transparent"
           }
           propTextColor={
-            vehicleType?.vehicleType === "car"
-              ? "var(--gray10)"
-              : "var(--gray1)"
+            vehicleType?.vehicleType === "car" ? "--white" : "--black"
           }
-          propWidth="50%"
+          propBorder={true}
+          propWidth={"50%"}
           type="button"
           onClick={() => setvehicleType({ vehicleType: "car" })}
         >
@@ -139,16 +175,14 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
         <UIButton
           propBG={
             vehicleType?.vehicleType === "motorbike"
-              ? "var(--brand1)"
-              : "var(--white)"
+              ? "--brand1"
+              : "--transparent"
+          }
+          propTextColor={
+            vehicleType?.vehicleType === "motorbike" ? "--white" : "--black"
           }
           propBorder={true}
-          propTextColor={
-            vehicleType?.vehicleType === "motorbike"
-              ? "var(--gray10)"
-              : "var(--gray1)"
-          }
-          propWidth="50%"
+          propWidth={"50%"}
           type="button"
           onClick={() => setvehicleType({ vehicleType: "motorbike" })}
         >
@@ -163,6 +197,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           placeholder="Inserir URL da imagem"
           {...register("cover")}
         />
+        {errors.cover && (
+          <UIMessage
+            propMessage={errors.cover.message as string}
+            propIsError={true}
+          />
+        )}
       </FormGroup>
       <FormGroup>
         <UILabel>1° Imagem da galeria</UILabel>
@@ -171,6 +211,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           placeholder="Inserir URL da imagem"
           {...register("gallery_image")}
         />
+        {errors.gallery_image && (
+          <UIMessage
+            propMessage={errors.gallery_image.message as string}
+            propIsError={true}
+          />
+        )}
       </FormGroup>
       <FormGroup>
         <UIButton

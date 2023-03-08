@@ -20,6 +20,7 @@ interface AdsContextData {
   adsApi: IAds;
   isError: boolean;
   isSuccess: boolean;
+  setIsSucess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AdsContext = createContext<AdsContextData>({} as AdsContextData);
@@ -56,16 +57,18 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   }, []);
 
   const onSubmitAds = async (data: IAdsRequest) => {
+    setIsSucess(false);
     await api
       .post("/ads", data, {
-        headers: { Authorization: `Bearer ${tokenUser}`},
+        headers: { Authorization: `Bearer ${tokenUser}` },
       })
       .then((res) => {
+        setIsSucess(true);
         setListAds((oldAds) => [...oldAds, res.data]);
         setAdsApi(res.data);
         return res.data;
       })
-      .catch((err) => err.response);
+      .catch((err) => console.log(err.response));
   };
 
   useEffect(() => {
@@ -129,6 +132,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
         adsApi,
         isError,
         isSuccess,
+        setIsSucess,
       }}
     >
       {children}

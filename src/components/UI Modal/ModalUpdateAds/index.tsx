@@ -9,6 +9,7 @@ import { UILabel } from "../../UI Components/Label";
 import { useContext, useState } from "react";
 import { UIMessage } from "../../UI Components/Message";
 import { useNavigate } from "react-router-dom";
+import { CommentsContext } from "../../../contexts/CommentsContext";
 
 type ModalUpdateAdsProps = {
   setStatement: () => void;
@@ -19,28 +20,21 @@ type vehicleTypeProps = {
   vehicleType: string;
 };
 
-type RespProps = {
-  data: object;
-  response: object;
-};
 export const ModalUpdateAds = ({
   setStatement,
   setConfirmDelete,
 }: ModalUpdateAdsProps) => {
   const navigate = useNavigate();
-  const { onSubmitUpdate, adsApi, isError, isSuccess } = useContext(AdsContext);
+  const { onSubmitUpdate, isError, isSuccess } = useContext(AdsContext);
+  const { adsId } = useContext(CommentsContext);
 
   const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const Submit = async (data: any) => {
+  const Submit = (data: any) => {
     data["typeVehicle"] = vehicleType?.vehicleType;
-    await onSubmitUpdate(adsApi.id, data);
+    onSubmitUpdate(adsId, data);
 
     if (isSuccess) {
       navigate(0);
@@ -145,16 +139,13 @@ export const ModalUpdateAds = ({
       <FormGroup propColumn="row" propJustify="center">
         <UIButton
           propBG={
-            vehicleType?.vehicleType === "car"
-              ? "var(--brand1)"
-              : "var(--white)"
+            vehicleType?.vehicleType === "car" ? "--brand1" : "--transparent"
           }
           propTextColor={
-            vehicleType?.vehicleType === "car"
-              ? "var(--gray10)"
-              : "var(--gray1)"
+            vehicleType?.vehicleType === "car" ? "--white" : "--black"
           }
-          propWidth="50%"
+          propBorder={true}
+          propWidth={"50%"}
           type="button"
           onClick={() => setvehicleType({ vehicleType: "car" })}
         >
@@ -163,16 +154,14 @@ export const ModalUpdateAds = ({
         <UIButton
           propBG={
             vehicleType?.vehicleType === "motorbike"
-              ? "var(--brand1)"
-              : "var(--white)"
+              ? "--brand1"
+              : "--transparent"
+          }
+          propTextColor={
+            vehicleType?.vehicleType === "motorbike" ? "--white" : "--black"
           }
           propBorder={true}
-          propTextColor={
-            vehicleType?.vehicleType === "motorbike"
-              ? "var(--gray10)"
-              : "var(--gray1)"
-          }
-          propWidth="50%"
+          propWidth={"50%"}
           type="button"
           onClick={() => setvehicleType({ vehicleType: "motorbike" })}
         >
