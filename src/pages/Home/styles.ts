@@ -131,6 +131,14 @@ export const MainContainer = styled.main`
         width: 0;
       }
     }
+
+    .empty-products {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 2rem;
+    }
   }
 
   .motorsbike {
@@ -158,6 +166,14 @@ export const MainContainer = styled.main`
       ::-webkit-scrollbar {
         width: 0;
       }
+    }
+
+    .empty-products {
+      font-family: var(--lexend);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 2rem;
     }
   }
 `;
