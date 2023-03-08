@@ -16,7 +16,7 @@ function App() {
           <GlobalStyle />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/ad" element={<AdPage />} />
+            <Route path="/ad/:id" element={<AdPage />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
           </Routes>

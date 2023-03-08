@@ -14,12 +14,14 @@ import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
 import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
 import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
 
+
 export const Home = () => {
   const { userLogged } = useContext(UserContext);
   const { listCars, listMotorbikes } = useContext(AdsContext);
   const [createAds, setCreateAds] = useState(false);
   const [updateAds, setUpdateAds] = useState(false);
   const [deleteAds, setDeleteAds] = useState(false);
+  
 
   const handleModalDeleteAds = () => {
     setUpdateAds(!updateAds);
@@ -31,6 +33,7 @@ export const Home = () => {
   const handleModalUpdateAds = () => {
     setUpdateAds(!updateAds);
   };
+
 
   return (
     <>
@@ -47,13 +50,23 @@ export const Home = () => {
               </h1>
               <p>Um ambiente feito para você explorar o seu melhor</p>
               <div>
-                <Link to={"/"}>
-                  <Button bgColor="transparent" txColor="white" border={true}>
+                <a href="#cars">
+                  <Button
+                    type="button"
+                    bgColor="transparent"
+                    txColor="white"
+                    border={true}
+                  >
                     Carros
                   </Button>
-                </Link>
-                <Link to={"/"}>
-                  <Button bgColor="transparent" txColor="white" border={true}>
+                </a>
+                <Link to="#motorbikes">
+                  <Button
+                    type="button"
+                    bgColor="transparent"
+                    txColor="white"
+                    border={true}
+                  >
                     Motos
                   </Button>
                 </Link>
@@ -92,7 +105,7 @@ export const Home = () => {
               )}
             </div>
           </div>
-          <div className="motorsbike" id="motorsbike">
+          <div className="motorsbike" id="motorbikes">
             <h2 className="title-section">Motos</h2>
             <div className="scroll-card-motorsbike">
               {Object.keys(listMotorbikes).length ? (
@@ -135,6 +148,7 @@ export const Home = () => {
           <ModalDeleteAds setStatement={handleModalDeleteAds} />
         </ModalContainer>
       )}
+
     </>
   );
 };

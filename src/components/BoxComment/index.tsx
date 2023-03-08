@@ -6,17 +6,17 @@ import { UserContext } from "../../contexts/UserContexts";
 import { CommentsContext } from "../../contexts/CommentsContext";
 import { Button } from "../Button";
 
-const BoxComment = (data: any) => {
+const BoxComment = () => {
   const { register, handleSubmit } = useForm<ICommentsRequest>();
   const { userLogged } = useContext(UserContext);
-  const { onSubmitComments } = useContext(CommentsContext);
+  const { onSubmitComments, autoPost} = useContext(CommentsContext);
 
   return (
     <DivComment>
       <div className="headerBox">
-        <div className="avatar">{userLogged!.name[0]}</div>
+        <div className="avatar">{userLogged?.name[0]}</div>
         <div className="nameUser">
-          <strong>{userLogged!.name}</strong>
+          <strong>{userLogged?.name}</strong>
         </div>
       </div>
 
@@ -37,13 +37,16 @@ const BoxComment = (data: any) => {
         >
           Comentar
         </Button>
+
       </form>
 
       <div className="tags">
-        <span className="ideia">Gostei muito!</span>
-        <span className="ideia">Incrível</span>
-        <span className="ideia">Recomndarei para meus amigos!</span>
+          <button className="ideia" onClick={() => autoPost({content: "Gostei muito!"})}>Gostei muito!</button>
+          <button className="ideia" onClick={() => autoPost({content: "Incrível!"})}>Incrível</button>
+          <button className="ideia" onClick={() => autoPost({content: "Recomendarei para meus amigos!"})}>Recomendarei para meus amigos!</button>
       </div>
+
+      
     </DivComment>
   );
 };

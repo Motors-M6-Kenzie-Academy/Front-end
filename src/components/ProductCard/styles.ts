@@ -6,21 +6,18 @@ interface IContainerIsActiveProps {
 }
 
 export const ContainerCard = styled.div`
-  width: 19.5rem;
-  /* height: 22.875rem; */
-
   padding: 0.3125rem;
   background-color: var(--gray9);
+
+  &:hover {
+    border: 0.125rem solid var(--brand1);
+    border-radius: 0.1875rem;
+  }
 
   .container--img {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    &:hover {
-      border: 0.125rem solid var(--brand1);
-      border-radius: 0.1875rem;
-    }
   }
 
   .container--content {
@@ -100,6 +97,7 @@ export const ContainerCard = styled.div`
   .container--buttons--edit {
     display: flex;
     gap: 0.9375rem;
+    margin-top: 1.25rem;
   }
 `;
 
@@ -107,7 +105,7 @@ export const ContainerIsActive = styled.div<IContainerIsActiveProps>`
   width: fit-content;
   padding: 0.4375rem;
   position: relative;
-  top: 2.3125rem;
+  top: 0.5rem;
   left: 0.5rem;
 
   font-family: var(--inter);

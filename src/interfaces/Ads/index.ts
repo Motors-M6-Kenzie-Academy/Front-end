@@ -1,4 +1,5 @@
 import { IUserResponse } from "../User";
+import { IUserResponseComments } from "../User";
 
 export interface IAdsRequest {
   title: string;
@@ -17,12 +18,11 @@ export interface IAds extends IAdsRequest {
   id: string;
   createdAt: string;
   updatedAt: string;
+  user?: IUserResponseComments;
 }
 
 export interface IAdsResponse {
   data: IAds[];
 }
 
-export interface IAdsInfo extends IAds {
-  user?: IUserResponse;
-}
+

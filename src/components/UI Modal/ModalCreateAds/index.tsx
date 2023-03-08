@@ -43,6 +43,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           onClick={setStatement}
           propBG="--transparent"
           propTextColor="--gray1"
+          type="button"
         >
           X
         </UIButton>
@@ -55,7 +56,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
       )}
       <FormTitle>Tipo de anúncio</FormTitle>
       <FormGroup propColumn="row" propJustify="center">
-        <UIButton propBG="--brand1" propWidth="50%">
+        <UIButton propBG="--brand1" propWidth="50%" disabled>
           Venda
         </UIButton>
         <UIButton
@@ -63,6 +64,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           propBorder={true}
           propTextColor={"--gray1"}
           propWidth="50%"
+          disabled
         >
           Leilão
         </UIButton>
@@ -214,7 +216,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
         <UIButton
           propBG="--gray7"
           propTextColor="--brand1"
-          type="reset"
+          type="button"
           propWidth="70%"
           propFontSize="0.8rem"
         >
@@ -232,7 +234,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           Cancelar
         </UIButton>
         <UIButton propBG="--brand1" type="submit">
-          Salvar Alterações
+          Criar Anúncio
         </UIButton>
       </FormGroup>
     </FormContainer>
