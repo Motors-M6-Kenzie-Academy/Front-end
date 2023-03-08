@@ -19,6 +19,7 @@ interface CommentsContextData {
   setOpenUpdate: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  autoPost: (data: ICommentsRequest) => void
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -40,6 +41,10 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const token = localStorage.getItem("@motors:token")?.toString();
+
+  const autoPost = (data: ICommentsRequest) => {
+    onSubmitComments(data)
+  }
 
   const getComments = async (id: string) => {
     await api
@@ -105,6 +110,7 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
         setOpenUpdate,
         isLoading,
         setIsLoading,
+        autoPost,
       }}
     >
       {children}

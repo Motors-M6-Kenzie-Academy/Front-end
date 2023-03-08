@@ -53,7 +53,7 @@ export const DivComment = styled.div`
     border: var(--gray7);
     border-radius: 0.25rem;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   placeholder {
@@ -74,8 +74,8 @@ export const DivComment = styled.div`
   .ideia {
     background-color: var(--gray7);
     padding: 5px;
-    border-radius: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 10px;
+    border-radius: 10px;
     font-size: 9.5px;
   }
 
@@ -84,10 +84,6 @@ export const DivComment = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-  }
-
-  Button {
-    margin-left: 620px;
   }
 
   @media screen and (min-width: 43.75rem) {
