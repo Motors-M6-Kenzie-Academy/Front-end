@@ -159,6 +159,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           }
           propBorder={true}
           propWidth={"50%"}
+          type="button"
           onClick={() => setvehicleType({ vehicleType: "car" })}
         >
           Carro
@@ -174,6 +175,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           }
           propBorder={true}
           propWidth={"50%"}
+          type="button"
           onClick={() => setvehicleType({ vehicleType: "motorbike" })}
         >
           Moto

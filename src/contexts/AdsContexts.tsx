@@ -61,11 +61,12 @@ const AdsProvider = ({ children }: IAuthProvier) => {
         headers: { Authorization: `Bearer ${tokenUser}` },
       })
       .then((res) => {
+        console.log(res.data);
         setListAds((oldAds) => [...oldAds, res.data]);
         setAdsApi(res.data);
         return res.data;
       })
-      .catch((err) => err.response);
+      .catch((err) => console.log(err.response));
   };
 
   useEffect(() => {
