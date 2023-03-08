@@ -32,7 +32,7 @@ const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
         Ativo
       </ContainerIsActive> */}
         <div className="container--img">
-          {type === "cars" ? (
+          {type === "car" ? (
             <img src={Car} alt="car" />
           ) : (
             <img src={Bike} alt="motorbike" />

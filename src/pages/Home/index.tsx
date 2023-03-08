@@ -81,7 +81,7 @@ export const Home = () => {
                   <ProductCard
                     info={ad}
                     key={ad.id}
-                    type="bike"
+                    type="car"
                     handleButtonToggle={handleModalUpdateAds}
                   />
                 ))
@@ -100,7 +100,7 @@ export const Home = () => {
                   <ProductCard
                     info={ad}
                     key={ad.id}
-                    type="bike"
+                    type="motorbike"
                     handleButtonToggle={handleModalUpdateAds}
                   />
                 ))
