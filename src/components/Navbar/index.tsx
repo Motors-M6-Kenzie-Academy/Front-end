@@ -96,8 +96,8 @@ export default function Navbar() {
         <ContainerDesktop>
           {userLogged ? (
             <Navigation>
-              <a href="#cars">Carros</a>
-              <a href="#motorbikes">Motos</a>
+              <a href="/#cars">Carros</a>
+              <a href="/#motorbikes">Motos</a>
               <Link to={"/"}>Leilão</Link>
               <div className="user-container-auth">
                 <span className="user-acronym">{sigla.join("")}</span>
@@ -115,8 +115,8 @@ export default function Navbar() {
             </Navigation>
           ) : (
             <Navigation>
-              <a href="#cars">Carros</a>
-              <a href="#motorbikes">Motos</a>
+              <a href="/#cars">Carros</a>
+              <a href="/#motorbikes">Motos</a>
               <Link to={"/"}>Leilão</Link>
               <div className="settings-container">
                 <Link to={"/signin"}>Fazer Login</Link>
