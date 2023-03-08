@@ -58,7 +58,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const onSubmitAds = async (data: IAdsRequest) => {
     await api
       .post("/ads", data, {
-        headers: { Authorization: tokenUser },
+        headers: { Authorization: `Bearer ${tokenUser}` },
       })
       .then((res) => {
         setListAds((oldAds) => [...oldAds, res.data]);

@@ -25,22 +25,23 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
   const SubmitForm = async (e: any) => {
     e.preventDefault();
 
+    console.log(userLogged);
+
     const token = localStorage.getItem("@motors:token");
 
     await axios
       .delete(`http://localhost:3000/user/${userLogged?.id}`, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((resp) => {
         localStorage.removeItem("@motors:token");
         setDeleteUser(true);
-        return resp;
+        console.log(resp.data);
+        navigate(0);
       })
       .catch((err) => err);
-
-    navigate("/");
   };
   return (
     <FormContainer onSubmit={(e) => SubmitForm(e)}>

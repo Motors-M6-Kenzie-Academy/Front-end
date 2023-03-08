@@ -1,3 +1,7 @@
+// Imports React Native Functions
+import { useContext, useState } from "react";
+
+// Imports Components UI
 import { FormContainer } from "../../UI Components/FormContainer";
 import { FormGroup } from "../../UI Components/FormGroup";
 import { UIButton } from "../../UI Components/Button";
@@ -5,48 +9,42 @@ import { UIInput } from "../../UI Components/Input";
 import { UILabel } from "../../UI Components/Label";
 import { FormTitle } from "../../UI Components/FormTitle";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { UserContext } from "../../../contexts/UserContexts";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UIMessage } from "../../UI Components/Message";
 
-type ModalUpdateAddressProps = {
-  setStatement: () => void;
-};
+// Imports Extras Libs
+import { useForm } from "react-hook-form";
+
+// Imports Others Functions
+import { UserContext } from "../../../contexts/UserContexts";
+import { getData } from "../../../utils/getData";
+
+// Imports @Types
+import { ModalUpdateAddressProps, UpdateStatement } from "./@types";
 
 export const ModalUpdateAddress = ({
-  setStatement,
+  handleButtonToggle,
 }: ModalUpdateAddressProps) => {
-  const navigate = useNavigate();
-  const [isUpdated, setIsUpdated] = useState<number>();
+  const { register, handleSubmit } = useForm();
+  const [isUpdated, setIsUpdated] = useState<UpdateStatement>();
   const { userLogged } = useContext(UserContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   const SubmitForm = async (data: any) => {
-    console.log(data);
-    const token = localStorage.getItem("@motors:token");
-
-    const resp = await axios
-      .patch(`http://localhost:3000/address/${userLogged?.id}`, data, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((resp) => {
-        setIsUpdated(resp.status);
-        return resp;
-      })
-      .catch((err) => {
-        setIsUpdated(resp.response.status);
-        return err;
+    const token = localStorage.getItem("@motors:token")!;
+    await getData({
+      endpoint: "address",
+      data,
+      method: "patch",
+      token,
+      id: userLogged?.id,
+    }).then((resp) => {
+      setIsUpdated({
+        status: resp,
+        message:
+          resp === 200
+            ? "Alterações realizadas com sucesso!"
+            : "Verifique se os campos foram preenchidos corretamente.",
       });
+    });
   };
 
   return (
@@ -54,7 +52,7 @@ export const ModalUpdateAddress = ({
       <FormGroup propColumn="row" propJustify="space-between">
         <FormTitle>Editar endereço</FormTitle>
         <UIButton
-          onClick={setStatement}
+          onClick={handleButtonToggle}
           propBG="--transparent"
           propTextColor="--gray1"
         >
@@ -64,10 +62,11 @@ export const ModalUpdateAddress = ({
       <FormParagraphy propTextColor="--gray1" propFontSize="0.8rem">
         informações de endereço
       </FormParagraphy>
-      {isUpdated === 200 && (
+      {isUpdated?.status && (
         <UIMessage
-          propMessage="Alterações realizadas com sucesso!"
-          propIsSuccess={true}
+          propMessage={isUpdated.message}
+          propIsError={isUpdated?.status === 404}
+          propIsSuccess={isUpdated?.status === 200}
         />
       )}
       <FormGroup>
@@ -76,7 +75,7 @@ export const ModalUpdateAddress = ({
           type={"string"}
           propBorder={true}
           placeholder="89888-888"
-          {...register("zipcode")}
+          {...register("zipCode")}
         />
       </FormGroup>
       <FormGroup>
@@ -129,7 +128,7 @@ export const ModalUpdateAddress = ({
         <UIButton
           propBG="--gray6"
           propTextColor="--gray2"
-          onClick={setStatement}
+          onClick={handleButtonToggle}
           type="reset"
         >
           Cancelar

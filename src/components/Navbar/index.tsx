@@ -135,12 +135,12 @@ export default function Navbar() {
 
       {updateAddress && (
         <ModalContainer>
-          <ModalUpdateAddress setStatement={handleModalUpdateAddress} />
+          <ModalUpdateAddress handleButtonToggle={handleModalUpdateAddress} />
         </ModalContainer>
       )}
       {updateUser && (
         <ModalContainer>
-          <ModalUpdateUser setStatement={handleModalUpdateUser} />
+          <ModalUpdateUser handleButtonToggle={handleModalUpdateUser} />
         </ModalContainer>
       )}
 
