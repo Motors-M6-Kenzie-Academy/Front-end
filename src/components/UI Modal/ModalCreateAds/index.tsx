@@ -20,7 +20,7 @@ type vehicleTypeProps = {
 };
 
 export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
-  const { onSubmitAds } = useContext(AdsContext);
+  const { onSubmitAds, isSuccess } = useContext(AdsContext);
   const [vehicleType, setvehicleType] = useState<vehicleTypeProps>();
   const {
     register,
@@ -47,12 +47,12 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           X
         </UIButton>
       </FormGroup>
-      {/* {status && (
+      {isSuccess && (
         <UIMessage
           propMessage="Anúncio foi criado com sucesso!"
           propIsSuccess={true}
         />
-      )} */}
+      )}
       <FormTitle>Tipo de anúncio</FormTitle>
       <FormGroup propColumn="row" propJustify="center">
         <UIButton propBG="--brand1" propWidth="50%">

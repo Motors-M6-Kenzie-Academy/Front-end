@@ -1,58 +1,28 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Car from "../../assets/car.svg";
 import Bike from "../../assets/moto.svg";
-import { AdsContext } from "../../contexts/AdsContexts";
-import { CommentsContext } from "../../contexts/CommentsContext";
+import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContexts";
+import { IAdsInfo } from "../../interfaces/Ads";
 import { Button } from "../Button";
-import { ModalContainer } from "../UI Components/ModalContainer";
-import { ModalUpdateAds } from "../UI Modal/ModalUpdateAds";
-
 import { ContainerCard, ContainerIsActive } from "./styles";
 
-const ProductCard = (info: any) => {
-  const [createAds, setCreateAds] = useState(false);
-  const [updateAds, setUpdateAds] = useState(false);
-  const [deleteAds, setDeleteAds] = useState(false);
+type ProductCardProps = {
+  handleButtonToggle: () => void;
+  type: string;
+  info: IAdsInfo;
+};
 
-  const {
-    id,
-    title,
-    description,
-    typeVehicle,
-    typeAds,
-    releaseYear,
-    mileage,
-    price,
-    cover,
-    gallery_image,
-    user,
-  } = info.info;
-
-  const announcer = "Natália";
-
+const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
   const { userLogged } = useContext(UserContext);
-  const { adsId, setAdsId, getComments } = useContext(CommentsContext);
+  const { title, description, releaseYear, mileage, price, user } = info;
 
-  const navigate = useNavigate();
-
-  const view = () => {
-    setAdsId(id);
-    getComments();
-    navigate("/ad");
-  };
-
-  const handleModalDeleteAds = () => {
-    setUpdateAds(!updateAds);
-    setDeleteAds(!deleteAds);
-  };
-  const handleModalCreateAds = () => {
-    setCreateAds(!createAds);
-  };
-  const handleModalUpdateAds = () => {
-    setUpdateAds(!updateAds);
-  };
+  // const { setAdsId, getComments } = useContext(CommentsContext);
+  // const navigate = useNavigate();
+  // const view = () => {
+  //   setAdsId(id);
+  //   getComments();
+  //   navigate("/ad");
+  // };
 
   return (
     <>
@@ -62,7 +32,7 @@ const ProductCard = (info: any) => {
         Ativo
       </ContainerIsActive> */}
         <div className="container--img">
-          {info.type === "cars" ? (
+          {type === "cars" ? (
             <img src={Car} alt="car" />
           ) : (
             <img src={Bike} alt="motorbike" />
@@ -73,9 +43,8 @@ const ProductCard = (info: any) => {
           <p className="container--description">{description}</p>
           {userLogged ? null : (
             <div className="container--announcer">
-
-              <div className="avatar">{user.name[0]}</div>
-              <p>{user.name}</p>
+              <div className="avatar">{user?.name[0]}</div>
+              <p>{user?.name}</p>
             </div>
           )}
           <div className="container--tag--price">
@@ -95,6 +64,7 @@ const ProductCard = (info: any) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
+              onClick={handleButtonToggle}
             >
               Editar
             </Button>
@@ -105,21 +75,12 @@ const ProductCard = (info: any) => {
               borderColor="var(--black)"
               isHeight={true}
               height="38px"
-              onClick={() => view()}
             >
               Ver como
             </Button>
           </div>
         )}
       </ContainerCard>
-      {updateAds && (
-        <ModalContainer>
-          <ModalUpdateAds
-            setStatement={handleModalUpdateAds}
-            setConfirmDelete={handleModalDeleteAds}
-          />
-        </ModalContainer>
-      )}
     </>
   );
 };

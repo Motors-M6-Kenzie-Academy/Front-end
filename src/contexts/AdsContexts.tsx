@@ -61,7 +61,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
         headers: { Authorization: `Bearer ${tokenUser}` },
       })
       .then((res) => {
-        console.log(res.data);
+        setIsSucess(true);
         setListAds((oldAds) => [...oldAds, res.data]);
         setAdsApi(res.data);
         return res.data;
@@ -85,7 +85,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const onSubmitUpdate = (id: string, dataUpdate: IAdsRequest) => {
     api
       .patch(`/ads/${id}`, dataUpdate, {
-        headers: { Authorization: tokenUser },
+        headers: { Authorization: `Bearer ${tokenUser}` },
       })
       .then((res) => {
         setListAds((ads) => [...ads, res.data]);
@@ -101,7 +101,7 @@ const AdsProvider = ({ children }: IAuthProvier) => {
   const delAds = (id: string) => {
     api
       .delete(`/ads/${id}`, {
-        headers: { Authorization: tokenUser },
+        headers: { Authorization: `Bearer ${tokenUser}` },
       })
       .then(() => {
         const deletedFiltered = listAds.filter((elem) => elem.id !== id);

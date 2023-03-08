@@ -3,12 +3,17 @@ import { FormContainer } from "../../UI Components/FormContainer";
 import { FormGroup } from "../../UI Components/FormGroup";
 import { FormParagraphy } from "../../UI Components/FormParagraphy";
 import { FormTitle } from "../../UI Components/FormTitle";
+import { useContext } from "react";
+import { AdsContext } from "../../../contexts/AdsContexts";
 
 type ModalDeleteAdsProps = {
   setStatement: () => void;
 };
 
 export const ModalDeleteAds = ({ setStatement }: ModalDeleteAdsProps) => {
+  const { delAds, adsApi } = useContext(AdsContext);
+  const id = adsApi.id;
+
   return (
     <FormContainer>
       <FormGroup propColumn="row" propJustify="space-between">
@@ -34,7 +39,9 @@ export const ModalDeleteAds = ({ setStatement }: ModalDeleteAdsProps) => {
       </FormGroup>
       <FormGroup propColumn="row" propJustify="flex-end">
         <UIButton propTextColor="--gray2">Cancelar</UIButton>
-        <UIButton propTextColor="--alert1">Sim, excluir anúncio</UIButton>
+        <UIButton propTextColor="--alert1" onClick={() => delAds(id)}>
+          Sim, excluir anúncio
+        </UIButton>
       </FormGroup>
     </FormContainer>
   );

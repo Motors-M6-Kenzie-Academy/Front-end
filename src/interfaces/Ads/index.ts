@@ -1,3 +1,5 @@
+import { IUserResponse } from "../User";
+
 export interface IAdsRequest {
   title: string;
   description: string;
@@ -19,4 +21,8 @@ export interface IAds extends IAdsRequest {
 
 export interface IAdsResponse {
   data: IAds[];
+}
+
+export interface IAdsInfo extends IAds {
+  user?: IUserResponse;
 }

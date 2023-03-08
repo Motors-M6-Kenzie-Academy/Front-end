@@ -13,7 +13,6 @@ import { ModalContainer } from "../../components/UI Components/ModalContainer";
 import { ModalCreateAds } from "../../components/UI Modal/ModalCreateAds";
 import { ModalUpdateAds } from "../../components/UI Modal/ModalUpdateAds";
 import { ModalDeleteAds } from "../../components/UI Modal/ModalDeleteAds";
-import { UIMessage } from "../../components/UI Components/Message";
 
 export const Home = () => {
   const { userLogged } = useContext(UserContext);
@@ -77,9 +76,14 @@ export const Home = () => {
           <div className="cars" id="cars">
             <h2 className="title-section">Carros</h2>
             <div className="scroll-card-cars">
-              {Object.keys(listCars).length > 0 ? (
+              {Object.keys(listCars).length ? (
                 listCars?.map((ad) => (
-                  <ProductCard info={ad} key={ad.id} type="cars" />
+                  <ProductCard
+                    info={ad}
+                    key={ad.id}
+                    type="bike"
+                    handleButtonToggle={handleModalUpdateAds}
+                  />
                 ))
               ) : (
                 <span className="empty-products">
@@ -93,7 +97,12 @@ export const Home = () => {
             <div className="scroll-card-motorsbike">
               {Object.keys(listMotorbikes).length ? (
                 listMotorbikes?.map((ad) => (
-                  <ProductCard info={ad} key={ad.id} type="bike" />
+                  <ProductCard
+                    info={ad}
+                    key={ad.id}
+                    type="bike"
+                    handleButtonToggle={handleModalUpdateAds}
+                  />
                 ))
               ) : (
                 <span className="empty-products">
