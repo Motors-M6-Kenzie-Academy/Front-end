@@ -13,6 +13,7 @@ import { UIMessage } from "../../UI Components/Message";
 
 // Imports Extras Libs
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // Imports Others Functions
 import { UserContext } from "../../../contexts/UserContexts";
@@ -24,6 +25,7 @@ import { ModalUpdateAddressProps, UpdateStatement } from "./@types";
 export const ModalUpdateAddress = ({
   handleButtonToggle,
 }: ModalUpdateAddressProps) => {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [isUpdated, setIsUpdated] = useState<UpdateStatement>();
   const { userLogged } = useContext(UserContext);
@@ -44,6 +46,7 @@ export const ModalUpdateAddress = ({
             ? "Alterações realizadas com sucesso!"
             : "Verifique se os campos foram preenchidos corretamente.",
       });
+      setTimeout(() => navigate(0), 1000 * 2);
     });
   };
 

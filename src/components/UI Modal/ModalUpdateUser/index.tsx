@@ -14,6 +14,7 @@ import { UIMessage } from "../../UI Components/Message";
 // Imports Extras Libs
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 // Imports Others Functions
 import { editUserSchema } from "../../../validators/patch";
@@ -30,6 +31,7 @@ import {
 export const ModalUpdateUser = ({
   handleButtonToggle,
 }: ModalUpdateUserProps) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -58,6 +60,7 @@ export const ModalUpdateUser = ({
             ? "Alterações realizadas com sucesso!"
             : "Verifique se os campos foram preenchidos corretamente.",
       });
+      setTimeout(() => navigate(0), 1000 * 2);
     });
   };
 

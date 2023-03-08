@@ -1,22 +1,27 @@
-import { Link } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { ModalContainer } from "../../components/UI Components/ModalContainer";
-import { ModalForgotPassword } from "../../components/UI Modal/ModalForgotPassword";
+// Imports React Native Functions
+import { useState, useContext } from "react";
+
+// Imports Components
+import { Button, Container, FormContainer, MainContainer } from "./styles";
 import { UILabel } from "../../components/UI Components/Label";
 import { FormGroup } from "../../components/UI Components/FormGroup";
-
-import { ISignInRequest } from "../../interfaces/User";
+import { UIMessage } from "../../components/UI Components/Message";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
-import { Button, Container, FormContainer, MainContainer } from "./styles";
+// Imports Extras Libs
+import { Link } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
+// Imports Modais
+import { ModalContainer } from "../../components/UI Components/ModalContainer";
+import { ModalForgotPassword } from "../../components/UI Modal/ModalForgotPassword";
+
+// Import Others Functions
+import { ISignInRequest } from "../../interfaces/User";
 import { loginSchema } from "../../validators/signin";
-import { UIMessage } from "../../components/UI Components/Message";
 import { UserContext } from "../../contexts/UserContexts";
-import { useContext } from "react";
 
 export const SignIn = () => {
   const { loginUser, isError } = useContext(UserContext);
@@ -31,6 +36,7 @@ export const SignIn = () => {
   const handleModalForgotPassword = () => {
     setForgotPassword(!forgotPassword);
   };
+
   return (
     <>
       <Container>

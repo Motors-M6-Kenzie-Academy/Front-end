@@ -31,6 +31,20 @@ export const getData = async ({
 
         return response;
       }
+      // -- Delete User
+      if (method === "delete") {
+        console.log("chegou no Delete");
+        const response = await api
+          .delete(`user/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((resp) => resp.status)
+          .catch((err) => err.response);
+
+        return response;
+      }
 
       break;
 
