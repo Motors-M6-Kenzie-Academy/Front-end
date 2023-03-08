@@ -9,7 +9,7 @@ import { Button } from "../Button";
 const BoxComment = () => {
   const { register, handleSubmit } = useForm<ICommentsRequest>();
   const { userLogged } = useContext(UserContext);
-  const { onSubmitComments } = useContext(CommentsContext);
+  const { onSubmitComments, autoPost} = useContext(CommentsContext);
 
   return (
     <DivComment>
@@ -37,13 +37,16 @@ const BoxComment = () => {
         >
           Comentar
         </Button>
+
       </form>
 
       <div className="tags">
-        <span className="ideia">Gostei muito!</span>
-        <span className="ideia">Incrível</span>
-        <span className="ideia">Recomendarei para meus amigos!</span>
+          <button className="ideia" onClick={() => autoPost({content: "Gostei muito!"})}>Gostei muito!</button>
+          <button className="ideia" onClick={() => autoPost({content: "Incrível!"})}>Incrível</button>
+          <button className="ideia" onClick={() => autoPost({content: "Recomendarei para meus amigos!"})}>Recomendarei para meus amigos!</button>
       </div>
+
+      
     </DivComment>
   );
 };
