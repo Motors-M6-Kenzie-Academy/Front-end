@@ -50,11 +50,17 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
     await api
       .get(`/comments/${id}`)
       .then((res) => {
-        setListComments(res.data.reverse());
         setIsLoading(false);
-        // commentsByDate(listComments);
+        commentsByDate(res.data);
       })
       .catch((err) => console.log(err));
+  };
+
+  const commentsByDate = (list: ICommentsResponse[]) => {
+    const newList = list.sort((a, b) => {
+      return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+    });
+    setListComments(newList);
   };
 
   const onSubmitComments = (data: ICommentsRequest) => {
