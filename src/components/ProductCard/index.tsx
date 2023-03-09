@@ -84,7 +84,7 @@ const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
             <strong>R${price}</strong>
           </div>
         </div>
-        {userLogged && (
+        {userLogged && userLogged?.id === user?.id ? (
           <div className="container--buttons--edit">
             <Button
               backgroud="var(--white)"
@@ -109,6 +109,22 @@ const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
               Ver como
             </Button>
           </div>
+        ) : (
+          userLogged && (
+            <div className="container--buttons--edit">
+              <Button
+                backgroud="var(--white)"
+                color="var(--black)"
+                border={true}
+                borderColor="var(--black)"
+                isHeight={true}
+                height="38px"
+                onClick={() => view()}
+              >
+                Ver como
+              </Button>
+            </div>
+          )
         )}
       </ContainerCard>
     </>
