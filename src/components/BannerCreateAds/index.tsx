@@ -22,17 +22,20 @@ const BannerCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
           </div>
         </div>
         <p className="paragraph--description">{userLogged!.description}</p>
-        <Button
-          backgroud="var(--white)"
-          color="var(--brand1)"
-          border={true}
-          borderColor="var(--brand1)"
-          isWidth={true}
-          width="160px"
-          onClick={setStatement}
-        >
-          Criar anúncio
-        </Button>
+        {userLogged!.accountType === "Anunciante" && (
+          <Button
+            backgroud="var(--white)"
+            color="var(--brand1)"
+            border={true}
+            borderColor="var(--brand1)"
+            isWidth={true}
+            width="160px"
+            onClick={setStatement}
+          >
+            Criar anúncio
+          </Button>
+        )}
+
         <div></div>
       </div>
     </ContainerBannerCreateAds>

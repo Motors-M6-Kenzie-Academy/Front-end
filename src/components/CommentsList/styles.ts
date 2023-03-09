@@ -9,6 +9,18 @@ export const DivComments = styled.ul`
   background-color: #fdfdfd;
   border-radius: 0.25rem;
   padding: 0.625rem;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    /* display: none; */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gray6);
+    border-radius: 10px;
+    height: 10px;
+  }
 
   @media screen and (min-width: 900px) {
     max-width: 750px;
