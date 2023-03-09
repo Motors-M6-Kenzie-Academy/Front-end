@@ -105,11 +105,15 @@ export const FormContainer = styled.form`
   }
 
   @media only screen and (max-width: 414px) {
-    width: 18rem;
+    width: 20rem;
+    height: 35rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
 
     .formSubmit {
       display: flex;
       align-items: center;
+      letter-spacing: 0;
     }
   }
 `;
