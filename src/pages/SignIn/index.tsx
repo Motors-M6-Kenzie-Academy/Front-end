@@ -10,7 +10,7 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
 // Imports Extras Libs
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
@@ -24,6 +24,7 @@ import { loginSchema } from "../../validators/signin";
 import { UserContext } from "../../contexts/UserContexts";
 
 export const SignIn = () => {
+  const navigate = useNavigate();
   const { loginUser, isError } = useContext(UserContext);
   const [forgotPassword, setForgotPassword] = useState(false);
 
@@ -35,6 +36,10 @@ export const SignIn = () => {
 
   const handleModalForgotPassword = () => {
     setForgotPassword(!forgotPassword);
+  };
+
+  const handleGoToRegister = () => {
+    navigate("/register");
   };
 
   return (
@@ -94,10 +99,11 @@ export const SignIn = () => {
               </Link>
 
               <Button
-                type="submit"
+                type="button"
                 bgColor={"transparent"}
                 txColor={"black"}
                 border={true}
+                onClick={handleGoToRegister}
               >
                 Cadastrar
               </Button>

@@ -84,11 +84,13 @@ export default function Navbar() {
               </Navigation>
             ) : (
               <>
-                <a href="#cars">Carros</a>
-                <a href="#motorbikes">Motos</a>
-                <Link to={"/"}>Leilão</Link>
-                <Link to={"/signin"}>Fazer Login</Link>
-                <Link to={"/register"}>Cadastrar</Link>
+                <Navigation>
+                  <a href="#cars">Carros</a>
+                  <a href="#motorbikes">Motos</a>
+                  <Link to={"/"}>Leilão</Link>
+                  <Link to={"/signin"}>Fazer Login</Link>
+                  <Link to={"/register"}>Cadastrar</Link>
+                </Navigation>
               </>
             ))}
         </ContainerMobile>
