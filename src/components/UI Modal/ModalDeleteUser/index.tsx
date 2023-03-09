@@ -11,7 +11,6 @@ import { UIInput } from "../../UI Components/Input";
 import { UIMessage } from "../../UI Components/Message";
 
 // Imports Extras Libs
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // Imports Others Functions
@@ -42,7 +41,6 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
       token,
       id: userLogged?.id,
     }).then((resp) => {
-      console.log(resp.data);
       localStorage.removeItem("@motors:token");
       setDeleteUser(true);
       setTimeout(() => navigate(0), 1000 * 2);
@@ -70,13 +68,6 @@ export const ModalDeleteUser = ({ setStatement }: ModalDeleteUserProps) => {
       )}
 
       <UILabel>Deseja Excluir sua conta?</UILabel>
-      <FormGroup>
-        <UIInput
-          placeholder="Agradeçemos o feedback!"
-          propBorder={true}
-          propHeight={"3rem"}
-        />
-      </FormGroup>
       <UIButton propBG="--alert1" type="submit">
         Excluir
       </UIButton>
