@@ -79,7 +79,9 @@ export default function Navbar() {
                   Editar Endereço
                 </Link>
                 <Link to={"/"}>Meus Anúncios</Link>
-                <Link to={"/"}>Excluir Perfil</Link>
+                <Link to={"/"} onClick={handleModalDeleteUser}>
+                  Excluir Perfil
+                </Link>
                 <button onClick={() => logout()}>Sair</button>
               </Navigation>
             ) : (

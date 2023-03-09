@@ -34,6 +34,7 @@ export const ModalCreateAds = ({ setStatement }: ModalCreateAdsProps) => {
 
   const Submit = (data: any) => {
     data["typeVehicle"] = vehicleType?.vehicleType;
+ 
     onSubmitAds(data);
   };
 

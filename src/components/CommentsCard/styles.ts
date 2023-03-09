@@ -55,17 +55,21 @@ export const Card = styled.div`
     border-radius: 50%;
   }
 
-  .iconsCard{
+  .iconsCard {
     font-size: 25px;
   }
 
-  .iconsCard:hover{
+  .iconsCard:hover {
     cursor: pointer;
   }
 
-  .iconEdit{
+  .iconEdit {
     margin-left: 300px;
     margin-right: 20px;
+
+    @media (width < 400px) {
+      margin: 0;
+    }
   }
 
   .created {
@@ -86,51 +90,52 @@ export const Card = styled.div`
     }
 
     .avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        width: 2rem;
-        height: 2rem;
-        border-radius: 100%;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 100%;
 
-        font-family: var(--inter);
-        font-size: .875rem;
+      font-family: var(--inter);
+      font-size: 0.875rem;
 
-        background-color: var(--brand2);
-        color: var(--white);
+      background-color: var(--brand2);
+      color: var(--white);
     }
 
-      strong{
-        font-size: .875rem;
-        font-weight: 500;
-        font-family: var(--lexend);
-      }
+    strong {
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: var(--lexend);
+    }
 
-      .created{
-        font-family: var(--inter);
-        color: var(--grey3)
-        font-size: .75rem;
-      }
+    .created {
+      font-family: var(--inter);
+      color: var(--grey3);
+      font-size: 0.75rem;
+    }
 
-      .iconsCard{
-        font-size: 25px;
-      }
+    .iconsCard {
+      font-size: 25px;
+    }
 
-      .iconsCard:hover{
-        cursor: pointer;
-      }
+    .iconsCard:hover {
+      cursor: pointer;
+    }
 
-      .iconEdit{
-        margin-left: 300px;
-        margin-right: 20px;
-        font-size: 25px;
-      }
+    .iconEdit {
+      margin-left: 300px;
+      margin-right: 20px;
+      font-size: 25px;
+    }
 
-      .comment{
-        font-family: var(--inter);
-        font-size: .875rem;
-        color: var(--grey2);
-        padding: 10px;
-      }
-`
+    .comment {
+      font-family: var(--inter);
+      font-size: 0.875rem;
+      color: var(--grey2);
+      padding: 10px;
+    }
+  }
+`;

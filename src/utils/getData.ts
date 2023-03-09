@@ -33,7 +33,6 @@ export const getData = async ({
       }
       // -- Delete User
       if (method === "delete") {
-        console.log("chegou no Delete");
         const response = await api
           .delete(`user/${id}`, {
             headers: {
