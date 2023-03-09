@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 import { ICommentsRequest, ICommentsResponse } from "../interfaces/Comments";
 import api from "../services/api";
 
@@ -14,12 +14,12 @@ interface CommentsContextData {
   onDelComment: (id: string) => void;
   commentId: string;
   setCommentId: React.Dispatch<React.SetStateAction<string>>;
-  onPatchComment:  (commentId: string, data: string) => void;
+  onPatchComment: (commentId: string, data: string) => void;
   openUpdate: boolean;
   setOpenUpdate: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  autoPost: (data: ICommentsRequest) => void
+  autoPost: (data: ICommentsRequest) => void;
 }
 
 export const CommentsContext = createContext<CommentsContextData>(
@@ -37,14 +37,14 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   );
   const [adsId, setAdsId] = useState<string>("");
   const [commentId, setCommentId] = useState<string>("");
-  const [openUpdate, setOpenUpdate] = useState(false)
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const token = localStorage.getItem("@motors:token")?.toString();
 
   const autoPost = (data: ICommentsRequest) => {
-    onSubmitComments(data)
-  }
+    onSubmitComments(data);
+  };
 
   const getComments = async (id: string) => {
     await api
@@ -52,6 +52,7 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
       .then((res) => {
         setListComments(res.data.reverse());
         setIsLoading(false);
+        // commentsByDate(listComments);
       })
       .catch((err) => console.log(err));
   };
@@ -70,16 +71,19 @@ const CommentsProvider = ({ children }: ICommentsProvierProps) => {
   };
 
   const onPatchComment = async (commentId: string, content: string) => {
-
     api
-    .patch(`comments/${commentId}`, {content}, {
-      headers: { Authorization: `Bearer ${token}`},
-    })
-    .then((res) => {
-      getComments(adsId)
-    })
-    .catch((err) => console.log(err))
-  }
+      .patch(
+        `comments/${commentId}`,
+        { content },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        getComments(adsId);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const onDelComment = (commentId: string) => {
     api

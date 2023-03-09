@@ -6,7 +6,7 @@ import { IAds } from "../../interfaces/Ads";
 import { Button } from "../Button";
 import { ContainerCard, ContainerIsActive } from "./styles";
 import { CommentsContext } from "../../contexts/CommentsContext";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 type ProductCardProps = {
   handleButtonToggle: () => void;
@@ -27,13 +27,12 @@ const ProductCard = ({ handleButtonToggle, info, type }: ProductCardProps) => {
     isPublished,
   } = info;
 
-  const { setAdsId, getComments, setIsLoading } = useContext(CommentsContext);
+  const { setAdsId, setIsLoading } = useContext(CommentsContext);
   const navigate = useNavigate();
 
   const view = () => {
     setAdsId(id);
     setIsLoading(true);
-    getComments(id);
     navigate(`/ad/${id}`);
   };
 
